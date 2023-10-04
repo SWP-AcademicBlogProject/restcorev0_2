@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -9,8 +9,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import test.fptblog.model.responseObj;
@@ -47,5 +51,49 @@ public class userController {
             }
         
     }   
+        
+        @PostMapping("/add")
+        ResponseEntity<responseObj> insertUser(@RequestBody userModel newUser) {
+            List<userModel> foundUser = repository.findByUsername(newUser.getUsername().trim());
+            if (foundUser.size() > 0) {
+                 return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
+            new responseObj("failed", "user already registetred !!!", "")
+            );
+            }
+            return ResponseEntity.status(HttpStatus.OK).body(
+            new responseObj("ok", "Insert user successfully", repository.save(newUser))
+            );
+            
+        }
+        
+        @PutMapping("/{id}")
+         ResponseEntity<responseObj> updateUser(@RequestBody userModel newUser, @PathVariable Long id) {
+             userModel updateUser = repository.findById(id).map(user -> {
+                 user.setUsername(newUser.getUsername());
+                 user.setPassword(user.getPassword());
+                 user.setRoleid(newUser.getRoleid());
+                 return repository.save(user);
+             }).orElseGet(()-> {
+                 newUser.setId(id);
+                 return repository.save(newUser);
+             });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new responseObj("ok","update successfully", updateUser));
+         }
+         
+         
+         @DeleteMapping("/{id}")
+         ResponseEntity<responseObj> deleteUser(@PathVariable Long id){
+             boolean exist = repository.existsById(id);
+             if (exist) {
+                 repository.deleteById(id);
+                  return ResponseEntity.status(HttpStatus.OK).body(
+                new responseObj("ok","delete successfully", ""));
+             }
+             
+              return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new responseObj("failed","delete failed", ""));
+         }
+         
     
 }

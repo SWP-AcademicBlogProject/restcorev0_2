@@ -4,6 +4,7 @@
  */
 package test.fptblog.repositories;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import test.fptblog.model.userModel;
 
@@ -12,5 +13,7 @@ import test.fptblog.model.userModel;
  * @author pc
  */
 public interface userRepository extends JpaRepository<userModel, Long>{
+    
+    List<userModel> findByUsername(String userName);
     
 }
