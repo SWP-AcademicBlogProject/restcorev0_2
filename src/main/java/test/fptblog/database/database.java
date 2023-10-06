@@ -24,10 +24,10 @@ public class database {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
-                userModel a = new userModel("khai","123","user");
-                userModel b = new userModel("admin","1","admin");
-                logger.info("insert data: " + userrep.save(a));
-                logger.info("insert data: " + userrep.save(b));
+              //  userModel a = new userModel("khai","123","user");
+               // userModel b = new userModel("admin","1","admin");
+               // logger.info("insert data: " + userrep.save(a));
+               // logger.info("insert data: " + userrep.save(b));
                 
             }
         };
