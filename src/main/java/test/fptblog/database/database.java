@@ -4,6 +4,7 @@
  */
 package test.fptblog.database;
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -28,6 +29,11 @@ public class database {
                // userModel b = new userModel("admin","1","admin");
                // logger.info("insert data: " + userrep.save(a));
                // logger.info("insert data: " + userrep.save(b));
+               userModel adminUser = new userModel("SE000000", "Admin", "1", "admin", "9-9-9999", 0, 0, 0, "admin account", "", null);
+               List<userModel> userList = userrep.findAll();
+               if (userList.size()==0){
+                   logger.info("insert data: " + userrep.save(adminUser));
+               }
                 
             }
         };

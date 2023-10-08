@@ -40,7 +40,7 @@ public class userController {
     
     @GetMapping("/{id}")
     //userModel
-        ResponseEntity<responseObj> findbyid(@PathVariable long id) {
+        ResponseEntity<responseObj> findbyid(@PathVariable String id) {
             Optional<userModel> founduser = repository.findById(id);
             if(founduser.isPresent()){
                 return ResponseEntity.status(HttpStatus.OK).body(
@@ -54,7 +54,7 @@ public class userController {
         
         @PostMapping("/add")
         ResponseEntity<responseObj> insertUser(@RequestBody userModel newUser) {
-            List<userModel> foundUser = repository.findByUsername(newUser.getUsername().trim());
+            List<userModel> foundUser = repository.findByUserName(newUser.getUserName().trim());
             if (foundUser.size() > 0) {
                  return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
             new responseObj("failed", "user already registetred !!!", "")
@@ -67,14 +67,20 @@ public class userController {
         }
         
         @PutMapping("/{id}")
-         ResponseEntity<responseObj> updateUser(@RequestBody userModel newUser, @PathVariable Long id) {
+         ResponseEntity<responseObj> updateUser(@RequestBody userModel newUser, @PathVariable String id) {
              userModel updateUser = repository.findById(id).map(user -> {
-                 user.setUsername(newUser.getUsername());
+                 user.setUserName(newUser.getUserName());
                  user.setPassword(user.getPassword());
                  user.setRoleid(newUser.getRoleid());
+                 user.setBirthdate(user.getBirthdate());
+                 user.setAward(user.getAward());
+                 user.setNumberOfPosts(user.getNumberOfPosts());
+                 user.setStatus(user.getStatus());
+                 user.setDescription(user.getDescription());
+                 user.setMajor(user.getMajor());
                  return repository.save(user);
              }).orElseGet(()-> {
-                 newUser.setId(id);
+                 newUser.setUserID(id);
                  return repository.save(newUser);
              });
         return ResponseEntity.status(HttpStatus.OK).body(
@@ -83,7 +89,7 @@ public class userController {
          
          
          @DeleteMapping("/{id}")
-         ResponseEntity<responseObj> deleteUser(@PathVariable Long id){
+         ResponseEntity<responseObj> deleteUser(@PathVariable String id){
              boolean exist = repository.existsById(id);
              if (exist) {
                  repository.deleteById(id);
