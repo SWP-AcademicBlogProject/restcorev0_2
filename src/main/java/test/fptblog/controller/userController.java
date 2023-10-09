@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -25,81 +25,78 @@ import test.fptblog.repositories.userRepository;
  *
  * @author pc
  */
-
 @RestController
 @RequestMapping(path = "/api/userlist")
 public class userController {
+
     @Autowired
     private userRepository repository;
-    
-    
+
     @GetMapping("")
     List<userModel> getAll() {
         return repository.findAll();
     }
-    
+
     @GetMapping("/{id}")
     //userModel
-        ResponseEntity<responseObj> findbyid(@PathVariable String id) {
-            Optional<userModel> founduser = repository.findById(id);
-            if(founduser.isPresent()){
-                return ResponseEntity.status(HttpStatus.OK).body(
-                        new responseObj("ok","query product successfully",founduser)); 
-            } else {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                        new responseObj("no","cannot found user: ",founduser)); 
-            }
-        
-    }   
-        
-        @PostMapping("/add")
-        ResponseEntity<responseObj> insertUser(@RequestBody userModel newUser) {
-            List<userModel> foundUser = repository.findByUserName(newUser.getUserName().trim());
-            if (foundUser.size() > 0) {
-                 return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
-            new responseObj("failed", "user already registetred !!!", "")
-            );
-            }
+    ResponseEntity<responseObj> findbyid(@PathVariable String id) {
+        Optional<userModel> founduser = repository.findById(id);
+        if (founduser.isPresent()) {
             return ResponseEntity.status(HttpStatus.OK).body(
-            new responseObj("ok", "Insert user successfully", repository.save(newUser))
-            );
-            
+                    new responseObj("ok", "query product successfully", founduser));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    new responseObj("no", "cannot found user: ", founduser));
         }
-        
-        @PutMapping("/{id}")
-         ResponseEntity<responseObj> updateUser(@RequestBody userModel newUser, @PathVariable String id) {
-             userModel updateUser = repository.findById(id).map(user -> {
-                 user.setUserName(newUser.getUserName());
-                 user.setPassword(user.getPassword());
-                 user.setRoleid(newUser.getRoleid());
-                 user.setBirthdate(user.getBirthdate());
-                 user.setAward(user.getAward());
-                 user.setNumberOfPosts(user.getNumberOfPosts());
-                 user.setStatus(user.getStatus());
-                 user.setDescription(user.getDescription());
-                 user.setMajor(user.getMajor());
-                 return repository.save(user);
-             }).orElseGet(()-> {
-                 newUser.setUserID(id);
-                 return repository.save(newUser);
-             });
+
+    }
+
+    @PostMapping("/add")
+    ResponseEntity<responseObj> insertUser(@RequestBody userModel newUser) {
+        List<userModel> foundUser = repository.findByUserName(newUser.getUserName().trim());
+        if (foundUser.size() > 0) {
+            return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(
+                    new responseObj("failed", "user already registetred !!!", "")
+            );
+        }
         return ResponseEntity.status(HttpStatus.OK).body(
-                new responseObj("ok","update successfully", updateUser));
-         }
-         
-         
-         @DeleteMapping("/{id}")
-         ResponseEntity<responseObj> deleteUser(@PathVariable String id){
-             boolean exist = repository.existsById(id);
-             if (exist) {
-                 repository.deleteById(id);
-                  return ResponseEntity.status(HttpStatus.OK).body(
-                new responseObj("ok","delete successfully", ""));
-             }
-             
-              return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                new responseObj("failed","delete failed", ""));
-         }
-         
-    
+                new responseObj("ok", "Insert user successfully", repository.save(newUser))
+        );
+
+    }
+
+    @PutMapping("/{id}")
+    ResponseEntity<responseObj> updateUser(@RequestBody userModel newUser, @PathVariable String id) {
+        userModel updateUser = repository.findById(id).map(user -> {
+            user.setUserName(newUser.getUserName());
+            user.setPassword(user.getPassword());
+            user.setRoleid(newUser.getRoleid());
+            user.setBirthdate(user.getBirthdate());
+            user.setAward(user.getAward());
+            user.setNumberOfPosts(user.getNumberOfPosts());
+            user.setStatus(user.getStatus());
+            user.setDescription(user.getDescription());
+            user.setMajor(user.getMajor());
+            return repository.save(user);
+        }).orElseGet(() -> {
+            newUser.setUserID(id);
+            return repository.save(newUser);
+        });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new responseObj("ok", "update successfully", updateUser));
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<responseObj> deleteUser(@PathVariable String id) {
+        boolean exist = repository.existsById(id);
+        if (exist) {
+            repository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new responseObj("ok", "delete successfully", ""));
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new responseObj("failed", "delete failed", ""));
+    }
+
 }

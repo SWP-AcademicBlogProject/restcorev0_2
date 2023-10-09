@@ -16,33 +16,34 @@ import javax.persistence.Table;
  * @author pc
  */
 @Entity
- @Table(name = "[dbo].[User]")
+@Table(name = "[dbo].[User]")
 public class userModel {
+
     @Id
     private String UserID;
     @Column(name = "UserName")
     private String userName;
-  // @Column(name = "Password")
+    // @Column(name = "Password")
     private String Password;
     @Column(name = "RoleID")
     private String Roleid;
-   // @Column(name = "Birthdate")
+    // @Column(name = "Birthdate")
     private String Birthdate;
-   // @Column(name = "Award")
+    // @Column(name = "Award")
     private int Award;
-   // @Column(name = "NumberOfPosts")
+    // @Column(name = "NumberOfPosts")
     private int NumberOfPosts;
-   // @Column(name = "Status")
+    // @Column(name = "Status")
     private int Status;
-   // @Column(name = "Description")
+    // @Column(name = "Description")
     private String Description;
-   // @Column(name = "Major")
+    // @Column(name = "Major")
     private String Major;
-   // @Column(name = "Image")
+    // @Column(name = "Image")
     private String Image;
-    
-    public userModel(){
-        
+
+    public userModel() {
+
     }
 
     public userModel(String UserID, String UserName, String Password, String Roleid, String Birthdate, int Award,
@@ -57,7 +58,7 @@ public class userModel {
         this.Status = Status;
         this.Description = Description;
         this.Major = Major;
-        this.Image=null;
+        this.Image = null;
     }
 
     public String getUserID() {
@@ -148,13 +149,10 @@ public class userModel {
         this.Image = Image;
     }
 
-   
-    
     @Override
     public String toString() {
-        return UserID +" / "+ userName +" / "+ Password +" / "+ Roleid +" / "+ Birthdate +" / "+ Award 
-                +" / "+ NumberOfPosts +" / "+ Status +" / "+ Description
-                +" / "+ Major +" / "+ Image;
+        return UserID + " / " + userName + " / " + Password + " / " + Roleid + " / " + Birthdate + " / " + Award
+                + " / " + NumberOfPosts + " / " + Status + " / " + Description
+                + " / " + Major + " / " + Image;
     }
-    }
-    
+}
