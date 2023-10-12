@@ -12,8 +12,8 @@ import test.fptblog.model.userModel;
  *
  * @author pc
  */
-public interface userRepository extends JpaRepository<userModel, Long>{
-    
-    List<userModel> findByUsername(String userName);
-    
+public interface userRepository extends JpaRepository<userModel, String> {
+
+    List<userModel> findByUserName(String UserName);
+
 }

@@ -9,6 +9,7 @@ package test.fptblog.model;
  * @author pc
  */
 public class responseObj {
+
     private String status;
     private String message;
     private Object data;
@@ -45,6 +46,5 @@ public class responseObj {
     public void setData(Object data) {
         this.data = data;
     }
-    
-    
+
 }
