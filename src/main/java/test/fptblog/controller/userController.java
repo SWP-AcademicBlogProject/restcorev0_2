@@ -65,7 +65,11 @@ public class userController {
 
     }
 
+<<<<<<< HEAD
     @PutMapping("/update/{id}")
+=======
+    @PutMapping("/{id}")
+>>>>>>> cdb4ff90a4c7c062a421b26235f6ec92ecf5ffc6
     ResponseEntity<responseObj> updateUser(@RequestBody userModel newUser, @PathVariable String id) {
         userModel updateUser = repository.findById(id).map(user -> {
             user.setUserName(newUser.getUserName());
@@ -86,7 +90,11 @@ public class userController {
                 new responseObj("ok", "update successfully", updateUser));
     }
 
+<<<<<<< HEAD
     @DeleteMapping("/delete/{id}")
+=======
+    @DeleteMapping("/{id}")
+>>>>>>> cdb4ff90a4c7c062a421b26235f6ec92ecf5ffc6
     ResponseEntity<responseObj> deleteUser(@PathVariable String id) {
         boolean exist = repository.existsById(id);
         if (exist) {
