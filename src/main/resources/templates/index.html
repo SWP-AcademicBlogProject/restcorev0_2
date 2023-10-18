@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>index page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                /*                background-image: url('https://bloghomestay.vn/wp-content/uploads/2023/03/tong-hop-80-hinh-nen-bau-troi-dep-nhat-cho-may-tinh-iphone_8.jpg');  Thay đổi đường dẫn đến hình ảnh của bạn 
+                                background-repeat: no-repeat;
+                                background-size: cover;  Đảm bảo hình ảnh nền kích thước rộng và cao bằng kích thước của trình duyệt 
+                                background-position: center center;  Hiển thị hình ảnh ở trung tâm của trang 
+                                background-attachment: fixed;  Giữ hình ảnh nền cố định khi trang cuộn */
+            }
+
+
+            .container {
+                /*                background-color: white;  Màu nền trắng cho container */
+                background-image: url("https://img.freepik.com/premium-vector/full-color-gradient-abstract-background-orange-backgrounds-vector-illustration_542898-61.jpg");
+                background-size: cover;
+                padding: 10px; /* Khoảng cách 10px */
+                margin: 0 auto;
+                text-align: center;
+                position: fixed; /* Giữ cố định vị trí của container */
+                width: 100%; /* Chiều rộng 100% để container kéo dài ra cả trang */
+                top: 0; /* Đặt vị trí top ở đầu trang */
+                left: 0; /* Đặt vị trí left ở bên trái */
+                z-index: 1; /* Để container luôn nằm trên cùng của trang */
+            }
+
+            /*            .container1 {
+                            background-image: url('https://t3.ftcdn.net/jpg/02/84/32/38/360_F_284323879_9WuCKLQZdQKzm1zGX4PFqFhZvEgcov3o.jpg');
+                            background-size: cover;             
+                            margin: 0 auto;
+                            text-align: center;
+                            width: 100%;  Chiều rộng 100% để container kéo dài ra cả trang 
+                            color: #fff;
+                            text-align: center;
+                            padding: 20px;
+                            font-size: 14px;
+                        }*/
+
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+            }
+
+            input[type="submit"] {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            img {
+                width: 150px;
+                border-radius: 50%;
+            }
+
+            .header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between; /* Thêm thuộc tính này để căn giữa giữa và tách biệt thành phần */
+            }
+
+            .left {
+                flex: 1;
+                margin-right: 50px;
+            }
+
+            .right {
+                flex: 1;
+                /*                text-align: right;*/
+                margin-left: 50px;
+            }
+
+            .search {
+                width: 430px !important; /* Kích thước ngắn hơn cho thanh tìm kiếm */
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+                /*                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlEbnvQp_KImARXzvLrbaIMdp5gcKqhEMWuQ&usqp=CAU'); Đường dẫn đến hình ảnh từ URL */
+                background-image: url('https://png.pngtree.com/element_our/20190528/ourlarge/pngtree-magnifying-glass-icon-image_1128382.jpg');
+                background-repeat: no-repeat;
+                background-position: right center; /* Hiển thị hình ảnh ở phía bên phải và giữa */
+                background-size: contain; /* Hiển thị hình ảnh đầy đủ và thu nhỏ lại sao cho nó vừa với phần tìm kiếm */
+                padding-right: 30px; /* Để dự trữ không gian cho biểu tượng kính lúp */
+            }
+
+            .search:focus {
+                border: 2px solid #1E90FF; /* Màu viền xanh dương khi input được focus */
+                outline: none; /* Loại bỏ đường viền màu xanh khi focus (thường là hiệu ứng mặc định của trình duyệt) */
+            }
+
+            .login, .create {
+                margin-left: 10px;
+                background-color: #4CAF50; /* Màu xanh lá */
+                color: white; /* Màu trắng */
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 10px 10px;
+                cursor: pointer;
+            }
+
+            .login:hover, .create:hover {
+                text-decoration: underline;
+/*                text-decoration-color: #1E90FF;*/
+            }
+
+
+
+            .content-container {
+                position: relative; /* Tạo vị trí tương đối cho content-container */
+                padding: 80px;
+            }
+
+            .content {
+                background-color: white; /* Màu nền xám cho content */
+                margin-top: 10px; /* Khoảng cách 10px từ container */
+                display: flex;
+                justify-content: space-between;
+                position: relative; /* Tạo vị trí tương đối cho content */
+                z-index: 0; /* Đặt chỉ số z về 0 để nền xám nằm dưới */
+            }
+
+            .section {
+                padding: 20px;
+                border: 1px solid #ccc;
+                text-align: center; /* Để căn giữa nội dung trong phần 2 */
+                border-radius: 0;
+                overflow: none;
+            }
+
+            .section:first-child {
+                flex-basis: 30%; /* Phần 1 chiếm 40% */
+                overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
+                height: 495px;
+            }
+
+            .section:nth-child(2) {
+                flex-basis: 70%; /* Phần 2 chiếm 60% */
+                position: relative; /* Để tạo vị trí tương đối cho phần 2 */
+                overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
+                height: 495px; /* Chiều cao cố định cho phần 2 */
+            }
+
+            .section .bold-text {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+
+            .section img {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+                padding-bottom: 56.25%;
+            }
+
+            .section-img1 {
+                width: 100% !important;
+                height: 70% !important;
+                object-fit: contain !important;
+            }
+
+            .arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 30px;
+                height: 30px;
+                background-color: rgba(255, 255, 255, 0.5);
+                cursor: pointer;
+            }
+
+            .arrow-left {
+                left: 0;
+            }
+
+            .arrow-right {
+                right: 0;
+            }
+
+            .content-container2 {
+                display: flex;
+                justify-content: space-between;
+                padding-top: 100px;
+                padding-left: 80px;
+                padding-right: 80px;
+                margin-top: -160px;  /*Khoảng cách 20px từ container*/
+            }
+
+            /*            .section3
+                        {
+                            flex-basis: 40.6%;
+                            padding: 20px;
+                            border: 1px solid #ccc;
+                            text-align: center;
+                        }*/
+
+            .section4 {
+                flex-basis: 100%;
+                background-color: white;
+                padding: 20px;
+                border: 1px solid #ccc;
+                text-align: center;
+            }
+
+            .section3 p,
+            .section4 p {
+                margin-bottom: 10px;
+            }
+
+            /*            .section3 ul {
+                            list-style-type: none;
+                            padding: 0;
+                        }
+            
+                        .section3 ul li {
+                            margin-bottom: 10px;
+                        }*/
+
+            .section4 .bold-text {
+                font-weight: bold;
+                font-size: 1.2em;
+            }
+
+            .section4 .reaction {
+                font-size: 1.5em;
+                margin-top: 10px;
+            }
+
+            .section4 .comment {
+                font-size: 1.2em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="header">
+                <div class="left">
+                    <input type="text" class="search" placeholder="Search...">
+                </div>
+                <div class="right">
+                    <a th:href="@{/login}"  class="login">log in</a>
+                    <a th:href="@{/register}" class="create">Create Account</a> 
+                </div>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="content">
+                <!-- Phần 1 -->
+                <div class="section">                 
+                    <p><span class="bold-text">FPT Community is a community of 10,000 amazing developers</span></p>
+                    <p>We're a place where coders share, stay up-to-date and grow their careers.</p>
+                    <img src="https://www.tuhocielts.vn/wp-content/uploads/2021/01/nothing-is-impossible.jpg" alt="Nothing is Impossible" class="section-img1">
+                </div>
+
+                <!-- Phần 2 -->
+                <div class="section" id="page-content">
+                    <div id="slideshow-container">
+                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hcm.png" alt="Đại học FPT">
+                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/dn.jpg" alt="Đại học FPT">
+                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/qn.jpg" alt="Đại học FPT">
+                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hn.jpg" alt="Đại học FPT">
+                    </div>
+                    <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
+                    <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--        <div class="container1">           
+                    <p>&copy; 2023 FPTAcademicBlog. All rights reserved.</p>     
+                </div>-->
+
+        <div class="content-container2">
+            <!-- Phần 3 --> 
+            <!--            <div class="section3">
+                            <p><span class="bold-text">Navigation</span></p>
+                            <ul>
+                                <li>Home</li>
+                                <li>Videos</li>
+                                <li>Tags</li>
+                                <li>FAQ</li>
+                                <li>Advertise on DEV</li>
+                                <li>About</li>
+                                <li>Contact</li>
+                                <li>Guides</li>
+                            </ul>
+                        </div>-->
+
+            <!-- Phần 4 --> 
+            <div class="section4">
+                <div class="content-section4 ">
+                    <p><span class="bold-text">Are you passionate and interested in the major "Software Engineering"?</span></p>
+                    <!--                    <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) -->
+                    <div class="comment">&#128172; Log in to access lots of fascinating and useful information.</div> 
+                </div>
+
+            </div>
+        </div>
+
+        <!--        <div class="section">
+                    <button onclick="showPage(1)">Page 1</button>
+                    <button onclick="showPage(2)">Page 2</button>
+                    <button onclick="showPage(3)">Page 3</button>
+                </div>-->
+
+
+
+        <script>
+            let slideIndex = 0;
+            const slides = document.querySelectorAll("#slideshow-container img");
+
+            function showSlides() {
+                slides.forEach((slide) => {
+                    slide.style.display = "none";
+                });
+                slideIndex++;
+                if (slideIndex >= slides.length) {
+                    slideIndex = 0;
+                }
+                slides[slideIndex].style.display = "block";
+            }
+
+            function changeSlide(n) {
+                slideIndex += n;
+                if (slideIndex >= slides.length) {
+                    slideIndex = 0;
+                } else if (slideIndex < 0) {
+                    slideIndex = slides.length - 1;
+                }
+                showSlides();
+            }
+
+            setInterval(showSlides, 3000); // Tự động chuyển hình sau mỗi 3 giây
+            showSlides();
+        </script>
+    </body>
+</html>
