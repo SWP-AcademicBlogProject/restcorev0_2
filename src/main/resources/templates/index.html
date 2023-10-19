@@ -1,10 +1,14 @@
 <!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Forum Homepage</title>
+        <title>index page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
+       <style>
             body {
                 font-family: Arial, sans-serif;
                 background-color: #f2f2f2;
@@ -29,6 +33,18 @@
                 left: 0; /* Đặt vị trí left ở bên trái */
                 z-index: 1; /* Để container luôn nằm trên cùng của trang */
             }
+
+            /*            .container1 {
+                            background-image: url('https://t3.ftcdn.net/jpg/02/84/32/38/360_F_284323879_9WuCKLQZdQKzm1zGX4PFqFhZvEgcov3o.jpg');
+                            background-size: cover;             
+                            margin: 0 auto;
+                            text-align: center;
+                            width: 100%;  Chiều rộng 100% để container kéo dài ra cả trang 
+                            color: #fff;
+                            text-align: center;
+                            padding: 20px;
+                            font-size: 14px;
+                        }*/
 
             input[type="text"],
             input[type="password"] {
@@ -109,7 +125,7 @@
 
             .login:hover, .create:hover {
                 text-decoration: underline;
-                /*                text-decoration-color: #1E90FF;*/
+/*                text-decoration-color: #1E90FF;*/
             }
 
 
@@ -156,11 +172,9 @@
 
             .section img {
                 width: 100%;
-                height: 100%; /* Đảm bảo ảnh luôn nằm trong kích thước khung */
-                object-fit: cover; /* Đảm bảo các ảnh giữ kích thước và cắt hoặc lấp đầy khung */
-                transition: transform 0.5s ease;
-                padding-bottom: 56.25%;
+                height: 100%;
                 border-radius: 0;
+                padding-bottom: 56.25%;
             }
 
             .section-img1 {
@@ -193,24 +207,23 @@
                 padding-top: 100px;
                 padding-left: 80px;
                 padding-right: 80px;
-                margin-top: -160px; /* Khoảng cách 20px từ container */
+                margin-top: -160px;  /*Khoảng cách 20px từ container*/
             }
 
-            .section3
-            {
-                flex-basis: 31.8%;
-                /*                padding: 20px;*/
-                border: 1px solid #ccc;
-                text-align: center;
-            }
+            /*            .section3
+                        {
+                            flex-basis: 40.6%;
+                            padding: 20px;
+                            border: 1px solid #ccc;
+                            text-align: center;
+                        }*/
 
             .section4 {
-                flex-basis: 68.2%;
+                flex-basis: 100%;
                 background-color: white;
-                /*                padding: 20px;*/
+                padding: 20px;
                 border: 1px solid #ccc;
-                /*                text-align: center;*/
-                padding: 10px;
+                text-align: center;
             }
 
             .section3 p,
@@ -218,109 +231,31 @@
                 margin-bottom: 10px;
             }
 
-            .bold-text {
-                font-weight: bold;
-                font-size: 18px;
-            }
-
-            .section3 ul {
-                list-style-type: none;
-                padding: 0;
-            }
-
-            .section3 ul li {
-                margin-bottom: 10px;
-            }
-
-            .section3 li {
-                cursor: pointer;
-                transition: background-color 0.3s ease, border-radius 0.3s ease, transform 0.3s ease; /* Thêm hiệu ứng transition */
-                border-radius: 8px; /* Góc bo tròn ban đầu */
-                /*                display: inline-block;  Để thuộc tính transform hoạt động chính xác */
-                display: block;  /*Chuyển thành block để hiển thị dọc  
-                padding: 4px; /* Khoảng cách giữa biểu tượng và chữ */
-            }
-
-            /* Màu nền và gạch dưới khi hover */
-            .section3 li:hover {
-                background-color: #64dede;
-                text-decoration: underline;
-                color: red;
-                border-radius: 4px; /* Thu ngắn lại và bo góc hơn */
-                transform: scale(1.1); /* Tăng kích thước khi hover */
-            }
-
-            /* Ẩn gạch dưới văn bản không hover */
-            .section3 li:not(:hover) {
-                text-decoration: none;
-            }
-
-            /*            .section4 .bold-text {
-                            font-weight: bold;
-                            font-size: 1.2em;
+            /*            .section3 ul {
+                            list-style-type: none;
+                            padding: 0;
                         }
             
-                        .section4 .reaction {
-                            font-size: 1.5em;
-                            margin-top: 10px;
-                        }
-            
-                        .section4 .comment {
-                            font-size: 1.2em;
+                        .section3 ul li {
+                            margin-bottom: 10px;
                         }*/
 
-            .post {
-                margin-bottom: 20px;
-                background-color: #f0f2f5;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            .section4 .bold-text {
+                font-weight: bold;
+                font-size: 1.2em;
             }
 
-            .post-header {
-                margin-bottom: 10px;
-            }
-
-            .post-header h2 {
-                font-size: 18px;
-                color: #333;
-                margin-top: -5px;
-            }
-
-            .post-content p {
-                line-height: 1.5;
-            }
-
-            .post-footer {
-                font-size: 14px;
-                color: #777;
+            .section4 .reaction {
+                font-size: 1.5em;
                 margin-top: 10px;
             }
 
-            .post-footer span {
-                margin-right: 10px;
+            .section4 .comment {
+                font-size: 1.2em;
             }
-
-            .likes {
-                color: #4267B2;
-            }
-
-            .comments {
-                color: #737373;
-            }
-
-
         </style>
     </head>
     <body>
-<<<<<<< HEAD
-         <div th:if="${session.user == null}">
-        <a href="loginnnn.html">Please login to view this page</a>
-    </div>
-        
-         <div th:if="${session.user != null}">
-=======
->>>>>>> 419baff8b80f949cfd0dc7a04d9a8d1f349d2574
         <div class="container">
 
             <div class="header">
@@ -328,8 +263,8 @@
                     <input type="text" class="search" placeholder="Search...">
                 </div>
                 <div class="right">
-<!--                    <button class="login">Log in</button>
-                    <button class="create">Create Account</button> -->
+                    <a th:href="@{/login}"  class="login">log in</a>
+                    <a th:href="@{/register}" class="create">Create Account</a> 
                 </div>
             </div>
         </div>
@@ -358,110 +293,32 @@
             </div>
         </div>
 
+        <!--        <div class="container1">           
+                    <p>&copy; 2023 FPTAcademicBlog. All rights reserved.</p>     
+                </div>-->
+
         <div class="content-container2">
-            <!-- Phần 3 -->
-            <div class="section3">
-                <p><span class="bold-text">Navigation</span></p>
-                <ul>
-                    <li onclick="changeBackgroundColor(this)">&#127968; Home</li>
-                    <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>
-                    <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
-                    <li onclick="changeBackgroundColor(this)">&#128172; FAQ</li>
-                    <li onclick="changeBackgroundColor(this)">&#128140; Advertise on DEV</li>
-                    <li onclick="changeBackgroundColor(this)">&#128219; About</li>
-                    <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
-                    <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
-                    <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>
-                    <li onclick="changeBackgroundColor(this)">&#128100; <a th:href="@{/profile_user}">View Profile</a></li>
-                    <li onclick="changeBackgroundColor(this)">&#128682; <a th:href="@{/login}">Logout</a></li>
-                </ul>
-            </div>
+            <!-- Phần 3 --> 
+            <!--            <div class="section3">
+                            <p><span class="bold-text">Navigation</span></p>
+                            <ul>
+                                <li>Home</li>
+                                <li>Videos</li>
+                                <li>Tags</li>
+                                <li>FAQ</li>
+                                <li>Advertise on DEV</li>
+                                <li>About</li>
+                                <li>Contact</li>
+                                <li>Guides</li>
+                            </ul>
+                        </div>-->
 
-            <!-- Phần 4 -->
+            <!-- Phần 4 --> 
             <div class="section4">
-                <div class="post">
-                    <div class="post-header">
-                        <h2>Post Title</h2>
-                    </div>
-                    <div class="post-content">
-                        <p>Are you passionate about Software Engineering?</p>
-                    </div>
-                    <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
-                    </div>
-
-                    <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                        <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                        <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                </div>
-
-                <div class="post">
-                    <div class="post-header">
-                        <h2>Post Title</h2>
-                    </div>
-                    <div class="post-content">
-                        <p>Are you passionate about Software Engineering?</p>
-                    </div>
-                    <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
-                    </div>
-
-                    <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                        <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                        <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                </div>
-
-                <div class="post">
-                    <div class="post-header">
-                        <h2>Post Title</h2>
-                    </div>
-                    <div class="post-content">
-                        <p>Are you passionate about Software Engineering?</p>
-                    </div>
-                    <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
-                    </div>
-
-                    <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                        <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                        <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                </div>
-
-                <div class="post">
-                    <div class="post-header">
-                        <h2>Post Title</h2>
-                    </div>
-                    <div class="post-content">
-                        <p>Are you passionate about Software Engineering?</p>
-                    </div>
-                    <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
-                    </div>
-
-                    <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                        <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                        <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                </div>
-
-                <div class="post">
-                    <div class="post-header">
-                        <h2>Post Title</h2>
-                    </div>
-                    <div class="post-content">
-                        <p>Are you passionate about Software Engineering?</p>
-                    </div>
-                    <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
-                    </div>
-
-                    <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                        <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                        <div class="comment">&#128172;</div>  Biểu tượng comment -->
+                <div class="content-section4 ">
+                    <p><span class="bold-text">Are you passionate and interested in the major "Software Engineering"?</span></p>
+                    <!--                    <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) -->
+                    <div class="comment">&#128172; Log in to access lots of fascinating and useful information.</div> 
                 </div>
 
             </div>
@@ -503,19 +360,5 @@
             setInterval(showSlides, 3000); // Tự động chuyển hình sau mỗi 3 giây
             showSlides();
         </script>
-
-        <script>
-            function changeBackgroundColor(element) {
-                element.style.backgroundColor = "#64dede";
-                element.style.borderRadius = "4px";
-                element.style.textDecoration = "underline";
-                element.style.color = "red";
-                element.style.transform = "scale(1.1)";
-            }
-        </script> 
-<<<<<<< HEAD
-        </div>
-=======
->>>>>>> 419baff8b80f949cfd0dc7a04d9a8d1f349d2574
     </body>
 </html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url("https://img.freepik.com/premium-vector/full-color-gradient-abstract-background-orange-backgrounds-vector-illustration_542898-61.jpg");
+                background-size: cover;
+            }
+
+            .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin: 200px;
+                gap: 20px; /* Khoảng cách giữa phần 1 và phần 2 */
+            }
+
+            .left, .right {
+                flex-basis: 50%;
+                background-color: white;
+                border: 1px solid #ccc;
+                text-align: center;
+                height: 310px;
+                border-radius: 20px;
+            }
+            .left {
+                padding: 20px;
+            }
+
+            .right {
+                padding: 20px;
+            }
+
+            .img-container {
+                height: 90%;
+                text-align: center;
+            }
+
+            .img-container img {
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: cover; /* Để tấm ảnh tự động mở rộng để lấp đầy phần 1 */
+                width: 100%; /* Để tấm ảnh lấp đầy phần 1 theo chiều ngang */
+                height: 100%; /* Để tấm ảnh lấp đầy phần 1 theo chiều dọc */
+            }
+
+            .img-container div {
+                margin-top: 15px;
+            }
+
+            .right div {
+                margin-bottom: 25px;
+            }
+
+            .right div span {
+                font-weight: bold;
+                display: inline-block;
+                width: 150px;
+                font-size: 1.2em;
+            }
+
+            input[type="text"] {
+                width: 50%;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+            }
+
+            /* Để tùy chỉnh nút "Save Changes" và "Reset Changes" */
+            .add button {
+                background-color: #4CAF50; /* Màu xanh lá */
+                color: white; /* Màu trắng */
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 10px 10px;
+                cursor: pointer;
+            }
+
+            /* Gạch dưới khi di chuột qua nút */
+            .add button:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="left">
+                <div class="img-container">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQePE7gKIX1I3oLUXSefxtWMKIbErG1rRKHQw&usqp=CAU">
+                    <div>Student</div>  
+                </div>
+            </div>
+
+            <div class="right">
+                <div>
+                    <span>FPT Mail:</span> 
+                    <input type="text" class="search" placeholder="" value="minhthse171011@fpt.edu.vn" readonly="">
+                </div>
+                <div>
+                    <span>UserName:</span> 
+                    <input type="text" class="search" placeholder="" value="Minh Tai">
+                </div>
+                <div>
+                    <span>Password:</span> 
+                    <input type="text" class="search" placeholder="" value="12345">
+                </div>
+                <div>
+                    <span>Birthdate:</span> 
+                    <input type="text" class="search" placeholder="" value="10/12/1986">
+                </div>
+                <div>
+                    <span>NumberOfPosts:</span> 
+                    <input type="text" class="search" placeholder="" value="0" readonly="">
+                </div>
+                <div class="add">
+                    <button class="">Save Changes</button>
+                    <button class="">Reset Changes</button> 
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+</html>
