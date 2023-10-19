@@ -313,14 +313,11 @@
         </style>
     </head>
     <body>
-<<<<<<< HEAD
          <div th:if="${session.user == null}">
         <a href="loginnnn.html">Please login to view this page</a>
     </div>
         
          <div th:if="${session.user != null}">
-=======
->>>>>>> 419baff8b80f949cfd0dc7a04d9a8d1f349d2574
         <div class="container">
 
             <div class="header">
@@ -373,7 +370,7 @@
                     <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
                     <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>
                     <li onclick="changeBackgroundColor(this)">&#128100; <a th:href="@{/profile_user}">View Profile</a></li>
-                    <li onclick="changeBackgroundColor(this)">&#128682; <a th:href="@{/login}">Logout</a></li>
+                    <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
                 </ul>
             </div>
 
@@ -513,9 +510,6 @@
                 element.style.transform = "scale(1.1)";
             }
         </script> 
-<<<<<<< HEAD
         </div>
-=======
->>>>>>> 419baff8b80f949cfd0dc7a04d9a8d1f349d2574
     </body>
 </html>
