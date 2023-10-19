@@ -20,6 +20,6 @@ public class logoutController {
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "loginfailed";
+        return "index";
     }
 }
