@@ -19,32 +19,37 @@ import test.fptblog.repositories.userRepository;
  */
 @Controller
 public class loginController {
-    
-     @Autowired
+
+    @Autowired
     private userRepository repository;
-    
+
     @RequestMapping(value = "/login")
-    public String login(HttpSession session, @RequestParam(value = "username") String username,@RequestParam(value = "password") String password ) {
-        
-        
-        
-        
+    public String login(HttpSession session, 
+            @RequestParam(value = "username") String username,
+            @RequestParam(value = "password") String password) {
+
+        String failed = "loginfailed";
+        String success = "viewforum";
+
+        String result = null;
+
         List<userModel> founduser = repository.findByUserName(username);
-        if (founduser.isEmpty()) return "loginfailed";
+        if (founduser.isEmpty()) {
+            result = failed;
+            return result;
+        }
         if (password.matches(founduser.get(0).getPassword())) {
-            
+
             System.out.println("user : " + founduser.get(0).getPassword() + " login successfully ");
             session.setAttribute("user", founduser.get(0));
-            return "viewforum";
+            result = success;
         } else {
             System.out.println("login failed");
-            return "loginfailed";
+            result = failed;
         }
-        
-        
-        
-        
-        
+
+        return result;
+
     }
-    
+
 }
