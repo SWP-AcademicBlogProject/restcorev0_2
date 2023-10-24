@@ -27,6 +27,7 @@ import javax.persistence.Table;
 public class PostDTO {
 
     @Id
+    @Column(name = "PostID")
     private int postId;
 
     //blog many to one category (check)
