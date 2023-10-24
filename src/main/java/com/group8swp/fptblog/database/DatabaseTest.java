@@ -59,7 +59,7 @@ public class DatabaseTest {
                  }
                  
                  
-                 PostDTO post = new PostDTO(2,1,1,1,"1","ddd","Duc","ưefwefaf","fwfe",1,1,1,"2023-9-17 10:09:08.000","01");
+                 PostDTO post = new PostDTO(2,1,1,1,"1","ddd","SE150618","ưefwefaf","fwfe",1,1,1,"2023-9-17 10:09:08.000","01");
                  List<PostDTO> postList = postrep.findAll();
                  if (postList.size()==0) {
                      logger.info("insert data" + postrep.save(post));

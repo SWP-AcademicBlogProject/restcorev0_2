@@ -25,27 +25,27 @@ public class UserDTO {
 
     @Id
     @Column(name = "UserID")
-    private String UserID;
+    private String userID;
     @Column(name = "UserName")
     private String userName;
-    // @Column(name = "Password")
-    private String Password;
+     @Column(name = "Password")
+    private String password;
     @Column(name = "RoleID")
-    private String Roleid;
-    // @Column(name = "Birthdate")
-    private String Birthdate;
-    // @Column(name = "Award")
-    private int Award;
-    // @Column(name = "NumberOfPosts")
-    private int NumberOfPosts;
-    // @Column(name = "Status")
-    private int Status;
-    // @Column(name = "Description")
-    private String Description;
-    // @Column(name = "Major")
-    private String Major;
-    // @Column(name = "Image")
-    private String Image;
+    private String roleId;
+     @Column(name = "Birthdate")
+    private String birthdate;
+     @Column(name = "Award")
+    private int award;
+     @Column(name = "NumberOfPosts")
+    private int numberOfPosts;
+    @Column(name = "Status")
+    private int status;
+     @Column(name = "Description")
+    private String description;
+     @Column(name = "Major")
+    private String major;
+     @Column(name = "Image")
+    private String image;
     
     @OneToMany
     @JoinColumn(name = "UserID")
@@ -55,113 +55,112 @@ public class UserDTO {
 
     }
 
-    public UserDTO(String UserID, String UserName, String Password, String Roleid, String Birthdate, int Award,
-            int NumberOfPosts, int Status, String Description, String Major, String Image) {
-        this.UserID = UserID;
-        this.userName = UserName;
-        this.Password = Password;
-        this.Roleid = Roleid;
-        this.Birthdate = Birthdate;
-        this.Award = Award;
-        this.NumberOfPosts = NumberOfPosts;
-        this.Status = Status;
-        this.Description = Description;
-        this.Major = Major;
-        this.Image = null;
+    public UserDTO(String userID, String userName, String password, String roleId, String birthdate, int award, int numberOfPosts, int status, String description, String major, String image) {
+        this.userID = userID;
+        this.userName = userName;
+        this.password = password;
+        this.roleId = roleId;
+        this.birthdate = birthdate;
+        this.award = award;
+        this.numberOfPosts = numberOfPosts;
+        this.status = status;
+        this.description = description;
+        this.major = major;
+        this.image = image;
     }
 
     public String getUserID() {
-        return UserID;
+        return userID;
     }
 
-    public void setUserID(String UserID) {
-        this.UserID = UserID;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String UserName) {
-        this.userName = UserName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getRoleid() {
-        return Roleid;
+    public String getRoleId() {
+        return roleId;
     }
 
-    public void setRoleid(String Roleid) {
-        this.Roleid = Roleid;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     public String getBirthdate() {
-        return Birthdate;
+        return birthdate;
     }
 
-    public void setBirthdate(String Birthdate) {
-        this.Birthdate = Birthdate;
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
     }
 
     public int getAward() {
-        return Award;
+        return award;
     }
 
-    public void setAward(int Award) {
-        this.Award = Award;
+    public void setAward(int award) {
+        this.award = award;
     }
 
     public int getNumberOfPosts() {
-        return NumberOfPosts;
+        return numberOfPosts;
     }
 
-    public void setNumberOfPosts(int NumberOfPosts) {
-        this.NumberOfPosts = NumberOfPosts;
+    public void setNumberOfPosts(int numberOfPosts) {
+        this.numberOfPosts = numberOfPosts;
     }
 
     public int getStatus() {
-        return Status;
+        return status;
     }
 
-    public void setStatus(int Status) {
-        this.Status = Status;
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getMajor() {
-        return Major;
+        return major;
     }
 
-    public void setMajor(String Major) {
-        this.Major = Major;
+    public void setMajor(String major) {
+        this.major = major;
     }
 
     public String getImage() {
-        return Image;
+        return image;
     }
 
-    public void setImage(String Image) {
-        this.Image = Image;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override
     public String toString() {
-        return UserID + " / " + userName + " / " + Password + " / " + Roleid + " / " + Birthdate + " / " + Award
-                + " / " + NumberOfPosts + " / " + Status + " / " + Description
-                + " / " + Major + " / " + Image;
+        return "UserDTO{" + "userID=" + userID + ", userName=" + userName + ", password=" + password + ", roleId=" + roleId + ", birthdate=" + birthdate + ", award=" + award + ", numberOfPosts=" + numberOfPosts + ", status=" + status + ", description=" + description + ", major=" + major + ", image=" + image + '}';
     }
+
+  
 }
