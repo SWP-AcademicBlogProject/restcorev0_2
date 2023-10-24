@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.model;
+package com.group8swp.fptblog.model;
 
 import java.util.List;
 import java.util.Set;
@@ -20,7 +20,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "[dbo].[Subject]")
-public class subjectModel {
+public class SubjectDTO {
     @Id
     @Column(name="SubjectID")
     private int subjectId;
@@ -36,12 +36,12 @@ public class subjectModel {
     
     @OneToMany
     @JoinColumn(name = "SubjectID")
-    private List<postModel> postModel;
+    private List<PostDTO> postModel;
     
-    public subjectModel() {
+    public SubjectDTO() {
     }
 
-    public subjectModel(int subjectId, String subjectName, String description, int status) {
+    public SubjectDTO(int subjectId, String subjectName, String description, int status) {
         this.subjectId = subjectId;
         this.subjectName = subjectName;
         this.description = description;

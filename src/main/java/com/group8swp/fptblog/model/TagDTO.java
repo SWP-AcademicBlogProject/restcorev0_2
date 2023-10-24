@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.model;
+package com.group8swp.fptblog.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "[dbo].[Tag]")
-public class tagModel {
+public class TagDTO {
     @Id
     @Column(name = "TagID")
     private int tagId;
@@ -33,12 +33,12 @@ public class tagModel {
     private int status;
     
     @ManyToMany(mappedBy = "tagModels")
-    private List<postModel> postModel =new ArrayList<>() ;
+    private List<PostDTO> postModel =new ArrayList<>() ;
 
-    public tagModel() {
+    public TagDTO() {
     }
 
-    public tagModel(int tagId, String tagName, String tagDescription, int status) {
+    public TagDTO(int tagId, String tagName, String tagDescription, int status) {
         this.tagId = tagId;
         this.tagName = tagName;
         this.tagDescription = tagDescription;

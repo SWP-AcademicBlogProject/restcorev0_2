@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.model;
+package com.group8swp.fptblog.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "[dbo].[Post]")
-public class postModel {
+public class PostDTO {
 
     @Id
     private int postId;
@@ -86,7 +86,7 @@ public class postModel {
 //    private userModel userModel;
     
     @OneToMany(mappedBy = "postModel")
-    private List<commentModel> commentModel;
+    private List<CommentDTO> commentModel;
     
     
     //giu nguyen
@@ -96,12 +96,12 @@ public class postModel {
             joinColumns = @JoinColumn(name = "PostTagID"),
             inverseJoinColumns = @JoinColumn(name = "TagID")
     )
-    private List<tagModel> tagModels =new ArrayList<>();
+    private List<TagDTO> tagModels =new ArrayList<>();
 
-    public postModel() {
+    public PostDTO() {
     }
 
-    public postModel(int postId, int categoryId, int tagId, int subjectId, String comment, String approvedBy, String author, String title, String postContent, int award, int approve, int status, String approveTime, String image) {
+    public PostDTO(int postId, int categoryId, int tagId, int subjectId, String comment, String approvedBy, String author, String title, String postContent, int award, int approve, int status, String approveTime, String image) {
         this.postId = postId;
         this.categoryId = categoryId;
         this.tagId = tagId;

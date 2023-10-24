@@ -2,22 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.model;
+package com.group8swp.fptblog.model;
 
 /**
  *
  * @author pc
  */
-public class responseObj {
+public class ResponseObj {
 
     private String status;
     private String message;
     private Object data;
 
-    public responseObj() {
+    public ResponseObj() {
     }
 
-    public responseObj(String status, String message, Object data) {
+    public ResponseObj(String status, String message, Object data) {
         this.status = status;
         this.message = message;
         this.data = data;

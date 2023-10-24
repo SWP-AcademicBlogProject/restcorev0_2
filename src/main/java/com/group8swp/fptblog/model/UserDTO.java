@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.model;
+package com.group8swp.fptblog.model;
 
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -21,7 +21,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "[dbo].[tblUser]")
-public class userModel {
+public class UserDTO {
 
     @Id
     @Column(name = "UserID")
@@ -49,13 +49,13 @@ public class userModel {
     
     @OneToMany
     @JoinColumn(name = "UserID")
-    private List<postModel> postModel;
+    private List<PostDTO> postModel;
     
-    public userModel() {
+    public UserDTO() {
 
     }
 
-    public userModel(String UserID, String UserName, String Password, String Roleid, String Birthdate, int Award,
+    public UserDTO(String UserID, String UserName, String Password, String Roleid, String Birthdate, int Award,
             int NumberOfPosts, int Status, String Description, String Major, String Image) {
         this.UserID = UserID;
         this.userName = UserName;

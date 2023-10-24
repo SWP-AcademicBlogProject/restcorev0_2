@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.controller;
+package com.group8swp.fptblog.controller;
 
 import java.net.http.HttpRequest;
 import javax.servlet.http.HttpSession;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author pc
  */
 @Controller
-public class logoutController {
+public class LogoutController {
 
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session) {

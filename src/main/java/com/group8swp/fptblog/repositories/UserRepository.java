@@ -2,17 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.repositories;
+package com.group8swp.fptblog.repositories;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import test.fptblog.model.userModel;
+import com.group8swp.fptblog.model.UserDTO;
 
 /**
  *
  * @author pc
  */
-public interface userRepository extends JpaRepository<userModel, String> {
-    List<userModel> findByUserName(String UserName);
+public interface UserRepository extends JpaRepository<UserDTO, String> {
+    List<UserDTO> findByUserName(String UserName);
 
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.model;
+package com.group8swp.fptblog.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "[dbo].[Comment]")
-public class commentModel {
+public class CommentDTO {
     @Id
     @Column(name = "CommentID")
     private String commentId;
@@ -38,13 +38,13 @@ public class commentModel {
     private int award;
     
     @ManyToOne
-    @JoinColumn(name="PostComment", nullable=false)
-    private postModel postModel;
+    @JoinColumn(name="PostComment")
+    private PostDTO postModel;
     
-    public commentModel() {
+    public CommentDTO() {
     }
 
-    public commentModel(String commentId, String author, String context, String publishTime, int status, int award) {
+    public CommentDTO(String commentId, String author, String context, String publishTime, int status, int award) {
         this.commentId = commentId;
         this.author = author;
         this.context = context;

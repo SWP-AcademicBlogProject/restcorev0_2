@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.controller;
+package com.group8swp.fptblog.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,18 +14,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import test.fptblog.model.userModel;
-import test.fptblog.repositories.userRepository;
+import com.group8swp.fptblog.model.UserDTO;
+import com.group8swp.fptblog.repositories.UserRepository;
 
 /**
  *
  * @author pc
  */
 @Controller
-public class loginController {
+public class LoginController {
 
     @Autowired
-    private userRepository repository;
+    private UserRepository repository;
 
     @RequestMapping(value = "/login")
     public String login(HttpSession session,
@@ -37,7 +37,7 @@ public class loginController {
 
         String result = null;
 
-        List<userModel> founduser = repository.findByUserName(username);
+        List<UserDTO> founduser = repository.findByUserName(username);
         if (founduser.isEmpty()) {
             result = failed;
             return result;

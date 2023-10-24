@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package test.fptblog.model;
+package com.group8swp.fptblog.model;
 
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "[dbo].[Category]")
-public class categoryModel {
+public class CategoryDTO {
 
     @Id
     @Column(name = "CategoryID")
@@ -36,12 +36,12 @@ public class categoryModel {
 
     @OneToMany
     @JoinColumn(name = "CategoryID")
-    private List<postModel> postModel;
+    private List<PostDTO> postModel;
     
-    public categoryModel() {
+    public CategoryDTO() {
     }
 
-    public categoryModel(int categoryId, String categoryName, String categoryDescription, int status) {
+    public CategoryDTO(int categoryId, String categoryName, String categoryDescription, int status) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.categoryDescription = categoryDescription;
