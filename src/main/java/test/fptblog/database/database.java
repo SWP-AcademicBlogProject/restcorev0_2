@@ -13,13 +13,14 @@ import org.springframework.context.annotation.Configuration;
 import test.fptblog.model.categoryModel;
 import test.fptblog.model.commentModel;
 import test.fptblog.model.postModel;
-import test.fptblog.model.reactionModel;
+
 import test.fptblog.model.subjectModel;
 import test.fptblog.model.tagModel;
 import test.fptblog.model.userModel;
 import test.fptblog.repositories.categoryRepository;
 import test.fptblog.repositories.commentRepository;
-import test.fptblog.repositories.reactionRepository;
+import test.fptblog.repositories.postRepository;
+
 import test.fptblog.repositories.subjectRepository;
 import test.fptblog.repositories.tagRepository;
 import test.fptblog.repositories.userRepository;
@@ -33,10 +34,10 @@ public class database {
 
     private static final Logger logger = LoggerFactory.getLogger(database.class);
 
+    
     @Bean
     CommandLineRunner initDatabase(userRepository userrep, subjectRepository subjectrep, 
-            tagRepository tagrep, commentRepository commentrep,categoryRepository categoryrep,
-            reactionRepository reactionrep) {
+            tagRepository tagrep, commentRepository commentrep,categoryRepository categoryrep,postRepository postrep) {
         return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
@@ -48,13 +49,14 @@ public class database {
                 List<userModel> userList = userrep.findAll();
                 if (userList.size() == 0) {
                     logger.info("insert data: " + userrep.save(adminUser));
-                }
-                
-//                postModel a = new postModel(2,6,8,9,3,"sdfdsf","fsfweew","ewfweew","ưefwefaf",1,1,1,"fwfe","ưerwe");
-//                postModel b = new postModel(3,5,6,7,4,"sdfsd","ddd","fffff","ưefwefaf",1,1,1,"fwfe","ưerwe");
-//                
-//                logger.info("insert data: " + postrep.save(a));
-//                logger.info("insert data: " + postrep.save(b));
+                }         
+
+//           postRepository postrep     
+//                postModel ab = new postModel(2,i,g,f,null,"fsfweew",null,"ưefwefaf","fwfe",1,1,1,"2023-10-22 23:07:01.000","02");
+              //  postModel b = new postModel(2,1,1,1,"1","ddd","Duc","ưefwefaf","fwfe",1,1,1,"2023-9-17 10:09:08.000","01");
+////                
+//                logger.info("insert data: " + postrep.save(ab));
+            //    logger.info("insert data: " + postrep.save(b));
 
 
 // run thanh cong
@@ -84,14 +86,8 @@ public class database {
 //                logger.info("insert data: " + categoryrep.save(a));
 //                logger.info("insert data: " + categoryrep.save(b));
 
-// run thanh cong
-//                reactionModel a = new reactionModel(2,"Huhu","sad for content/context","02");
-//                reactionModel b = new reactionModel(3,"Suprised","suprised for content/context","03");
-//
-//                logger.info("insert data: " + reactionrep.save(a));
-//                logger.info("insert data: " + reactionrep.save(b));
 
-//  =>database: [ subject, tag, comment, category, reaction ] connect successfully!!!
+//  =>database: [ subject, tag, comment, category ] connect successfully!!!
             }
         };
     }

@@ -4,11 +4,15 @@
  */
 package test.fptblog.model;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -16,10 +20,11 @@ import javax.persistence.Table;
  * @author pc
  */
 @Entity
-@Table(name = "[dbo].[User]")
+@Table(name = "[dbo].[tblUser]")
 public class userModel {
 
     @Id
+    @Column(name = "UserID")
     private String UserID;
     @Column(name = "UserName")
     private String userName;
@@ -41,7 +46,11 @@ public class userModel {
     private String Major;
     // @Column(name = "Image")
     private String Image;
-
+    
+    @OneToMany
+    @JoinColumn(name = "UserID")
+    private List<postModel> postModel;
+    
     public userModel() {
 
     }

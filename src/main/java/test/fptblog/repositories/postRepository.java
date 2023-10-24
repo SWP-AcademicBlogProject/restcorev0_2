@@ -5,12 +5,12 @@
 package test.fptblog.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import test.fptblog.model.reactionModel;
+import test.fptblog.model.postModel;
 
 /**
  *
  * @author Dell
  */
-public interface reactionRepository extends JpaRepository<reactionModel, Integer>{
-    
+public interface postRepository extends JpaRepository<postModel, Integer>{
+//    extends JpaRepository<postModel, Integer>
 }

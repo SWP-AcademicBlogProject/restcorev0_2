@@ -4,9 +4,13 @@
  */
 package test.fptblog.model;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -16,18 +20,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "[dbo].[Category]")
 public class categoryModel {
+
     @Id
+    @Column(name = "CategoryID")
     private int categoryId;
-    
+
     @Column(name = "CategoryName")
     private String categoryName;
-    
-    @Column(name = "CategoryDescription")        
+
+    @Column(name = "CategoryDescription")
     private String categoryDescription;
-    
-    @Column(name = "Status")        
+
+    @Column(name = "Status")
     private int status;
 
+    @OneToMany
+    @JoinColumn(name = "CategoryID")
+    private List<postModel> postModel;
+    
     public categoryModel() {
     }
 
@@ -72,7 +82,7 @@ public class categoryModel {
 
     @Override
     public String toString() {
-        return "categoryModel{" + "categoryId=" + categoryId + ", categoryName=" + categoryName 
+        return "categoryModel{" + "categoryId=" + categoryId + ", categoryName=" + categoryName
                 + ", categoryDescription=" + categoryDescription + ", status=" + status + '}';
     }
 }

@@ -4,9 +4,12 @@
  */
 package test.fptblog.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,6 +20,7 @@ import javax.persistence.Table;
 @Table(name = "[dbo].[Tag]")
 public class tagModel {
     @Id
+    @Column(name = "TagID")
     private int tagId;
     
     @Column(name = "TagName")
@@ -27,6 +31,9 @@ public class tagModel {
     
     @Column(name = "Status")
     private int status;
+    
+    @ManyToMany(mappedBy = "tagModels")
+    private List<postModel> postModel =new ArrayList<>() ;
 
     public tagModel() {
     }

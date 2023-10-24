@@ -7,6 +7,8 @@ package test.fptblog.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,7 +18,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "[dbo].[Comment]")
 public class commentModel {
-     @Id
+    @Id
+    @Column(name = "CommentID")
     private String commentId;
     
     @Column(name = "Author")
@@ -33,7 +36,11 @@ public class commentModel {
     
     @Column(name = "Award")
     private int award;
-
+    
+    @ManyToOne
+    @JoinColumn(name="PostComment", nullable=false)
+    private postModel postModel;
+    
     public commentModel() {
     }
 
