@@ -66,7 +66,7 @@ public class UserController {
         UserDTO updateUser = repository.findById(id).map(user -> {
             user.setUserName(newUser.getUserName());
             user.setPassword(user.getPassword());
-            user.setRoleid(newUser.getRoleid());
+            user.setRoleId(newUser.getRoleId());
             user.setBirthdate(user.getBirthdate());
             user.setAward(user.getAward());
             user.setNumberOfPosts(user.getNumberOfPosts());
