@@ -322,6 +322,21 @@
                 display: none;
             }
 
+            .add {
+                background-color: rgb(69, 191, 191);
+                padding: 10px 20px;
+                border: none;
+                color: white;
+                font-size: 15px;
+                cursor: pointer;
+                transition: text-decoration 0.3s, transform 0.3s;
+            }
+
+            .add:hover {
+                text-decoration: underline;
+                transform: scale(1.1);
+            }
+
             /* CSS cho giao diện mobile */
             @media screen and (max-width: 767px) {
                 .search {
@@ -495,6 +510,21 @@
                     padding: 10px;
                 }
 
+                .add {
+                    background-color: rgb(69, 191, 191);
+                    padding: 10px 20px;
+                    border: none;
+                    color: white;
+                    font-size: 15px;
+                    cursor: pointer;
+                    transition: text-decoration 0.3s, transform 0.3s;
+                }
+
+                .add:hover {
+                    text-decoration: underline;
+                    transform: scale(1.1);
+                }
+
             }
 
         </style>
@@ -534,15 +564,15 @@
                     <div class="menu">
                         <div class="menu-item">
                             <ul>
-                                <li onclick="changeBackgroundColor(this)">&#127968; Home</li>
-                                <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>
+                                <!--                                <li onclick="changeBackgroundColor(this)">&#127968; Home</li>
+                                                                <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
                                 <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
-                                <li onclick="changeBackgroundColor(this)">&#128172; FAQ</li>
-                                <li onclick="changeBackgroundColor(this)">&#128140; Advertise on DEV</li>
+                                <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
+                                <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
                                 <li onclick="changeBackgroundColor(this)">&#128219; About</li>
                                 <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
-                                <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
-                                <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>
+                                <!--                                <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
+                                                                <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                                 <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewprofile">View Profile</a></li>
                                 <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
                             </ul>
@@ -586,16 +616,16 @@
                 <div class="section3">
                     <p><span class="bold-text">Navigation</span></p>
                     <ul>
-                        <li onclick="changeBackgroundColor(this)">&#127968; Home</li>
-                        <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>
+                        <!--                        <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
+                        <!--                        <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
                         <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
-                        <li onclick="changeBackgroundColor(this)">&#128172; FAQ</li>
-                        <li onclick="changeBackgroundColor(this)">&#128140; Advertise on DEV</li>
+                        <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
+                        <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
                         <li onclick="changeBackgroundColor(this)">&#128219; About</li>
                         <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
-                        <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
-                        <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>
-                        <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewprofile">View Profile</a></li>
+                        <!--                        <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>-->
+                        <!--                        <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
+                        <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewauthor">View Profile</a></li>
                         <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
                     </ul>
                 </div>
@@ -604,15 +634,15 @@
                 <div class="section4">
                     <div class="post">
                         <div class="post-header">
-                            <h2>Post Title</h2>
+                            <h2> Add Post</h2>
                         </div>
                         <div class="post-content">
-                            <p>Are you passionate about Software Engineering?</p>
+                            <input type="text" class="" placeholder="Add...">
                         </div>
                         <div class="post-footer">
-                            <span class="likes">&#128077; Like</span>
-                            <span class="comments">&#128172; Comment</span>
+                            <button class="add">&#128395; <span>Post</span></button>
                         </div>
+
 
                         <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
                                             <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 

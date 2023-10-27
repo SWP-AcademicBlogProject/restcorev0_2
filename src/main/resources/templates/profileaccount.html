@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
     <head>
-        <title>Forum Homepage</title>
+        <title>(Not) login page </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <style>
             body {
                 font-family: Arial, sans-serif;
@@ -120,7 +121,7 @@
             }
 
             .content {
-                background-color: white; /* Màu nền xám cho content */
+                background-color: white;
                 margin-top: 10px; /* Khoảng cách 10px từ container */
                 display: flex;
                 justify-content: space-between;
@@ -128,46 +129,70 @@
                 z-index: 0; /* Đặt chỉ số z về 0 để nền xám nằm dưới */
             }
 
-            .section {
-                padding: 20px;
+            .section1 {
+                text-align: center;
                 border: 1px solid #ccc;
-                text-align: center; /* Để căn giữa nội dung trong phần 2 */
-                border-radius: 0;
-                overflow: none;
+                padding: 10px;
+                width: 300px;
+                margin: 0 auto;
+                /*                flex: 8;  Phần 1 chiếm 8 phần trên tổng 10 */
             }
 
-            .section:first-child {
-                flex-basis: 30%; /* Phần 1 chiếm 40% */
+            /*            .content {
+                            flex: 2;  Phần 2 chiếm 2 phần trên tổng 10 
+                            overflow: hidden;
+                        }*/
+
+            /*            .section {
+                            padding: 20px;
+                            border: 1px solid #ccc;
+                            text-align: center;  Để căn giữa nội dung trong phần 2 
+                            border-radius: 0;
+                            overflow: none;
+                        }*/
+
+            .section1 {
+                flex-basis: 100%; /* Phần 1 chiếm 40% */
                 overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
-                height: 495px;
+                height: 430px;
             }
 
-            .section:nth-child(2) {
-                flex-basis: 70%; /* Phần 2 chiếm 60% */
-                position: relative; /* Để tạo vị trí tương đối cho phần 2 */
-                overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
-                height: 495px; /* Chiều cao cố định cho phần 2 */
-            }
+            /*            .section:nth-child(2) {
+                            flex-basis: 70%;  Phần 2 chiếm 60% 
+                            position: relative;  Để tạo vị trí tương đối cho phần 2 
+                            overflow: hidden;  Ẩn phần ảnh vượt ra khỏi khung 
+                            height: 495px;  Chiều cao cố định cho phần 2 
+                        }*/
 
-            .section .bold-text {
+            .section1 .bold-text {
                 font-weight: bold;
-                font-size: 1.2em;
+                font-size: 1.5em;
             }
 
-            .section img {
-                width: 100%;
-                height: 100%; /* Đảm bảo ảnh luôn nằm trong kích thước khung */
-                object-fit: cover; /* Đảm bảo các ảnh giữ kích thước và cắt hoặc lấp đầy khung */
-                transition: transform 0.5s ease;
-                padding-bottom: 56.25%;
-                border-radius: 0;
+            /*            .section img {
+                            width: 100%;
+                            height: 100%;  Đảm bảo ảnh luôn nằm trong kích thước khung 
+                            object-fit: cover;  Đảm bảo các ảnh giữ kích thước và cắt hoặc lấp đầy khung 
+                            transition: transform 0.5s ease;
+                            padding-bottom: 56.25%;
+                            border-radius: 0;
+                        }*/
+
+            .profile {
+                width: 100% ;
+                height: 70% ;
+                object-fit: contain ;
             }
 
-            .section-img1 {
-                width: 100% !important;
-                height: 70% !important;
-                object-fit: contain !important;
+            .icon {
+                text-align: center; /* Canh giữa nội dung bên trong */
+                margin-top: -110px; /* Di chuyển lên trên 20px bằng cách đặt margin-top âm */
             }
+
+            .icon h3,p {
+                display: inline;
+            }
+
 
             .arrow {
                 position: absolute;
@@ -309,15 +334,217 @@
                 color: #737373;
             }
 
+            .add {
+                background-color: rgb(69, 191, 191);
+                padding: 10px 20px;
+                border: none;
+                color: white;
+                font-size: 15px;
+                cursor: pointer;
+                transition: text-decoration 0.3s, transform 0.3s;
+            }
 
+            .add:hover {
+                text-decoration: underline;
+                transform: scale(1.1);
+            }
+
+            .text {
+                display: none;
+            }
+
+            .hamburger, .mb {
+                display: none;
+            }
+
+            .headermb {
+                display: none;
+            }
+
+            /* CSS cho giao diện mobile */
+            @media screen and (max-width: 767px) {
+                .search {
+                    /*                    width: calc(100% - 70px);*/
+                    flex: 0.95;
+                }
+
+                .left, .hamburger {
+                    display: none;
+                }
+
+                .right {
+                    display: none;
+                }
+
+                .hamburger {
+                    display: block;
+                    font-size: 24px;
+                    margin-left: 0px;
+                    cursor: pointer;
+                }
+
+                .mb.show {
+                    display: block;
+                    position: absolute;
+                    top: 60px;
+                    right: 0;
+                    background: #fff;
+                    padding: 10px;
+                    z-index: 1;
+                    margin: 10px 0;
+                    margin-right: 360px;
+                }
+
+                .headermb {
+                    display: flex;
+                    align-items: center;
+                }
+
+                .headermb .hamburger {
+                    margin-right: 10px; /* Điều chỉnh khoảng cách bằng cách thay đổi giá trị của margin-right */
+                }
+
+                .close {
+                    font-size: 24px;
+                    cursor: pointer;
+                }
+
+                .menu {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .menu-item {
+                    margin: 10px 0;
+
+                }
+
+                .menu-item a {
+                    color: black;
+                    text-decoration: none;
+                }
+
+                .text {
+                    display: block;
+                }
+
+                .content{
+                    margin-top: 5px;
+                    margin-right: 10px;
+                }
+                .wrap{
+                    width: 100%;
+                    height: 230px;
+                    overflow: hidden;
+                    overflow-y: hidden;
+                }
+                .wrap img{
+                    width: 100% !important;
+                    height: 100% !important;
+                    display: block;
+                    margin-top: 20px !important;
+                }
+                .section{
+                    background: white;
+                }
+                .container {
+                    flex-direction: column;
+                    height: 60px;
+                }
+
+                .header {
+                    flex-direction: row;
+                    align-items: flex-start;
+                }
+
+                .right {
+                    margin-left: 0;
+                    margin-top: 2px;
+                }
+
+                .content-container {
+                    position: relative;
+                    padding: 0px;
+                    margin-top: 80px;
+                    /*                    margin-right: 42px;*/
+                }
+
+                .content {
+                    display: flex;
+                    width:100%;
+                    flex-basis: 100%;
+                }
+
+                .section1 {
+                    width: 100%;
+                }
+
+                .arrow {
+                    display: none;
+                }
+
+                .section4 {
+                    padding: 10px;
+                }
+
+                .content-section4 {
+                    font-size: 0.9em;
+                }
+                #slideshow-container{
+                    position: relative;
+                    max-width: 100%;
+                    max-height: 210px;
+                    /*                    height: auto;*/
+                    overflow: hidden;
+                }
+
+                .content-container2{
+                    margin-top: -100px;
+                    width: 100%;
+                    padding-right: 0;
+                    padding-left: 0;
+                }
+
+                .section3 {
+                    display: none;
+                }
+
+                .menu-item ul {
+                    list-style-type: none;
+                    padding: 0;
+                }
+
+                .menu-item ul li {
+                    margin-bottom: 10px;
+                }
+
+                .section4 {
+                    flex-basis: 95%;
+                    background-color: white;
+                    border: 1px solid #ccc;
+                    padding: 10px;
+                }
+
+                .add {
+                    background-color: rgb(69, 191, 191);
+                    padding: 10px 20px;
+                    border: none;
+                    color: white;
+                    font-size: 15px;
+                    cursor: pointer;
+                    transition: text-decoration 0.3s, transform 0.3s;
+                }
+
+                .add:hover {
+                    text-decoration: underline;
+                    transform: scale(1.1);
+                }
+
+            }
         </style>
+
     </head>
     <body>
-         <div th:if="${session.user == null}">
-        <a href="loginnnn.html">Please login to view this page</a>
-    </div>
-        
-         <div th:if="${session.user != null}">
         <div class="container">
 
             <div class="header">
@@ -329,28 +556,71 @@
                     <button class="create">Create Account</button> -->
                 </div>
             </div>
+
+            <div class="headermb">               
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+
+                <input type="text" class="search" placeholder="Search...">
+            </div>
+
+            <div class="mb">
+                <div class="close">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+
+                <div class="menu">
+                    <div class="menu-item">
+                        <ul>
+<!--                            <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
+<!--                            <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
+                            <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
+                            <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
+                            <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
+                            <li onclick="changeBackgroundColor(this)">&#128219; About</li>
+                            <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
+<!--                            <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
+                            <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
+                            <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewprofile">Update Profile</a></li>
+                            <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
 
         <div class="content-container">
             <div class="content">
                 <!-- Phần 1 -->
-                <div class="section">                 
-                    <p><span class="bold-text">FPT Community is a community of 10,000 amazing developers</span></p>
-                    <p>We're a place where coders share, stay up-to-date and grow their careers.</p>
-                    <img src="https://www.tuhocielts.vn/wp-content/uploads/2021/01/nothing-is-impossible.jpg" alt="Nothing is Impossible" class="section-img1">
+                <div class="section1">
+                    <p><span class="bold-text">&#10084; MY PROFILE &#10084;</span></p>
+                    <div class="profile">
+                        <img src="https://i.pinimg.com/736x/a0/76/98/a076984d817dbd445bda21ec231c41b9.jpg" alt="Avatar" class="">
+                    </div>
+                    <div class="icon">
+                        <h3>&#127380; UserID: </h3><p th:text="${user.userID}"></p>
+                        </br></br><h3>&#128100; UserName: </h3><p th:text="${user.userName}"></p>
+                        </br></br><h3>&#128221; Description: </h3><p th:text="${user.description}"></p>
+                        </br></br><h3>&#127874; BirthDate: </h3><p th:text="${user.birthdate}"></p>
+                    </div>
+
                 </div>
 
+
                 <!-- Phần 2 -->
-                <div class="section" id="page-content">
-                    <div id="slideshow-container">
-                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hcm.png" alt="Đại học FPT">
-                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/dn.jpg" alt="Đại học FPT">
-                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/qn.jpg" alt="Đại học FPT">
-                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hn.jpg" alt="Đại học FPT">
-                    </div>
-                    <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-                    <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
-                </div>
+                <!--                <div class="section" id="page-content">
+                                    <div id="slideshow-container">
+                                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hcm.png" alt="Đại học FPT">
+                                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/dn.jpg" alt="Đại học FPT">
+                                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/qn.jpg" alt="Đại học FPT">
+                                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hn.jpg" alt="Đại học FPT">
+                                    </div>
+                                    <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
+                                    <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
+                                </div>-->
 
             </div>
         </div>
@@ -360,16 +630,16 @@
             <div class="section3">
                 <p><span class="bold-text">Navigation</span></p>
                 <ul>
-                    <li onclick="changeBackgroundColor(this)">&#127968; Home</li>
-                    <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>
+<!--                    <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
+<!--                    <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
                     <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
-                    <li onclick="changeBackgroundColor(this)">&#128172; FAQ</li>
-                    <li onclick="changeBackgroundColor(this)">&#128140; Advertise on DEV</li>
+                    <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
+                    <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
                     <li onclick="changeBackgroundColor(this)">&#128219; About</li>
                     <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
-                    <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
-                    <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>
-                    <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewprofile">View Profile</a></li>
+<!--                    <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
+                    <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
+                    <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewprofile">Update Profile</a></li>
                     <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
                 </ul>
             </div>
@@ -378,14 +648,31 @@
             <div class="section4">
                 <div class="post">
                     <div class="post-header">
+                        <h2> Add Post</h2>
+                    </div>
+                    <div class="post-content">
+                        <input type="text" class="" placeholder="Add...">
+                    </div>
+                    <div class="post-footer">
+                        <button class="add">&#128395; <span>Post</span></button>
+                    </div>
+
+
+                    <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
+                                        <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
+                                        <div class="comment">&#128172;</div>  Biểu tượng comment -->
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
                         <h2>Post Title</h2>
                     </div>
                     <div class="post-content">
                         <p>Are you passionate about Software Engineering?</p>
                     </div>
                     <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
+                        <span class="likes">&#128077; Thích</span>
+                        <span class="comments">&#128172; Bình luận</span>
                     </div>
 
                     <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
@@ -401,8 +688,8 @@
                         <p>Are you passionate about Software Engineering?</p>
                     </div>
                     <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
+                        <span class="likes">&#128077; Thích</span>
+                        <span class="comments">&#128172; Bình luận</span>
                     </div>
 
                     <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
@@ -418,8 +705,8 @@
                         <p>Are you passionate about Software Engineering?</p>
                     </div>
                     <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
+                        <span class="likes">&#128077; Thích</span>
+                        <span class="comments">&#128172; Bình luận</span>
                     </div>
 
                     <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
@@ -435,25 +722,8 @@
                         <p>Are you passionate about Software Engineering?</p>
                     </div>
                     <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
-                    </div>
-
-                    <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                        <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                        <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                </div>
-
-                <div class="post">
-                    <div class="post-header">
-                        <h2>Post Title</h2>
-                    </div>
-                    <div class="post-content">
-                        <p>Are you passionate about Software Engineering?</p>
-                    </div>
-                    <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
+                        <span class="likes">&#128077; Thích</span>
+                        <span class="comments">&#128172; Bình luận</span>
                     </div>
 
                     <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
@@ -463,14 +733,6 @@
 
             </div>
         </div>
-
-        <!--        <div class="section">
-                    <button onclick="showPage(1)">Page 1</button>
-                    <button onclick="showPage(2)">Page 2</button>
-                    <button onclick="showPage(3)">Page 3</button>
-                </div>-->
-
-
 
         <script>
             let slideIndex = 0;
@@ -509,7 +771,26 @@
                 element.style.color = "red";
                 element.style.transform = "scale(1.1)";
             }
-        </script> 
-        </div>
+        </script>
+
+        <script>
+            // JavaScript
+
+            const hamburger = document.querySelector('.hamburger');
+            const mb = document.querySelector('.mb');
+
+            hamburger.addEventListener('click', () => {
+                mb.classList.toggle('show');
+            });
+
+            const close = document.querySelector('.close');
+
+            close.addEventListener('click', () => {
+                mb.classList.remove('show');
+            });
+
+        </script>
+
+
     </body>
 </html>
