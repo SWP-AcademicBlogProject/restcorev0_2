@@ -28,43 +28,34 @@ public class UpdateUserController {
     private UserRepository repository;
 
 //<---------------------------update profile function----------------------------->    
-//        @RequestMapping(value = "/viewprofilee", method = RequestMethod.POST)
-//    public String updateuser(HttpSession session,
-//            @RequestParam(value = "userid") String userid, Model model) {
-//        
-//        UserDTO newUser =new UserDTO();
-//
-//         UserDTO updateUser = repository.findById(userid).map(user -> {
-//            user.setUserName(newUser.getUserName());
-//            user.setPassword(user.getPassword());
-//            user.setBirthdate(user.getBirthdate());
-//            user.setDescription(user.getDescription());
-//            return repository.save(user);
-//        }).orElseGet(() -> {
-//            newUser.setUserID(userid);
-//            return repository.save(newUser);
-//        });
-//         
-//            Optional<UserDTO> user=repository.findById(userid);
-//            session.setAttribute("user", user);
-//        return "redirect:/viewprofile";
-//    }
-//?userid=value    
-//        @RequestMapping(value = "/viewprofilee", method = RequestMethod.GET)
-//        public String upuser(HttpSession session,
-//                @RequestParam(value = "userid") String userid,Model model){
-//            Optional<UserDTO> user=repository.findById(userid);
-//            if(user.isPresent()){
-//                UserDTO core= user.get();
-//                model.addAttribute("user",core);
-//            }
-//            
-//            return "profile";
-//        }
+        @RequestMapping(value = "/viewprofilee", method = RequestMethod.POST)
+    public String updateuser(HttpSession session,
+            @RequestParam(value = "userid") String userid, 
+            @RequestParam(value = "username") String username,
+            @RequestParam(value = "password") String password,
+            @RequestParam(value = "birthdate") String birthdate,
+            @RequestParam(value = "description") String description,
+            Model model) {
         
-        
-        
-        
+
+            System.out.println(username);
+            System.out.println(password);
+            System.out.println(birthdate);
+            System.out.println(description);
+            List<UserDTO> founduser = repository.findByUserID(userid);
+            founduser.get(0).setUserName(username);
+            founduser.get(0).setPassword(password);
+            founduser.get(0).setBirthdate(birthdate);
+            founduser.get(0).setDescription(description);
+            
+            repository.save(founduser.get(0));
+            
+            session.setAttribute("user", founduser.get(0));
+            
+        return "redirect:/viewprofile";
+    }
+
+                
         
         
 //<----------------------------view profile function----------------------------->            

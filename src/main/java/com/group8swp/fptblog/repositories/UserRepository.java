@@ -13,6 +13,7 @@ import com.group8swp.fptblog.model.UserDTO;
  * @author pc
  */
 public interface UserRepository extends JpaRepository<UserDTO, String> {
-    List<UserDTO> findByUserName(String UserName);
+    List<UserDTO> findByUserName(String userName);
+    List<UserDTO> findByUserID(String userID);
 
 }
