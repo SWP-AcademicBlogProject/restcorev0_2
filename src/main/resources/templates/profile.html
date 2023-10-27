@@ -17,19 +17,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             .container {
                 display: flex;
-                justify-content: space-between;
+                flex-direction: column;
+                justify-content: center;
                 align-items: center;
-                margin: 200px;
-                gap: 20px; /* Khoảng cách giữa phần 1 và phần 2 */
             }
 
             .left, .right {
-                flex-basis: 50%;
+                margin-top:15px;
+                flex-basis: 100%;
                 background-color: white;
                 border: 1px solid #ccc;
                 text-align: center;
                 height: auto;
                 border-radius: 20px;
+                width:45%;
             }
             .left {
                 padding: 20px;
@@ -68,7 +69,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
             input[type="text"] {
-                width: 50%;
+                width: 70%;
                 padding: 5px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
@@ -92,52 +93,112 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             .add button:hover {
                 text-decoration: underline;
             }
+
+            .logoo{
+                display: block;
+                width: 135px;
+                height: 135px;
+                background-size: cover;
+                border-radius: 50%;
+                position: absolute;
+                top:5px;
+                left:4%;
+            }
+            .position{
+                position: relative;
+            }
+            .logo {
+                display: block;
+                margin:0px auto;
+                width: 150px;
+                height: 150px;
+                background-color:white;
+                border-radius: 50%;
+                border-top:4px solid orange;
+                border-bottom:2px solid blue;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                animation-name: logoAnim;
+                animation-duration: 5s;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-in-out;
+            }
+            .search1{
+                height:200px;
+            }
+            
+            h1 {
+                text-align: center;
+                font-size: 30px;
+                margin-bottom: 30px;
+                color: white;
+                text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            }
+
+            @keyframes logoAnim {
+                0% {
+                    transform: rotate(0deg);
+                }
+                50% {
+                    transform: rotate(180deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            @media (max-width: 700px) {
+                .position{
+                    display:none;
+                }
+                .container{
+                    margin-top:30px;
+                    padding-bottom: 60px;
+                }
+            }
         </style>
     </head>
     <body>
         <div class="container">
+            <div class="position">
+                <div class="logo"></div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/FPTUCT.png" class="logoo">
+            </div>
+            <h1>Update my profile</h1>
+            <div class="right">
+                <div> RoleID <div th:text="${user.roleId}">Student</div></div>  
+                <form action="viewprofilee" method="POST">
+                    <div>
+                        <span>UserID:</span> 
+                        <input type="text" class="search" placeholder="" th:value="${user.userID}"  id="userid" name="userid"   readonly="">
+                    </div>
+                    <div>
+                        <span>UserName:</span> 
+                        <input type="text" class="search" placeholder="" id="username" name="username" th:value="${user.userName}">
+                    </div>
+                    <div>
+                        <span>Password:</span> 
+                        <input type="text" class="search" placeholder="" id="password" name="password"  th:value="${user.password}">
+                    </div>
+                    <div>
+                        <span>Birthdate:</span> 
+                        <input type="text" class="search" placeholder="" id="birthdate" name="birthdate" th:value="${user.birthdate}">
+                    </div>
+                    <div>
+                        <span>NumberOfPosts:</span> 
+                        <input type="text" class="search" placeholder="" th:value="${user.numberOfPosts}" readonly="">
+                    </div>
+                    <div>
+                        <span class="minh">Description</span> 
+                        <input type="text" class="search1" placeholder=""  th:value="${user.description}" id="description" name="description">
+                    </div><!--
+                    -->                <div class="add">
+                        <button class="" type="submit" value="userupdate">Save Changes</button>
+                        <button class=""type="reset" value="reset">Reset Changes</button> 
+                    </div>
+                </form>         
+            </div>
 
-            <div class="left">
-                <div class="img-container">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQePE7gKIX1I3oLUXSefxtWMKIbErG1rRKHQw&usqp=CAU">
-                    <div>Student</div>  
-                </div>
-            </div>
-           
-                <div class="right">
-                     <form action="viewprofilee" method="POST">
-                <div>
-                    <span>FPT Mail:</span> 
-                    <input type="text" class="search" placeholder="" th:value="${user.userID}"  id="userid" name="userid"   readonly="">
-                </div>
-                <div>
-                    <span>UserName:</span> 
-                    <input type="text" class="search" placeholder="" id="username" name="username" th:value="${user.userName}">
-                </div>
-                <div>
-                    <span>Password:</span> 
-                    <input type="text" class="search" placeholder="" id="password" name="password"  th:value="${user.password}">
-                </div>
-                <div>
-                    <span>Birthdate:</span> 
-                    <input type="text" class="search" placeholder="" id="birthdate" name="birthdate" th:value="${user.birthdate}">
-                </div>
-                <div>
-                    <span>NumberOfPosts:</span> 
-                    <input type="text" class="search" placeholder="" th:value="${user.numberOfPosts}" readonly="">
-                </div>
-                <div>
-                    <span>Description</span> 
-                    <input type="text" class="search" placeholder=""  th:value="${user.description}" id="description" name="description">
-                </div><!--
--->                <div class="add">
-                    <button class="" type="submit" value="userupdate">Save Changes</button>
-                    <button class=""type="reset" value="reset">Reset Changes</button> 
-                </div>
-                 </form>         
-            </div>
-           
-            
+
 
         </div>
     </body>

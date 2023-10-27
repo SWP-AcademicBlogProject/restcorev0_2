@@ -51,6 +51,10 @@ public class UserDTO {
     @JoinColumn(name = "UserID")
     private List<PostDTO> postModel;
     
+    @OneToMany
+    @JoinColumn(name = "UserID")
+    private List<CommentDTO> commentModel;
+    
     public UserDTO() {
 
     }
