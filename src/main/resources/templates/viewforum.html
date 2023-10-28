@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Forum Homepage</title>
+        <title>FPT Academic Blog Homepage</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -138,13 +138,13 @@
             }
 
             .section:first-child {
-                flex-basis: 30%; /* Phần 1 chiếm 40% */
+                flex-basis: 21%; /* Phần 1 chiếm 40% */
                 overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
                 height: 495px;
             }
 
             .section:nth-child(2) {
-                flex-basis: 70%; /* Phần 2 chiếm 60% */
+                flex-basis: 79%; /* Phần 2 chiếm 60% */
                 position: relative; /* Để tạo vị trí tương đối cho phần 2 */
                 overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
                 height: 495px; /* Chiều cao cố định cho phần 2 */
@@ -199,19 +199,21 @@
 
             .section3
             {
-                flex-basis: 31.8%;
+                flex-basis: 25%;
                 /*                padding: 20px;*/
                 border: 1px solid #ccc;
                 text-align: center;
             }
 
             .section4 {
-                flex-basis: 68.2%;
+                flex-basis: 75%;
                 background-color: white;
                 /*                padding: 20px;*/
                 border: 1px solid #ccc;
                 /*                text-align: center;*/
                 padding: 10px;
+                padding-left: 60px;
+                padding-right: 60px;
             }
 
             .section3 p,
@@ -573,7 +575,7 @@
                                 <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
                                 <!--                                <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
                                                                 <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
-                                <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewprofile">View Profile</a></li>
+                                <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewauthor">View Profile</a></li>
                                 <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
                             </ul>
                         </div>

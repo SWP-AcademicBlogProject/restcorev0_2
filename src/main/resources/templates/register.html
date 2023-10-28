@@ -89,10 +89,10 @@ and open the template in the editor.
         <form action="create" method="POST">
 
             User ID<input type="text" name="userID" value="" required=""/>
-            <p class="red" th:text="${useridError}">${session.useridError}</p>
+            <p class="red" th:text="${useridError}"></p>
                 
             </br> User Name<input type="text" name="FullName" required=""/>
-            <p class="red" th:text="${usernameError}">${session.usernameError}</p>
+            <p class="red" th:text="${usernameError}"></p>
             
             </br> Role ID<input type="text" name="roleID" value="Student" readonly=""/>
 
@@ -102,7 +102,7 @@ and open the template in the editor.
             </br> Password<input type="password" name="Password" required=""/>
 
             </br> Confirm<input type="password" name="confirm" required=""/>
-            <p class="red" th:text="${confirmError}">${session.confirmError}</p>
+            <p class="red" th:text="${confirmError}"></p>
             
             </br> <input type="submit" name="action" Value="Create" class="he"/>
             <input type="reset" value="Reset"/>

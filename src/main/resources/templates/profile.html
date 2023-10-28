@@ -5,7 +5,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Update Profile</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
@@ -68,11 +68,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 font-size: 1.2em;
             }
 
-            input[type="text"] {
+            input[type="text"],input[type="date"] {
                 width: 70%;
                 padding: 5px;
                 border: 1px solid #ccc;
                 border-radius: 8px;
+            }
+            textarea{
+                width: 72%;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                resize: none;
             }
 
             /* Để tùy chỉnh nút "Save Changes" và "Reset Changes" */
@@ -146,6 +153,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 }
             }
 
+            .minh{
+                display: flex;
+                margin-left: 24px;
+            }
             @media (max-width: 700px) {
                 .position{
                     display:none;
@@ -160,6 +171,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 .right span{
                     text-align: left;
                     margin-right:110px;
+                }
+                .minh{
+                    display:block;
+                    margin-left:none;
+                    width:95%;
+                }
+                textarea{
+                    margin-right:25px;
+                }
+                .minh span{
+                    margin-right: 137px;
                 }
             }
         </style>
@@ -188,17 +210,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                     <div>
                         <span>Birthdate:</span> 
-                        <input type="text" class="search" placeholder="" id="birthdate" name="birthdate" th:value="${user.birthdate}">
+                        <input type="date" class="search" placeholder="" id="birthdate" name="birthdate" th:value="${user.birthdate}">
                     </div>
-                    <div>
-                        <span>NumberOfPosts:</span> 
-                        <input type="text" class="search" placeholder="" th:value="${user.numberOfPosts}" readonly="">
-                    </div>
-                    <div>
-                        <span class="minh">Description</span> 
-                        <input type="text" class="search1" placeholder=""  th:value="${user.description}" id="description" name="description">
-                    </div><!--
-                    -->                <div class="add">
+                    <div class="minh">
+                        <span>Description</span> 
+                        <textarea id="description" name="description" class="search1" th:text="${user.description}"></textarea>
+                    </div>              
+                    <div class="add">
                         <button class="" type="submit" value="userupdate">Save Changes</button>
                         <button class=""type="reset" value="reset">Reset Changes</button> 
                     </div>

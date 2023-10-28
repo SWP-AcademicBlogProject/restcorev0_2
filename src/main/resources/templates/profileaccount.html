@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>(Not) login page </title>
+        <title>Profile</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -152,9 +152,20 @@
                         }*/
 
             .section1 {
-                flex-basis: 100%; /* Phần 1 chiếm 40% */
+                flex-basis: 21.8%; /* Phần 1 chiếm 40% */
                 overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
-                height: 430px;
+                height: 270px;
+            }
+
+            .sectiontrue{
+                flex-basis: 78.2%; /* Phần 1 chiếm 40% */
+                overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
+                height: 270px;
+                text-align: center;
+                border: 1px solid #ccc;
+                padding: 10px;
+                width: 300px;
+                margin: 0 auto;
             }
 
             /*            .section:nth-child(2) {
@@ -186,7 +197,8 @@
 
             .icon {
                 text-align: center; /* Canh giữa nội dung bên trong */
-                margin-top: -110px; /* Di chuyển lên trên 20px bằng cách đặt margin-top âm */
+                margin-top: -30px;
+                /*                Di chuyển lên trên 20px bằng cách đặt margin-top âm */
             }
 
             .icon h3,p {
@@ -223,19 +235,21 @@
 
             .section3
             {
-                flex-basis: 31.8%;
+                flex-basis: 25%;
                 /*                padding: 20px;*/
                 border: 1px solid #ccc;
                 text-align: center;
             }
 
             .section4 {
-                flex-basis: 68.2%;
+                flex-basis: 75%;
                 background-color: white;
                 /*                padding: 20px;*/
                 border: 1px solid #ccc;
                 /*                text-align: center;*/
                 padding: 10px;
+                padding-left: 60px;
+                padding-right: 60px;
             }
 
             .section3 p,
@@ -360,7 +374,7 @@
             .headermb {
                 display: none;
             }
-            
+
             .section3  {
                 padding-top: 15px;
             }
@@ -481,6 +495,8 @@
 
                 .section1 {
                     width: 100%;
+                    margin:0px;
+                    flex-basis: 100%;
                 }
 
                 .arrow {
@@ -543,7 +559,23 @@
                     text-decoration: underline;
                     transform: scale(1.1);
                 }
+                
+                .sectiontrue{
+                    display: none;
+                }
 
+            }
+
+            .icon2{
+                margin:30px auto;
+                font-size:20px;
+            }
+            
+            .icon2 h,p{
+                margin-top:2px;
+            }
+            .icon2 p{
+                word-wrap: break-word;
             }
         </style>
 
@@ -556,8 +588,8 @@
                     <input type="text" class="search" placeholder="Search...">
                 </div>
                 <div class="right">
-<!--                    <button class="login">Log in</button>
-                    <button class="create">Create Account</button> -->
+                    <!--                    <button class="login">Log in</button>
+                                        <button class="create">Create Account</button> -->
                 </div>
             </div>
 
@@ -577,15 +609,15 @@
                 <div class="menu">
                     <div class="menu-item">
                         <ul>
-<!--                            <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
-<!--                            <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
+                            <!--                            <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
+                            <!--                            <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
                             <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                             <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                             <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
                             <li onclick="changeBackgroundColor(this)">&#128219; About</li>
                             <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
-<!--                            <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
-                            <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
+                            <!--                            <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
+                                                        <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                             <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewprofile">Update Profile</a></li>
                             <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
                         </ul>
@@ -607,24 +639,18 @@
                     <div class="icon">
                         <h3>&#127380; UserID: </h3><p th:text="${user.userID}"></p>
                         </br></br><h3>&#128100; UserName: </h3><p th:text="${user.userName}"></p>
-                        </br></br><h3>&#128221; Description: </h3><p th:text="${user.description}"></p>
-                        </br></br><h3>&#127874; BirthDate: </h3><p th:text="${user.birthdate}"></p>
                     </div>
 
                 </div>
 
 
-                <!-- Phần 2 -->
-                <!--                <div class="section" id="page-content">
-                                    <div id="slideshow-container">
-                                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hcm.png" alt="Đại học FPT">
-                                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/dn.jpg" alt="Đại học FPT">
-                                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/qn.jpg" alt="Đại học FPT">
-                                        <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hn.jpg" alt="Đại học FPT">
-                                    </div>
-                                    <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-                                    <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
-                                </div>-->
+                <!--                 Phần 2 -->
+                <div class="sectiontrue" id="page-content">
+                    <div class="icon2">
+                        <h3>&#128221; Description: </h3><p th:text="${user.description}"></p>
+                        <h3>&#127874; BirthDate: </h3><p th:text="${user.birthdate}"></p>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -634,15 +660,15 @@
             <div class="section3">
                 <p><span class="bold-text">Navigation</span></p>
                 <ul>
-<!--                    <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
-<!--                    <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
+                    <!--                    <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
+                    <!--                    <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
                     <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                     <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                     <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
                     <li onclick="changeBackgroundColor(this)">&#128219; About</li>
                     <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
-<!--                    <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
-                    <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
+                    <!--                    <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
+                                        <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                     <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewprofile">Update Profile</a></li>
                     <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
                 </ul>

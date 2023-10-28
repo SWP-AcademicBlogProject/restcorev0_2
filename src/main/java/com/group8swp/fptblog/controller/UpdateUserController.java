@@ -52,7 +52,7 @@ public class UpdateUserController {
             
             session.setAttribute("user", founduser.get(0));
             
-        return "redirect:/viewprofile";
+        return "redirect:/viewauthor";
     }
 
                 
