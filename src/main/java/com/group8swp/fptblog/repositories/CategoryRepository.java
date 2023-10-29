@@ -6,11 +6,12 @@ package com.group8swp.fptblog.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.group8swp.fptblog.model.CategoryDTO;
+import java.util.List;
 
 /**
  *
  * @author Dell
  */
 public interface CategoryRepository extends JpaRepository<CategoryDTO, Integer>{
-    
+     List<CategoryDTO> findByCategoryName(String categoryName);
 }

@@ -13,5 +13,5 @@ import com.group8swp.fptblog.model.SubjectDTO;
  * @author Dell
  */
 public interface SubjectRepository extends JpaRepository<SubjectDTO, Integer>{
- 
+  List<SubjectDTO> findBySubjectName(String subjectName);
 }
