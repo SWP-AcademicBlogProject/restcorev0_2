@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class AdminController {
-
+    //re update
     @Autowired
     private UserRepository userRepository;
     private CategoryRepository categoryRepository;
