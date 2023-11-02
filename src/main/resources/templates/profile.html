@@ -68,7 +68,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 font-size: 1.2em;
             }
 
-            input[type="text"],input[type="date"] {
+            input[type="text"],input[type="date"],input[type="password"] {
                 width: 70%;
                 padding: 5px;
                 border: 1px solid #ccc;
@@ -206,7 +206,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                     <div>
                         <span>Password:</span> 
-                        <input type="text" class="search" placeholder="" id="password" name="password"  th:value="${user.password}">
+                        <input type="password" class="search" placeholder="" id="password" name="password"  th:value="${user.password}">
+                    </div>
+                    <div>
+                        <span>ConfirmPass:</span> 
+                        <input type="password" class="search" placeholder="" id="confirmpassword" name="confirmpassword">
                     </div>
                     <div>
                         <span>Birthdate:</span> 
