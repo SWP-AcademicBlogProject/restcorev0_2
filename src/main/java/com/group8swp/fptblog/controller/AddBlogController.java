@@ -9,6 +9,7 @@ import com.group8swp.fptblog.model.PostDTO;
 import com.group8swp.fptblog.model.UserDTO;
 import com.group8swp.fptblog.repositories.PostRepository;
 import com.group8swp.fptblog.repositories.UserRepository;
+import java.util.Collections;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ private UserRepository userRep;
 //        userRep.save(user);
         postRep.save(newPost);
 
-        return "viewforum";
+        return "redirect:/viewforum";
     }
     
     @RequestMapping(value = "/viewforum")
@@ -66,6 +67,7 @@ private UserRepository userRep;
     {
         UserDTO user = (UserDTO) session.getAttribute("user");
         List<PostDTO> post =postRep.findAll();
+        Collections.reverse(post);
         model.addAttribute("post",post);
         return "viewforum";
     }

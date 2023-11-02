@@ -59,7 +59,7 @@ public class PostDTO {
     @Column(name = "Title")
     private String title;
 
-    @Column(name = "PostContent")
+    @Column(name = "PostContent",length = 5000)
     private String postContent;
 
     @Column(name = "Award")

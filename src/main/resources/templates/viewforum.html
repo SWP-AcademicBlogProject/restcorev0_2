@@ -33,7 +33,7 @@
 
             input[type="text"],
             input[type="password"] {
-                width: 100%;
+                width: 97.6%;
                 padding: 12px 20px;
                 margin: 8px 0;
                 box-sizing: border-box;
@@ -297,7 +297,7 @@
             .post-footer {
                 font-size: 14px;
                 color: #777;
-                margin-top: 10px;
+                margin-top: 60px;
             }
 
             .post-footer span {
@@ -328,6 +328,8 @@
                 background-color: rgb(69, 191, 191);
                 padding: 10px 20px;
                 border: none;
+                width:97.7%;
+                border-radius: 8px;
                 color: white;
                 font-size: 15px;
                 cursor: pointer;
@@ -529,9 +531,39 @@
 
             }
             textarea{
-                height:300px;
-                width:100%;
+                height:120px;
+                width:92.7%;
                 resize: none;
+                padding: 12px 20px;
+            }
+            .titlee{
+                display:inline;
+            }
+            /*            .notclean{
+                            width: 50%;
+                            padding: 12px 20px;
+                            margin: 8px 0;
+                            box-sizing: border-box;
+                            border: 2px solid #ccc;
+                            border-radius: 4px;
+                            margin-left:15px;
+                        }*/
+            .image{
+                width:50px;
+            }
+            .flexx{
+                display:flex;
+                align-items:center;
+            }
+            .post-headerr{
+                margin-top: 8px;
+                margin-left:10px;
+                font-size:10px;
+
+            }
+            .post-headerrr{
+                
+                font-size:15px;
             }
         </style>
     </head>
@@ -641,13 +673,11 @@
                     <form action="AddNewBlog" method="POST">
                         <div class="post">
                             <div class="post-header">
-                                <h2> Add Post</h2>
-                                <h3> Title </h3>
-                                <input type="text" class="" placeholder="Add..." id="NewTitle" name="NewTitle">
+                                <input type="text" class="notclean" placeholder="Title" id="NewTitle" name="NewTitle">
                             </div>
                             <div class="post-content">
                                 <!--                                <input type="text" class="" placeholder="Add..." id="NewContent" name="NewContent">-->
-                                <textarea id="NewContent" name="NewContent" rows="4" cols="50" placeholder="Add..."></textarea>
+                                <textarea id="NewContent" name="NewContent" rows="4" cols="50" placeholder="Content (limit up to 255 words)"></textarea>
                             </div>
                             <div class="post-footer">
                                 <button type="submit" value="AddBlog" class="add">&#128395; Post</button>
@@ -662,17 +692,21 @@
 
 
                     <div th:each="post : ${post}" class="post">
-                        <div class="post-header">
-                            <h2 th:text="${post.author}">author</h2>
+                        <div class="flexx">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
+                            <div class="post-headerr">
+                                <h2 th:text="${post.author}">author</h2>
+                            </div>
                         </div>
-                        <div class="post-header">
+                        <div class="post-headerrr">
                             <h2 th:text="${post.title}">title</h2>
                         </div>
+                        <div style="border-top: 1px solid #000;"></div>
                         <div class="post-content">
                             <p th:text="${post.postContent}">content</p>
                         </div>
                         <div class="post-content">
-<!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
+                            <!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
                         </div>
                         <div class="post-footer">
                             <span class="likes">&#128077; Like</span>
