@@ -35,7 +35,11 @@ public class UpdateUserController {
             @RequestParam(value = "password") String password,
             @RequestParam(value = "birthdate") String birthdate,
             @RequestParam(value = "description") String description,
+            @RequestParam(value = "confirmpassword") String confirm,
             Model model) {
+        
+        if (password.matches(confirm)) {
+            
         
 
             System.out.println(username);
@@ -53,6 +57,12 @@ public class UpdateUserController {
             session.setAttribute("user", founduser.get(0));
             
         return "redirect:/viewauthor";
+        } else {
+            List<UserDTO> founduser2 = repository.findByUserID(userid);
+            session.setAttribute("user", founduser2.get(0));
+            model.addAttribute("PasswordConfirmError", "ERROR: Confirm password is not match !");
+        return "redirect:/viewprofile";
+        }
     }
 
                 

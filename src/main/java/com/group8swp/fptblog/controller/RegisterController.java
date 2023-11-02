@@ -70,8 +70,9 @@ public class RegisterController {
         
         logger.info("create new account" + repository.save(newAccount));
         model.addAttribute("user", newAccount);
+        session.setAttribute("user", newAccount);
         
          
-        return "profile";
+        return "viewforum";
     }
 }

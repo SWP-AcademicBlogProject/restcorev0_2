@@ -46,6 +46,11 @@ private UserRepository userRep;
             @RequestParam(value = "NewContent") String newContent) {
         
         
+        if (newTitle.isBlank() || newContent.isBlank()) {
+            model.addAttribute("AddBlogError","content must not be null to upload as a post !");
+            return "redirect:/viewforum";
+        }
+        
         
        UserDTO user = (UserDTO) session.getAttribute("user");
        
@@ -70,5 +75,32 @@ private UserRepository userRep;
         Collections.reverse(post);
         model.addAttribute("post",post);
         return "viewforum";
+    }
+    
+    
+    @RequestMapping(value = "/AddNewBlogAccount")
+    public String addBlogAccount(HttpSession session,Model model, 
+            @RequestParam(value = "NewTitle") String newTitle,
+            @RequestParam(value = "NewContent") String newContent) {
+        
+        if (newTitle==null || newContent==null) {
+            model.addAttribute("AddBlogError","content must not be null to upload as a post !");
+            return "redirect:/viewauthor";
+        }
+        
+        
+       UserDTO user = (UserDTO) session.getAttribute("user");
+       
+       
+        PostDTO newPost = new PostDTO();
+        newPost.setAuthor(user.getUserName());
+        newPost.setTitle(newTitle);
+        newPost.setPostContent(newContent);
+        
+//        user.getPostModel().add(newPost);
+//        userRep.save(user);
+        postRep.save(newPost);
+
+        return "redirect:/viewauthor";
     }
 }

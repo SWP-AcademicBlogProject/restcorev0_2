@@ -705,7 +705,7 @@
 
             <!-- Phần 4 -->
             <div class="section4">
-                <form action="AddNewBlog" method="POST">
+                <form action="AddNewBlogAccount" method="POST">
                     <div class="post">
                         <div class="post-header">
                             <input type="text" class="notclean" placeholder="Title" id="NewTitle" name="NewTitle">
@@ -716,6 +716,7 @@
                         </div>
                         <div class="post-footer">
                             <button type="submit" value="AddBlog" class="add">&#128395; Post</button>
+                            <p class="red" th:text="${Model.AddBlogError}"></p>
                         </div>
 
 
