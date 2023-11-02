@@ -8,6 +8,9 @@ import com.group8swp.fptblog.model.CommentDTO;
 import com.group8swp.fptblog.model.PostDTO;
 import com.group8swp.fptblog.model.UserDTO;
 import com.group8swp.fptblog.repositories.PostRepository;
+import com.group8swp.fptblog.repositories.UserRepository;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +28,8 @@ public class AddBlogController {
     
 @Autowired
 private PostRepository postRep;
+@Autowired
+private UserRepository userRep;
     
     
     // nguoi dung nhap tieu de
@@ -35,14 +40,13 @@ private PostRepository postRep;
     
     
     @RequestMapping(value = "/AddNewBlog")
-    public String addBlog(Model model, 
+    public String addBlog(HttpSession session,Model model, 
             @RequestParam(value = "NewTitle") String newTitle,
             @RequestParam(value = "NewContent") String newContent) {
         
         
         
-        
-       UserDTO user = (UserDTO)model.getAttribute("user");
+       UserDTO user = (UserDTO) session.getAttribute("user");
        
        
         PostDTO newPost = new PostDTO();
@@ -50,8 +54,19 @@ private PostRepository postRep;
         newPost.setTitle(newTitle);
         newPost.setPostContent(newContent);
         
-        user.getPostModel().add(newPost);
-        return "";
+//        user.getPostModel().add(newPost);
+//        userRep.save(user);
+        postRep.save(newPost);
+
+        return "viewforum";
     }
     
+    @RequestMapping(value = "/viewforum")
+    public String viewforum(HttpSession session, Model model)
+    {
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        List<PostDTO> post =postRep.findAll();
+        model.addAttribute("post",post);
+        return "viewforum";
+    }
 }

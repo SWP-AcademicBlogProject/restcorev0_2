@@ -34,7 +34,7 @@ public class LoginController {
             Model model) {
 
         String failed = "loginfailed";
-        String success = "viewforum";
+        String success = "redirect:/viewforum";
 
         String result = null;
 
@@ -47,6 +47,7 @@ public class LoginController {
 
             System.out.println("user : " + founduser.get(0).getPassword() + " login successfully ");
             model.addAttribute("user" , founduser.get(0));
+            session.setAttribute("user" , founduser.get(0));
             result = success;
         } else {
             System.out.println("login failed");

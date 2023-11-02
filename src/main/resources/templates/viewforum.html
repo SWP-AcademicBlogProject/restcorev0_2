@@ -528,7 +528,11 @@
                 }
 
             }
-
+            textarea{
+                height:300px;
+                width:100%;
+                resize: none;
+            }
         </style>
     </head>
     <body>
@@ -634,90 +638,119 @@
 
                 <!-- Phần 4 -->
                 <div class="section4">
-                    <div class="post">
+                    <form action="AddNewBlog" method="POST">
+                        <div class="post">
+                            <div class="post-header">
+                                <h2> Add Post</h2>
+                                <h3> Title </h3>
+                                <input type="text" class="" placeholder="Add..." id="NewTitle" name="NewTitle">
+                            </div>
+                            <div class="post-content">
+                                <!--                                <input type="text" class="" placeholder="Add..." id="NewContent" name="NewContent">-->
+                                <textarea id="NewContent" name="NewContent" rows="4" cols="50" placeholder="Add..."></textarea>
+                            </div>
+                            <div class="post-footer">
+                                <button type="submit" value="AddBlog" class="add">&#128395; Post</button>
+                            </div>
+
+
+                            <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
+                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
+                                                <div class="comment">&#128172;</div>  Biểu tượng comment -->
+                        </div>
+                    </form>
+
+
+                    <div th:each="post : ${post}" class="post">
                         <div class="post-header">
-                            <h2> Add Post</h2>
+                            <h2 th:text="${post.author}">author</h2>
+                        </div>
+                        <div class="post-header">
+                            <h2 th:text="${post.title}">title</h2>
                         </div>
                         <div class="post-content">
-                            <input type="text" class="" placeholder="Add...">
-                        </div>
-                        <div class="post-footer">
-                            <button class="add">&#128395; <span>Post</span></button>
-                        </div>
-
-
-                        <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                            <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                            <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                    </div>
-
-                    <div class="post">
-                        <div class="post-header">
-                            <h2>Post Title</h2>
+                            <p th:text="${post.postContent}">content</p>
                         </div>
                         <div class="post-content">
-                            <p>Are you passionate about Software Engineering?</p>
-                        </div>
-                        <div class="post-footer">
-                            <span class="likes">&#128077; Like</span>
-                            <span class="comments">&#128172; Comment</span>
-                        </div>
-
-                        <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                            <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                            <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                    </div>
-
-                    <div class="post">
-                        <div class="post-header">
-                            <h2>Post Title</h2>
-                        </div>
-                        <div class="post-content">
-                            <p>Are you passionate about Software Engineering?</p>
+<!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
                         </div>
                         <div class="post-footer">
                             <span class="likes">&#128077; Like</span>
                             <span class="comments">&#128172; Comment</span>
-                        </div>
+                        </div>    
+                    </div>           
 
-                        <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                            <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                            <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                    </div>
 
-                    <div class="post">
-                        <div class="post-header">
-                            <h2>Post Title</h2>
-                        </div>
-                        <div class="post-content">
-                            <p>Are you passionate about Software Engineering?</p>
-                        </div>
-                        <div class="post-footer">
-                            <span class="likes">&#128077; Like</span>
-                            <span class="comments">&#128172; Comment</span>
-                        </div>
 
-                        <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                            <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                            <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                    </div>
 
-                    <div class="post">
-                        <div class="post-header">
-                            <h2>Post Title</h2>
-                        </div>
-                        <div class="post-content">
-                            <p>Are you passionate about Software Engineering?</p>
-                        </div>
-                        <div class="post-footer">
-                            <span class="likes">&#128077; Like</span>
-                            <span class="comments">&#128172; Comment</span>
-                        </div>
 
-                        <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                            <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                            <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                    </div>
+                    <!--                    <div class="post">
+                                            <div class="post-header">
+                                                <h2>Post Title</h2>
+                                            </div>
+                                            <div class="post-content">
+                                                <p>Are you passionate about Software Engineering?</p>
+                                            </div>
+                                            <div class="post-footer">
+                                                <span class="likes">&#128077; Like</span>
+                                                <span class="comments">&#128172; Comment</span>
+                                            </div>
+                    
+                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
+                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
+                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
+                                        </div>
+                    
+                                        <div class="post">
+                                            <div class="post-header">
+                                                <h2>Post Title</h2>
+                                            </div>
+                                            <div class="post-content">
+                                                <p>Are you passionate about Software Engineering?</p>
+                                            </div>
+                                            <div class="post-footer">
+                                                <span class="likes">&#128077; Like</span>
+                                                <span class="comments">&#128172; Comment</span>
+                                            </div>
+                    
+                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
+                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
+                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
+                                        </div>
+                    
+                                        <div class="post">
+                                            <div class="post-header">
+                                                <h2>Post Title</h2>
+                                            </div>
+                                            <div class="post-content">
+                                                <p>Are you passionate about Software Engineering?</p>
+                                            </div>
+                                            <div class="post-footer">
+                                                <span class="likes">&#128077; Like</span>
+                                                <span class="comments">&#128172; Comment</span>
+                                            </div>
+                    
+                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
+                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
+                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
+                                        </div>
+                    
+                                        <div class="post">
+                                            <div class="post-header">
+                                                <h2>Post Title</h2>
+                                            </div>
+                                            <div class="post-content">
+                                                <p>Are you passionate about Software Engineering?</p>
+                                            </div>
+                                            <div class="post-footer">
+                                                <span class="likes">&#128077; Like</span>
+                                                <span class="comments">&#128172; Comment</span>
+                                            </div>
+                    
+                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
+                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
+                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
+                                        </div>-->
 
                 </div>
             </div>
