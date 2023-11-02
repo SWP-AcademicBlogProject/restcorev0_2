@@ -30,7 +30,8 @@ public class LoginController {
     @RequestMapping(value = "/login")
     public String login(HttpSession session,
             @RequestParam(value = "username") String username,
-            @RequestParam(value = "password") String password) {
+            @RequestParam(value = "password") String password,
+            Model model) {
 
         String failed = "loginfailed";
         String success = "viewforum";
@@ -45,7 +46,7 @@ public class LoginController {
         if (password.matches(founduser.get(0).getPassword())) {
 
             System.out.println("user : " + founduser.get(0).getPassword() + " login successfully ");
-            session.setAttribute("user", founduser.get(0));
+            model.addAttribute("user" , founduser.get(0));
             result = success;
         } else {
             System.out.println("login failed");

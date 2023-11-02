@@ -54,6 +54,24 @@ public class UserDTO {
     @OneToMany
     @JoinColumn(name = "UserID")
     private List<CommentDTO> commentModel;
+
+    public List<PostDTO> getPostModel() {
+        return postModel;
+    }
+
+    public void setPostModel(List<PostDTO> postModel) {
+        this.postModel = postModel;
+    }
+
+    public List<CommentDTO> getCommentModel() {
+        return commentModel;
+    }
+
+    public void setCommentModel(List<CommentDTO> commentModel) {
+        this.commentModel = commentModel;
+    }
+    
+ 
     
     public UserDTO() {
 
