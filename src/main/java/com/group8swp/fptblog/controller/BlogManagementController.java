@@ -83,7 +83,7 @@ private UserRepository userRep;
             @RequestParam(value = "NewTitle") String newTitle,
             @RequestParam(value = "NewContent") String newContent) {
         
-        if (newTitle==null || newContent==null) {
+        if (newTitle.isBlank() || newContent.isBlank()) {
             model.addAttribute("AddBlogError","content must not be null to upload as a post !");
             return "redirect:/viewauthor";
         }
