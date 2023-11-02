@@ -41,6 +41,10 @@ public class RegisterController {
     ) {
         try {
         List<UserDTO> founduser = repository.findByUserID(userid);
+        if (username.contains(" ") || userid.contains(" ")) {
+             model.addAttribute("usernameError", "userID or UserName must not have a space character !");
+            return "register";
+        }
         if (founduser.size()!=0) {
             
             model.addAttribute("useridError", "Existed user ID !");

@@ -6,6 +6,7 @@ package com.group8swp.fptblog.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.group8swp.fptblog.model.PostDTO;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.group8swp.fptblog.model.PostDTO;
  */
 public interface PostRepository extends JpaRepository<PostDTO, Integer>{
 //    extends JpaRepository<postModel, Integer>
+    List<PostDTO> findByAuthor(String author);
 }

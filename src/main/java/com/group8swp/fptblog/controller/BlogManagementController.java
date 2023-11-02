@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 
 @Controller
-public class AddBlogController {
+public class BlogManagementController {
     
 @Autowired
 private PostRepository postRep;
