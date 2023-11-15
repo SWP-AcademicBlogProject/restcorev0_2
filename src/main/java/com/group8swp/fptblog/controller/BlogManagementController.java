@@ -23,80 +23,70 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author pc
  */
-
 @Controller
 public class BlogManagementController {
-    
-@Autowired
-private PostRepository postRep;
-@Autowired
-private UserRepository userRep;
-    
-    
+
+    @Autowired
+    private PostRepository postRep;
+    @Autowired
+    private UserRepository userRep;
+
     // nguoi dung nhap tieu de
     // nguoi dung nhap noi dung blog
     // -> nguoi dung bam submit -> traz ve parameter : 
     //              1. Author -> get session user name -> find user by name -> tra ve object user
     //                        -> new blog -> add para tieu de + noi dung + object user -> luu vao database
-    
-    
     @RequestMapping(value = "/AddNewBlog")
-    public String addBlog(HttpSession session,Model model, 
+    public String addBlog(HttpSession session, Model model,
             @RequestParam(value = "NewTitle") String newTitle,
             @RequestParam(value = "NewContent") String newContent) {
-        
-        
+
         if (newTitle.isBlank() || newContent.isBlank()) {
-            model.addAttribute("AddBlogError","content must not be null to upload as a post !");
+            model.addAttribute("AddBlogError", "content must not be null to upload as a post !");
             return "redirect:/viewforum";
         }
-        
-        
-       UserDTO user = (UserDTO) session.getAttribute("user");
-       
-       
+
+        UserDTO user = (UserDTO) session.getAttribute("user");
+
         PostDTO newPost = new PostDTO();
         newPost.setAuthor(user.getUserName());
         newPost.setTitle(newTitle);
         newPost.setPostContent(newContent);
-        
+
 //        user.getPostModel().add(newPost);
 //        userRep.save(user);
         postRep.save(newPost);
 
         return "redirect:/viewforum";
     }
-    
+
     @RequestMapping(value = "/viewforum")
-    public String viewforum(HttpSession session, Model model)
-    {
+    public String viewforum(HttpSession session, Model model) {
         UserDTO user = (UserDTO) session.getAttribute("user");
-        List<PostDTO> post =postRep.findAll();
+        List<PostDTO> post = postRep.findAll();
         Collections.reverse(post);
-        model.addAttribute("post",post);
+        model.addAttribute("post", post);
+        model.addAttribute("user", user);
         return "viewforum";
     }
-    
-    
+
     @RequestMapping(value = "/AddNewBlogAccount")
-    public String addBlogAccount(HttpSession session,Model model, 
+    public String addBlogAccount(HttpSession session, Model model,
             @RequestParam(value = "NewTitle") String newTitle,
             @RequestParam(value = "NewContent") String newContent) {
-        
+
         if (newTitle.isBlank() || newContent.isBlank()) {
-            model.addAttribute("AddBlogError","content must not be null to upload as a post !");
+            model.addAttribute("AddBlogError", "content must not be null to upload as a post !");
             return "redirect:/viewauthor";
         }
-        
-        
-       UserDTO user = (UserDTO) session.getAttribute("user");
-       
-       
+
+        UserDTO user = (UserDTO) session.getAttribute("user");
+
         PostDTO newPost = new PostDTO();
         newPost.setAuthor(user.getUserName());
         newPost.setTitle(newTitle);
         newPost.setPostContent(newContent);
-        
+
 //        user.getPostModel().add(newPost);
 //        userRep.save(user);
         postRep.save(newPost);

@@ -22,9 +22,9 @@
                 background-image: url("https://img.freepik.com/premium-vector/full-color-gradient-abstract-background-orange-backgrounds-vector-illustration_542898-61.jpg");
                 background-size: cover;
                 padding: 10px; /* Khoảng cách 10px */
+                margin: 0 auto;
                 border-bottom-left-radius: 6px;
                 border-bottom-right-radius: 32px;
-                margin: 0 auto;
                 text-align: center;
                 position: fixed; /* Giữ cố định vị trí của container */
                 width: 100%; /* Chiều rộng 100% để container kéo dài ra cả trang */
@@ -35,7 +35,7 @@
 
             input[type="text"],
             input[type="password"] {
-                width: 100%;
+                width: 97.6%;
                 padding: 12px 20px;
                 margin: 8px 0;
                 box-sizing: border-box;
@@ -54,6 +54,10 @@
                 cursor: pointer;
             }
 
+            .section3 a{
+                color: black;
+                text-decoration: none;
+            }
             img {
                 width: 150px;
                 border-radius: 50%;
@@ -136,34 +140,35 @@
                 justify-content: space-between;
                 position: relative; /* Tạo vị trí tương đối cho content */
                 z-index: 0; /* Đặt chỉ số z về 0 để nền xám nằm dưới */
-                border-radius: 10px;
             }
 
             .section {
                 padding: 20px;
                 border: 1px solid #ccc;
                 text-align: center; /* Để căn giữa nội dung trong phần 2 */
-                border-radius: 0;
-                overflow: none;
-            }
-
-            .section:first-child {
-                flex-basis: 21%; /* Phần 1 chiếm 40% */
-                overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
+                border-radius: 10px;
+                overflow: hidden;
                 height: 495px;
-                border-bottom-left-radius: 10px;
-                border-top-left-radius: 10px;
-                margin-right:4px;
+                flex-basis: 100%;
+                background-image: url('https://daihoc.fpt.edu.vn/wp-content/uploads/2016/12/form-background.png');
+                background-size: cover;
+                display: flex;
+                text-align: center;
+                justify-content: center;
             }
 
-            .section:nth-child(2) {
-                flex-basis: 79%; /* Phần 2 chiếm 60% */
-                position: relative; /* Để tạo vị trí tương đối cho phần 2 */
-                overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
-                height: 495px; /* Chiều cao cố định cho phần 2 */
-                border-bottom-right-radius: 10px;
-                border-top-right-radius: 10px;
-            }
+            /*            .section:first-child {
+                            flex-basis: 21%;  Phần 1 chiếm 40% 
+                            overflow: hidden;  Ẩn phần ảnh vượt ra khỏi khung 
+                            height: 495px;
+                        }*/
+
+            /*            .section:nth-child(2) {
+                            flex-basis: 79%;  Phần 2 chiếm 60% 
+                            position: relative;  Để tạo vị trí tương đối cho phần 2 
+                            overflow: hidden;  Ẩn phần ảnh vượt ra khỏi khung 
+                            height: 495px;  Chiều cao cố định cho phần 2 
+                        }*/
 
             .section .bold-text {
                 font-weight: bold;
@@ -220,7 +225,7 @@
                 border: 1px solid #ccc;
                 text-align: center;
                 border-radius: 10px;
-                margin-right:4px;
+                margin-right: 4px;
             }
 
             .section4 {
@@ -231,8 +236,8 @@
                 /*                text-align: center;*/
                 padding: 10px;
                 padding-left: 60px;
-                border-radius: 10px;
                 padding-right: 60px;
+                border-radius: 10px;
             }
 
             .section3 p,
@@ -252,10 +257,6 @@
                 padding-left:20px;
             }
 
-            .section3 a{
-                color: black;
-                text-decoration: none;
-            }
             .section3 ul li {
                 margin-bottom: 10px;
             }
@@ -298,11 +299,13 @@
                         }*/
 
             .post {
-                margin-bottom: 20px;
+                margin-top: 10px;
                 background-color: #f0f2f5;
                 padding: 20px;
+                width: 98%;
                 border-radius: 10px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin-bottom:20px;
             }
 
             .post-header {
@@ -317,6 +320,7 @@
 
             .post-content p {
                 line-height: 1.5;
+                padding:20px;
             }
 
             .post-footer {
@@ -353,7 +357,7 @@
                 background-color: rgb(69, 191, 191);
                 padding: 10px 20px;
                 border: none;
-                width:100%;
+                width:97.7%;
                 border-radius: 8px;
                 color: white;
                 font-size: 15px;
@@ -361,6 +365,12 @@
                 transition: text-decoration 0.3s, transform 0.3s;
             }
 
+            textarea{
+                height:120px;
+                width:92.7%;
+                resize: none;
+                padding: 12px 20px;
+            }
             .add:hover {
                 text-decoration: underline;
                 transform: scale(1.1);
@@ -377,9 +387,6 @@
                     display: none;
                 }
 
-                textarea{
-                    width: 89%;
-                }
                 .right {
                     display: none;
                 }
@@ -400,7 +407,7 @@
                     padding: 10px;
                     z-index: 1;
                     margin: 10px 0;
-                    margin-right: 310px;
+                    margin-right: 360px;
                 }
 
                 .headermb {
@@ -453,7 +460,7 @@
                     margin-top: 20px !important;
                 }
                 .section{
-                    background: white;
+                    display: none;
                 }
                 .container {
                     flex-direction: column;
@@ -494,6 +501,12 @@
                 .section:nth-child(2) {
                     width: 100%;
                     height: auto;
+                }
+                .post{
+                    width: 89%;
+                }
+                .textarea1{
+                    width: 83%;
                 }
 
                 .arrow {
@@ -558,12 +571,6 @@
                 }
 
             }
-            textarea{
-                height:120px;
-                width:95%;
-                resize: none;
-                padding: 12px 20px;
-            }
             .titlee{
                 display:inline;
             }
@@ -593,6 +600,60 @@
 
                 font-size:15px;
             }
+            .blogdetail{
+                color: white;
+                font-size:150px;
+                margin-top:150px;
+            }
+            .info{
+                font-size: 1.1rem;
+            }
+            .para{
+                font-size: 1.4rem;
+            }
+            .headers{
+                text-align: center;
+            }
+            .add-comment {
+                margin-top: 50px;
+            }
+
+            .add-comment h2 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .add-comment form {
+                margin-top: 10px;
+            }
+
+            .add-comment label {
+                display: block;
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+
+            .add-comment textarea {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                resize: none;
+                border: 1px solid #ccc;
+            }
+
+            .add-comment button {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                margin-top:5px;
+            }
+
+            .add-comment button:hover {
+                background-color: #0056b3;
+            }
         </style>
     </head>
     <body>
@@ -609,7 +670,7 @@
                     </div>
                     <div class="right">
                         <div class="post-headerr">
-                            <h2 th:text="${user.userName}">author</h2>
+                            <h2 th:text="${post.author}">author</h2>
                         </div>
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                     </div>
@@ -655,25 +716,18 @@
 
             <div class="content-container">
                 <div class="content">
-                    <!-- Phần 1 -->
-                    <div class="section">                 
-                        <p><span class="bold-text">FPT Community is a community of 10,000 amazing developers</span></p>
-                        <p>We're a place where coders share, stay up-to-date and grow their careers.</p>
-                        <div class="wrap">
-                            <img src="https://www.tuhocielts.vn/wp-content/uploads/2021/01/nothing-is-impossible.jpg" alt="Nothing is Impossible" class="section-img1">
-                        </div>
-                    </div>
+                    <!--                     Phần 1 
+                                        <div class="section">                 
+                                            <p><span class="bold-text">FPT Community is a community of 10,000 amazing developers</span></p>
+                                            <p>We're a place where coders share, stay up-to-date and grow their careers.</p>
+                                            <div class="wrap">
+                                                <img src="https://www.tuhocielts.vn/wp-content/uploads/2021/01/nothing-is-impossible.jpg" alt="Nothing is Impossible" class="section-img1">
+                                            </div>
+                                        </div>-->
 
                     <!-- Phần 2 -->
                     <div class="section" id="page-content">
-                        <div id="slideshow-container">
-                            <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hcm.png" alt="Đại học FPT">
-                            <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/dn.jpg" alt="Đại học FPT">
-                            <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/qn.jpg" alt="Đại học FPT">
-                            <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hn.jpg" alt="Đại học FPT">
-                        </div>
-                        <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-                        <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
+                        <h1 class="blogdetail">BLOG DETAIL</h1>
                     </div>
 
                 </div>
@@ -700,27 +754,21 @@
 
                 <!-- Phần 4 -->
                 <div class="section4">
-                    <form action="AddNewBlog" method="POST">
-                        <div class="post">
-                            <div class="post-header">
-                                <input type="text" class="notclean" placeholder="Title" id="NewTitle" name="NewTitle">
-                            </div>
-                            <div class="post-content">
-                                <!--                                <input type="text" class="" placeholder="Add..." id="NewContent" name="NewContent">-->
-                                <textarea id="NewContent" name="NewContent" rows="4" cols="50" placeholder="Content (limit up to 255 words)"></textarea>
-                            </div>
-                            <div class="post-footer">
-                                <button type="submit" value="AddBlog" class="add">&#128395; Post</button>
-                                <p class="red" th:text="${AddBlogError}"></p>
-                            </div>
+                    <div class="headers">
+                        <h1 style="font-size: 2.5rem">Blog Title</h1>
+                    </div>
+                    <p class="info">Author: John Doe</p>
+                    <p class="info">Date: September 30, 2023</p>
 
+                    <p class="para">Blog content goes here...</p>
 
-                            <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                        </div>
-                    </form>
-
+                    <div class="add-comment">
+                        <h2>Add Your Comment:</h2>
+                        <form id="addCommentForm" method="POST" action="/comments">
+                            <textarea id="comment" name="comment" rows="4" cols="50" class="textarea1"></textarea>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
 
                     <div th:each="post : ${post}" class="post">
                         <div class="flexx">
@@ -729,94 +777,14 @@
                                 <h2 th:text="${post.author}">author</h2>
                             </div>
                         </div>
-                        <div class="post-headerrr">
-                            <h2 th:text="${post.title}">title</h2>
-                        </div>
-                        <div style="border-top: 1px solid #000;"></div>
+                        <div style="border-top: 1px solid #000; margin-top: 5px;"></div>
                         <div class="post-content">
                             <p th:text="${post.postContent}">content</p>
                         </div>
                         <div class="post-content">
                             <!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
                         </div>
-                        <div class="post-footer">
-                            <span class="likes">&#128077; Like</span>
-                            <span class="comments">&#128172; Comment</span>
-                        </div>    
-                    </div>           
-
-
-
-
-
-                    <!--                    <div class="post">
-                                            <div class="post-header">
-                                                <h2>Post Title</h2>
-                                            </div>
-                                            <div class="post-content">
-                                                <p>Are you passionate about Software Engineering?</p>
-                                            </div>
-                                            <div class="post-footer">
-                                                <span class="likes">&#128077; Like</span>
-                                                <span class="comments">&#128172; Comment</span>
-                                            </div>
-                    
-                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
-                                        </div>
-                    
-                                        <div class="post">
-                                            <div class="post-header">
-                                                <h2>Post Title</h2>
-                                            </div>
-                                            <div class="post-content">
-                                                <p>Are you passionate about Software Engineering?</p>
-                                            </div>
-                                            <div class="post-footer">
-                                                <span class="likes">&#128077; Like</span>
-                                                <span class="comments">&#128172; Comment</span>
-                                            </div>
-                    
-                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
-                                        </div>
-                    
-                                        <div class="post">
-                                            <div class="post-header">
-                                                <h2>Post Title</h2>
-                                            </div>
-                                            <div class="post-content">
-                                                <p>Are you passionate about Software Engineering?</p>
-                                            </div>
-                                            <div class="post-footer">
-                                                <span class="likes">&#128077; Like</span>
-                                                <span class="comments">&#128172; Comment</span>
-                                            </div>
-                    
-                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
-                                        </div>
-                    
-                                        <div class="post">
-                                            <div class="post-header">
-                                                <h2>Post Title</h2>
-                                            </div>
-                                            <div class="post-content">
-                                                <p>Are you passionate about Software Engineering?</p>
-                                            </div>
-                                            <div class="post-footer">
-                                                <span class="likes">&#128077; Like</span>
-                                                <span class="comments">&#128172; Comment</span>
-                                            </div>
-                    
-                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
-                                        </div>-->
-
+                    </div>   
                 </div>
             </div>
 

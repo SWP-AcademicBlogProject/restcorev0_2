@@ -24,6 +24,8 @@
                 padding: 10px; /* Khoảng cách 10px */
                 margin: 0 auto;
                 text-align: center;
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 32px;
                 position: fixed; /* Giữ cố định vị trí của container */
                 width: 100%; /* Chiều rộng 100% để container kéo dài ra cả trang */
                 top: 0; /* Đặt vị trí top ở đầu trang */
@@ -33,7 +35,7 @@
 
             input[type="text"],
             input[type="password"] {
-                width: 97.6%;
+                width: 100%;
                 padding: 12px 20px;
                 margin: 8px 0;
                 box-sizing: border-box;
@@ -71,7 +73,14 @@
             .right {
                 flex: 1;
                 /*                text-align: right;*/
-                margin-left: 50px;
+                margin-left: 660px;
+                display: flex;
+                align-items: center;
+            }
+            .right h2 {
+                margin-right: 10px;
+                color: white;
+                font-size: 20px;
             }
 
             .search {
@@ -127,6 +136,7 @@
                 justify-content: space-between;
                 position: relative; /* Tạo vị trí tương đối cho content */
                 z-index: 0; /* Đặt chỉ số z về 0 để nền xám nằm dưới */
+                border-radius: 10px;
             }
 
             .section1 {
@@ -155,6 +165,9 @@
                 flex-basis: 21.8%; /* Phần 1 chiếm 40% */
                 overflow: hidden; /* Ẩn phần ảnh vượt ra khỏi khung */
                 height: 270px;
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px;
+                margin-right:4px;
             }
 
             .sectiontrue{
@@ -165,6 +178,8 @@
                 border: 1px solid #ccc;
                 padding: 10px;
                 width: 300px;
+                border-bottom-right-radius: 10px;
+                border-top-right-radius: 10px;
                 margin: 0 auto;
             }
 
@@ -197,7 +212,7 @@
 
             .icon {
                 text-align: center; /* Canh giữa nội dung bên trong */
-                margin-top: -30px;
+                margin-top: -55px;
                 /*                Di chuyển lên trên 20px bằng cách đặt margin-top âm */
             }
 
@@ -231,6 +246,7 @@
                 padding-left: 80px;
                 padding-right: 80px;
                 margin-top: -160px; /* Khoảng cách 20px từ container */
+                margin-bottom:20px;
             }
 
             .section3
@@ -239,6 +255,8 @@
                 /*                padding: 20px;*/
                 border: 1px solid #ccc;
                 text-align: center;
+                border-radius: 10px;
+                margin-right:4px;
             }
 
             .section4 {
@@ -250,6 +268,7 @@
                 padding: 10px;
                 padding-left: 60px;
                 padding-right: 60px;
+                border-radius: 10px;
             }
 
             .section3 p,
@@ -262,9 +281,14 @@
                 font-size: 18px;
             }
 
+            .section3 a{
+                color: black;
+                text-decoration: none;
+            }
             .section3 ul {
                 list-style-type: none;
-                padding: 0;
+                text-align: left;
+                padding-left:20px;
             }
 
             .section3 ul li {
@@ -352,7 +376,7 @@
                 background-color: rgb(69, 191, 191);
                 padding: 10px 20px;
                 border: none;
-                width:97.6%;
+                width:100%;
                 border-radius: 8px;
                 color: white;
                 font-size: 15px;
@@ -412,7 +436,10 @@
                     padding: 10px;
                     z-index: 1;
                     margin: 10px 0;
-                    margin-right: 360px;
+                    margin-right: 310px;
+                }
+                textarea{
+                width: 89%;
                 }
 
                 .headermb {
@@ -599,7 +626,7 @@
             }
             textarea{
                 height:120px;
-                width:92.7%;
+                width:95%;
                 resize: none;
                 padding: 12px 20px;
             }
@@ -617,8 +644,10 @@
                     <input type="text" class="search" placeholder="Search...">
                 </div>
                 <div class="right">
-                    <!--                    <button class="login">Log in</button>
-                                        <button class="create">Create Account</button> -->
+                    <div class="post-headerr">
+                        <h2 th:text="${user.userName}">author</h2>
+                    </div>
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                 </div>
             </div>
 
@@ -661,13 +690,14 @@
             <div class="content">
                 <!-- Phần 1 -->
                 <div class="section1">
-                    <p><span class="bold-text">&#10084; MY PROFILE &#10084;</span></p>
+                    <p><span class="bold-text"> MY PROFILE </span></p>
                     <div class="profile">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt="Avatar" class="">
                     </div>
                     <div class="icon">
                         <h3>&#127380; UserID: </h3><p th:text="${user.userID}"></p>
-                        </br></br><h3>&#128100; UserName: </h3><p th:text="${user.userName}"></p>
+                        </br></br><h3>&#128100; UserName: </h3>
+                        </br></br><p th:text="${user.userName}"></p>
                     </div>
 
                 </div>

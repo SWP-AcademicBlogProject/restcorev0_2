@@ -60,7 +60,7 @@ public class DatabaseTest {
                  }
                  
                  
-                 PostDTO post = new PostDTO(2,1,1,1,"1","ddd","test user","test post title","sample text post",1,1,1,"2023-9-17 10:09:08.000","01");
+                 PostDTO post = new PostDTO(2,1,1,1,"1","ddd","ThanThiNgocVan","First Blog of FPT Academic Blog","This is a place where people can post Blog to ask about subject to have more knowledges and lots of more!",1,1,1,"2023-9-17 10:09:08.000","01");
                  List<PostDTO> postList = postrep.findAll();
                  if (postList.size()==0) {
                      logger.info("insert data" + postrep.save(post));

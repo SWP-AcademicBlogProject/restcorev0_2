@@ -24,23 +24,21 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class UpdateUserController {
+
     @Autowired
     private UserRepository repository;
 
 //<---------------------------update profile function----------------------------->    
-        @RequestMapping(value = "/viewprofilee", method = RequestMethod.POST)
+    @RequestMapping(value = "/viewprofilee", method = RequestMethod.POST)
     public String updateuser(HttpSession session,
-            @RequestParam(value = "userid") String userid, 
+            @RequestParam(value = "userid") String userid,
             @RequestParam(value = "username") String username,
             @RequestParam(value = "password") String password,
             @RequestParam(value = "birthdate") String birthdate,
             @RequestParam(value = "description") String description,
             @RequestParam(value = "confirmpassword") String confirm,
             Model model) {
-        
         if (password.matches(confirm)) {
-            
-        
 
             System.out.println(username);
             System.out.println(password);
@@ -51,25 +49,22 @@ public class UpdateUserController {
             founduser.get(0).setPassword(password);
             founduser.get(0).setBirthdate(birthdate);
             founduser.get(0).setDescription(description);
-            
+
             repository.save(founduser.get(0));
-            
+
             session.setAttribute("user", founduser.get(0));
-            
-        return "redirect:/viewauthor";
+
+            return "redirect:/viewauthor";
         } else {
             List<UserDTO> founduser2 = repository.findByUserID(userid);
             session.setAttribute("user", founduser2.get(0));
             model.addAttribute("PasswordConfirmError", "ERROR: Confirm password is not match !");
-        return "redirect:/viewprofile";
+            return "redirect:/viewprofile";
         }
     }
 
-                
-        
-        
 //<----------------------------view profile function----------------------------->            
-    @RequestMapping(value="/viewprofile")
+    @RequestMapping(value = "/viewprofile")
     public String viewProfile(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
         UserDTO user = (UserDTO) session.getAttribute("user");
