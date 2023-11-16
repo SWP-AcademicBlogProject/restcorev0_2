@@ -9,8 +9,10 @@ import com.group8swp.fptblog.model.PostDTO;
 import com.group8swp.fptblog.model.UserDTO;
 import com.group8swp.fptblog.repositories.PostRepository;
 import com.group8swp.fptblog.repositories.UserRepository;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,7 @@ public class BlogManagementController {
     // -> nguoi dung bam submit -> traz ve parameter : 
     //              1. Author -> get session user name -> find user by name -> tra ve object user
     //                        -> new blog -> add para tieu de + noi dung + object user -> luu vao database
+    //---------------------------------------------------Add blog------------------------------------------------------------------
     @RequestMapping(value = "/AddNewBlog")
     public String addBlog(HttpSession session, Model model,
             @RequestParam(value = "NewTitle") String newTitle,
@@ -61,6 +64,7 @@ public class BlogManagementController {
         return "redirect:/viewforum";
     }
 
+    //---------------------------------------------------view blog------------------------------------------------------------------
     @RequestMapping(value = "/viewforum")
     public String viewforum(HttpSession session, Model model) {
         UserDTO user = (UserDTO) session.getAttribute("user");
@@ -71,6 +75,7 @@ public class BlogManagementController {
         return "viewforum";
     }
 
+    //---------------------------------------------------add blog but in their profile------------------------------------------------------------------
     @RequestMapping(value = "/AddNewBlogAccount")
     public String addBlogAccount(HttpSession session, Model model,
             @RequestParam(value = "NewTitle") String newTitle,
@@ -95,6 +100,7 @@ public class BlogManagementController {
         return "redirect:/viewauthor";
     }
 
+    //---------------------------------------------------view blog detail------------------------------------------------------------------
     @RequestMapping("/details/{id}")
     public String showPostDetails(@PathVariable("id") int postId, HttpSession session, Model model) {
         PostDTO post = postRep.findByPostId(postId);
@@ -103,4 +109,47 @@ public class BlogManagementController {
         model.addAttribute("user", user);
         return "blogdetail";
     }
+
+    //---------------------------------------------------view information about us------------------------------------------------------------------
+    @RequestMapping(value = "/about")
+    public String about(HttpSession session, Model model) {
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        model.addAttribute("user", user);
+        return "aboutus";
+    }
+
+    //---------------------------------------------------view information contact us------------------------------------------------------------------
+    @RequestMapping(value = "/contact")
+    public String contact(HttpSession session, Model model) {
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        model.addAttribute("user", user);
+        return "contactus";
+    }
+
+    //---------------------------------------------------search blog by keywords------------------------------------------------------------------
+    @RequestMapping("/search")
+    public String search(@RequestParam("keywords") String keywords, HttpSession session, Model model) {
+        // Perform the search operation based on the provided keywords
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        List<PostDTO> posts = postRep.findAll();
+        List<PostDTO> filteredPosts = new ArrayList<>();
+
+        for (PostDTO post : posts) {
+            String postContent = post.getPostContent().toLowerCase().trim();
+            String title = post.getTitle().toLowerCase().trim();
+            String author = post.getAuthor().toLowerCase().trim();
+
+            if (postContent.contains(keywords.toLowerCase().trim())
+                    || title.contains(keywords.toLowerCase().trim())
+                    || author.contains(keywords.toLowerCase().trim())) {
+                filteredPosts.add(post);
+            }
+        }
+
+        Collections.reverse(filteredPosts);
+        model.addAttribute("post", filteredPosts);
+        model.addAttribute("user", user);
+        return "search";
+    }
+
 }

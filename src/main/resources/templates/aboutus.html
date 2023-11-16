@@ -150,7 +150,7 @@
                 overflow: hidden;
                 height: 495px;
                 flex-basis: 100%;
-                background-image: url('https://daihoc.fpt.edu.vn/wp-content/uploads/2016/12/form-background.png');
+                background-image: url('https://www.dikomet.com/wp-content/uploads/2012/02/About_us-1000x400.jpg');
                 background-size: cover;
                 display: flex;
                 text-align: center;
@@ -659,6 +659,11 @@
             .add-comment button:hover {
                 background-color: #0056b3;
             }
+            .imagestudent{
+                margin-top:50px;
+                width:100%;
+                border-radius:10px;
+            }
             .buttont {
                 background-color: #4CAF50;
                 color: white;
@@ -672,6 +677,7 @@
             .buttont:hover {
                 background-color: #45a049;
             }
+
         </style>
     </head>
     <body>
@@ -694,15 +700,14 @@
                             <h2 th:text="${user.userName}">author</h2>
                         </div>
                         <button style="border-radius: 50%; width: 60px;
-                                height:60px;display: inline-flex; align-items: 
+                                height:60px;display: inline-flex; align-items:
                                 center;justify-content: center;  border: none;padding-top:4px;
                                 background-color: #4CAF50;cursor: pointer;
                                 overflow: hidden;">
-                            <a th:href="@{/viewauthor}">
-                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
+                            <a href="viewauthor">
+                                <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                             </a>
                         </button>
-                        
                     </div>
                 </div>
 
@@ -729,8 +734,8 @@
                                 <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                                 <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                                 <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
-                                <li onclick="changeBackgroundColor(this)">&#128219; About</li>
-                                <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
+                                <li onclick="changeBackgroundColor(this)">&#128219; <a href="about">About</a></li>
+                                <li onclick="changeBackgroundColor(this)">&#128222; <a href="contact">Contact</a></li>
                                 <!--                                <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
                                                                 <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                                 <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewauthor">View Profile</a></li>
@@ -758,7 +763,6 @@
 
                     <!-- Phần 2 -->
                     <div class="section" id="page-content">
-                        <h1 class="blogdetail">BLOG DETAIL</h1>
                     </div>
 
                 </div>
@@ -775,8 +779,8 @@
                         <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                         <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                         <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
-                        <li onclick="changeBackgroundColor(this)">&#128219; <a th:href="@{/about}">About</a></li>
-                        <li onclick="changeBackgroundColor(this)">&#128222; <a th:href="@{/contact}">Contact</a></li>
+                        <li onclick="changeBackgroundColor(this)">&#128219; <a href="about">About</a></li>
+                        <li onclick="changeBackgroundColor(this)">&#128222; <a href="contact">Contact</a></li>
                         <!--                        <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>-->
                         <!--                        <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                         <li onclick="changeBackgroundColor(this)">&#128100; <a th:href="@{/viewauthor}">View Profile</a></li>
@@ -786,37 +790,24 @@
 
                 <!-- Phần 4 -->
                 <div class="section4">
-                    <div class="headers">
-                        <h1 style="font-size: 2.5rem" th:text="${post.title}">Blog Title</h1>
-                    </div>
-                    <p class="info">Author: <span class="info" th:text="${post.author}"> John Doe</span></p>
-                    <!--                    <p class="info">Date: </p>-->
-
-                    <p class="para" th:utext="${post.postContent}">Blog content goes here...</p>
-
-                    <div class="add-comment">
-                        <h2>Add Your Comment:</h2>
-                        <form id="addCommentForm" method="POST" action="/comments">
-                            <textarea id="comment" name="comment" rows="4" cols="50" class="textarea1"></textarea>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
-
-                    <div th:each="post : ${post}" class="post">
-                        <div class="flexx">
-                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
-                            <div class="post-headerr">
-                                <h2 >author</h2>
-                            </div>
-                        </div>
-                        <div style="border-top: 1px solid #000; margin-top: 5px;"></div>
-                        <div class="post-content">
-                            <p>content</p>
-                        </div>
-                        <div class="post-content">
-                            <!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
-                        </div>
-                    </div>   
+                    <main>
+                        <h2 style="font-size: 2.5rem">Welcome to the FPT University Academic Blog!</h2>
+                        <p style="font-size: 1.2rem;margin-top:50px;">
+                            At FPT University, we are committed to providing quality education and fostering intellectual growth. Our academic blog serves as a platform for sharing knowledge, insights, and research findings in various disciplines.
+                        </p>
+                        <img class="imagestudent" src="https://kenh14cdn.com/thumb_w/640/pr/2022/photo1653572826458-16535728266271424972137-63789199081287.jpeg" alt="Celebration photo session of FPT students 2022">
+                        <p style="margin-bottom:70px;font-size: 1.2rem;text-align:center;font-weight:bold;">Take commemorative photos of students of FPT University 2022 in campus HCM city</p>
+                        <p style="font-size: 1.2rem">
+                            The blog features articles written by our esteemed faculty members, researchers, and students. We cover a wide range of topics including computer science, information technology, business, engineering, and more. Our goal is to inspire and engage readers with informative and thought-provoking content.
+                        </p>
+                        <p style="font-size: 1.2rem; margin-top:50px;">
+                            Whether you are a student, a professional, or an enthusiast in any field, we hope that you find our blog posts valuable and informative. Feel free to explore the articles, leave comments, and engage in discussions. We encourage the exchange of ideas and the cultivation of a vibrant learning community.
+                        </p>
+                        <p style="font-size: 1.2rem; margin-top:50px;">
+                            Thank you for your visit, and we look forward to your active participation in our academic blog! <br>
+                        </p>
+                        <p style="font-size: 1.2rem; margin-bottom:100px; margin-top:50px;margin-left:500px;text-align:center">signature<br><br>Representative of the Dev team<br><br> Truong Hai Minh</p>
+                    </main>
                 </div>
             </div>
 

@@ -73,7 +73,7 @@
             .right {
                 flex: 1;
                 /*                text-align: right;*/
-                margin-left: 660px;
+                margin-left: 500px;
                 display: flex;
                 align-items: center;
             }
@@ -593,6 +593,19 @@
 
                 font-size:15px;
             }
+            .buttont {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+                height:43px;
+            }
+
+            .buttont:hover {
+                background-color: #45a049;
+            }
         </style>
     </head>
     <body>
@@ -604,14 +617,25 @@
             <div class="container">
 
                 <div class="header">
-                    <div class="left">
-                        <input type="text" class="search" placeholder="Search...">
-                    </div>
+                    <form action="/search" method="GET">
+                        <div class="left">
+                            <input type="text" class="search" name="keywords" placeholder="Search...">
+                            <button class="buttont" type="submit">Search</button>
+                        </div>
+                    </form>
                     <div class="right">
                         <div class="post-headerr">
                             <h2 th:text="${user.userName}">author</h2>
                         </div>
-                        <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
+                        <button style="border-radius: 50%; width: 60px;
+                                height:60px;display: inline-flex; align-items:
+                                center;justify-content: center;  border: none;padding-top:4px;
+                                background-color: #4CAF50;cursor: pointer;
+                                overflow: hidden;">
+                            <a href="viewauthor">
+                                <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
+                            </a>
+                        </button>
                     </div>
                 </div>
 
@@ -637,8 +661,8 @@
                                 <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                                 <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                                 <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
-                                <li onclick="changeBackgroundColor(this)">&#128219; About</li>
-                                <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
+                                <li onclick="changeBackgroundColor(this)">&#128219; <a href="about">About</a></li>
+                                <li onclick="changeBackgroundColor(this)">&#128222; <a href="contact">Contact</a></li>
                                 <!--                                <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
                                                                 <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                                 <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewauthor">View Profile</a></li>
@@ -689,8 +713,8 @@
                         <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                         <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                         <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
-                        <li onclick="changeBackgroundColor(this)">&#128219; About</li>
-                        <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
+                        <li onclick="changeBackgroundColor(this)">&#128219; <a href="about">About</a></li>
+                        <li onclick="changeBackgroundColor(this)">&#128222; <a href="contact">Contact</a></li>
                         <!--                        <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>-->
                         <!--                        <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                         <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewauthor">View Profile</a></li>

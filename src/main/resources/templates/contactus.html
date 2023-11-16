@@ -150,7 +150,7 @@
                 overflow: hidden;
                 height: 495px;
                 flex-basis: 100%;
-                background-image: url('https://daihoc.fpt.edu.vn/wp-content/uploads/2016/12/form-background.png');
+                background-image: url('https://wallpapers.com/images/hd/blue-contact-us-button-16hluyhgxiu4l1dh.jpg');
                 background-size: cover;
                 display: flex;
                 text-align: center;
@@ -659,6 +659,11 @@
             .add-comment button:hover {
                 background-color: #0056b3;
             }
+            .imagestudent{
+                margin-top:50px;
+                width:100%;
+                border-radius:10px;
+            }
             .buttont {
                 background-color: #4CAF50;
                 color: white;
@@ -694,15 +699,14 @@
                             <h2 th:text="${user.userName}">author</h2>
                         </div>
                         <button style="border-radius: 50%; width: 60px;
-                                height:60px;display: inline-flex; align-items: 
+                                height:60px;display: inline-flex; align-items:
                                 center;justify-content: center;  border: none;padding-top:4px;
                                 background-color: #4CAF50;cursor: pointer;
                                 overflow: hidden;">
-                            <a th:href="@{/viewauthor}">
-                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
+                            <a href="viewauthor">
+                                <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                             </a>
                         </button>
-                        
                     </div>
                 </div>
 
@@ -729,8 +733,8 @@
                                 <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                                 <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                                 <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
-                                <li onclick="changeBackgroundColor(this)">&#128219; About</li>
-                                <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
+                                <li onclick="changeBackgroundColor(this)">&#128219; <a href="about">About</a></li>
+                                <li onclick="changeBackgroundColor(this)">&#128222; <a href="contact">Contact</a></li>
                                 <!--                                <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
                                                                 <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                                 <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewauthor">View Profile</a></li>
@@ -758,7 +762,6 @@
 
                     <!-- Phần 2 -->
                     <div class="section" id="page-content">
-                        <h1 class="blogdetail">BLOG DETAIL</h1>
                     </div>
 
                 </div>
@@ -775,8 +778,8 @@
                         <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                         <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                         <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
-                        <li onclick="changeBackgroundColor(this)">&#128219; <a th:href="@{/about}">About</a></li>
-                        <li onclick="changeBackgroundColor(this)">&#128222; <a th:href="@{/contact}">Contact</a></li>
+                        <li onclick="changeBackgroundColor(this)">&#128219; <a href="about">About</a></li>
+                        <li onclick="changeBackgroundColor(this)">&#128222; <a href="contact">Contact</a></li>
                         <!--                        <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>-->
                         <!--                        <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
                         <li onclick="changeBackgroundColor(this)">&#128100; <a th:href="@{/viewauthor}">View Profile</a></li>
@@ -786,37 +789,24 @@
 
                 <!-- Phần 4 -->
                 <div class="section4">
-                    <div class="headers">
-                        <h1 style="font-size: 2.5rem" th:text="${post.title}">Blog Title</h1>
-                    </div>
-                    <p class="info">Author: <span class="info" th:text="${post.author}"> John Doe</span></p>
-                    <!--                    <p class="info">Date: </p>-->
-
-                    <p class="para" th:utext="${post.postContent}">Blog content goes here...</p>
-
-                    <div class="add-comment">
-                        <h2>Add Your Comment:</h2>
-                        <form id="addCommentForm" method="POST" action="/comments">
-                            <textarea id="comment" name="comment" rows="4" cols="50" class="textarea1"></textarea>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </div>
-
-                    <div th:each="post : ${post}" class="post">
-                        <div class="flexx">
-                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
-                            <div class="post-headerr">
-                                <h2 >author</h2>
-                            </div>
-                        </div>
-                        <div style="border-top: 1px solid #000; margin-top: 5px;"></div>
-                        <div class="post-content">
-                            <p>content</p>
-                        </div>
-                        <div class="post-content">
-                            <!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
-                        </div>
-                    </div>   
+                    <main>
+                        <h2 style="font-size: 2.5rem">Need Assistance?</h2>
+                        <p style="font-size: 1.2rem;margin-top:50px;">
+                            If you require any assistance or have any questions regarding the FPT University Academic Blog, please feel free to reach out to our support team.
+                        </p>
+                        <h3 style="font-size: 1.4rem;margin-top:50px;">Contact Information to The Student Service Center located in Room 202:</h3>
+                        <ul style="font-size: 1.2rem;margin-top:50px;">
+                            <li>Phone: 028.73005585</li>
+                            <li>Email: sschcm@fe.edu.vn</li>
+                        </ul>
+                        <p style="font-size: 1.2rem;margin-top:50px;">
+                            Our support team is available to help you with any technical issues, account-related concerns, or general inquiries. Please don't hesitate to get in touch with us.
+                        </p>
+                        <p style="font-size: 1.2rem; margin-top:50px;">
+                            We strive to provide prompt and helpful assistance to ensure your experience on our blog is smooth and enjoyable. Your feedback is valuable to us, and we are committed to continuously improving our services.
+                        </p>
+                        <p style="font-size: 1.2rem; margin-bottom:100px; margin-top:50px;margin-left:500px;text-align:center">signature<br><br>Representative of the Dev team<br><br> Truong Hai Minh</p>
+                    </main>
                 </div>
             </div>
 
