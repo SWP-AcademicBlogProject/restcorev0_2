@@ -7,6 +7,7 @@ package com.group8swp.fptblog.controller;
 import com.group8swp.fptblog.model.CommentDTO;
 import com.group8swp.fptblog.model.PostDTO;
 import com.group8swp.fptblog.model.UserDTO;
+import com.group8swp.fptblog.repositories.CommentRepository;
 import com.group8swp.fptblog.repositories.PostRepository;
 import com.group8swp.fptblog.repositories.UserRepository;
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ public class BlogManagementController {
     private PostRepository postRep;
     @Autowired
     private UserRepository userRep;
+    @Autowired
+    private CommentRepository _commentRep;
 
     // nguoi dung nhap tieu de
     // nguoi dung nhap noi dung blog
@@ -105,8 +108,21 @@ public class BlogManagementController {
     public String showPostDetails(@PathVariable("id") int postId, HttpSession session, Model model) {
         PostDTO post = postRep.findByPostId(postId);
         UserDTO user = (UserDTO) session.getAttribute("user");
+        // get all comemnt which is assiged with postID
+        List<CommentDTO> commentList = _commentRep.findAllByStatus(postId);
+        
+        //show all comment list
+        model.addAttribute("comment", commentList);
         model.addAttribute("post", post);
         model.addAttribute("user", user);
+        
+        session.setAttribute("user", user);
+        session.setAttribute("postSession", post);
+        model.addAttribute("comment", commentList);
+        model.addAttribute("post", post);
+        
+        //model commentList will show in next page
+        
         return "blogdetail";
     }
 

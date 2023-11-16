@@ -6,11 +6,12 @@ package com.group8swp.fptblog.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.group8swp.fptblog.model.CommentDTO;
+import java.util.List;
 
 /**
  *
  * @author Dell
  */
 public interface CommentRepository extends JpaRepository<CommentDTO, String>{
-    
+    List<CommentDTO> findAllByStatus(int status);
 }
