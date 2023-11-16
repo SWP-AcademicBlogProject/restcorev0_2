@@ -15,4 +15,5 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<PostDTO, Integer>{
 //    extends JpaRepository<postModel, Integer>
     List<PostDTO> findByAuthor(String author);
+    PostDTO findByPostId(int id);
 }

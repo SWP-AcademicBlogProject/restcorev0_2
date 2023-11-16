@@ -606,10 +606,15 @@
                 margin-top:150px;
             }
             .info{
-                font-size: 1.1rem;
+                font-size: 1.3rem;
+                font-family: Georgia, serif;
+                font-style: italic;
+                font-weight: bold;
             }
             .para{
                 font-size: 1.4rem;
+                max-width: 1000px;
+                word-wrap: break-word;
             }
             .headers{
                 text-align: center;
@@ -670,7 +675,7 @@
                     </div>
                     <div class="right">
                         <div class="post-headerr">
-                            <h2 th:text="${post.author}">author</h2>
+                            <h2 th:text="${user.userName}">author</h2>
                         </div>
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                     </div>
@@ -695,6 +700,7 @@
                             <ul>
                                 <!--                                <li onclick="changeBackgroundColor(this)">&#127968; Home</li>
                                                                 <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
+                                <li onclick="changeBackgroundColor(this)">&#127968; <a href="viewforum">Home</a></li>
                                 <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                                 <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                                 <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
@@ -740,6 +746,7 @@
                     <ul>
                         <!--                        <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
                         <!--                        <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
+                        <li onclick="changeBackgroundColor(this)">&#127968; <a th:href="@{/viewforum}">Home</a></li>
                         <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                         <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                         <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
@@ -747,20 +754,20 @@
                         <li onclick="changeBackgroundColor(this)">&#128222; Contact</li>
                         <!--                        <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>-->
                         <!--                        <li onclick="changeBackgroundColor(this)">&#128214; Guides</li>-->
-                        <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewauthor">View Profile</a></li>
-                        <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
+                        <li onclick="changeBackgroundColor(this)">&#128100; <a th:href="@{/viewauthor}">View Profile</a></li>
+                        <li onclick="changeBackgroundColor(this)">&#128682; <a th:href="@{/logout}">Logout</a></li>
                     </ul>
                 </div>
 
                 <!-- Phần 4 -->
                 <div class="section4">
                     <div class="headers">
-                        <h1 style="font-size: 2.5rem">Blog Title</h1>
+                        <h1 style="font-size: 2.5rem" th:text="${post.title}">Blog Title</h1>
                     </div>
-                    <p class="info">Author: John Doe</p>
-                    <p class="info">Date: September 30, 2023</p>
+                    <p class="info">Author: <span class="info" th:text="${post.author}"> John Doe</span></p>
+<!--                    <p class="info">Date: </p>-->
 
-                    <p class="para">Blog content goes here...</p>
+                    <p class="para" th:utext="${post.postContent}">Blog content goes here...</p>
 
                     <div class="add-comment">
                         <h2>Add Your Comment:</h2>
@@ -774,12 +781,12 @@
                         <div class="flexx">
                             <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                             <div class="post-headerr">
-                                <h2 th:text="${post.author}">author</h2>
+                                <h2 >author</h2>
                             </div>
                         </div>
                         <div style="border-top: 1px solid #000; margin-top: 5px;"></div>
                         <div class="post-content">
-                            <p th:text="${post.postContent}">content</p>
+                            <p>content</p>
                         </div>
                         <div class="post-content">
                             <!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->

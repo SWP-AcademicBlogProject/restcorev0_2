@@ -700,14 +700,14 @@
 
                 <!-- Phần 4 -->
                 <div class="section4">
-                    <form action="AddNewBlog" method="POST">
+                    <form action="AddNewBlog" method="POST" onsubmit="replaceLineBreaks()">
                         <div class="post">
                             <div class="post-header">
                                 <input type="text" class="notclean" placeholder="Title" id="NewTitle" name="NewTitle">
                             </div>
                             <div class="post-content">
                                 <!--                                <input type="text" class="" placeholder="Add..." id="NewContent" name="NewContent">-->
-                                <textarea id="NewContent" name="NewContent" rows="4" cols="50" placeholder="Content (limit up to 255 words)"></textarea>
+                                <textarea id="NewContent" name="NewContent" rows="4" cols="50" placeholder="Content (limit up to 5000 characters)"></textarea>
                             </div>
                             <div class="post-footer">
                                 <button type="submit" value="AddBlog" class="add">&#128395; Post</button>
@@ -720,6 +720,13 @@
                                                 <div class="comment">&#128172;</div>  Biểu tượng comment -->
                         </div>
                     </form>
+
+                    <script>
+                        function replaceLineBreaks() {
+                            var paragraphInput = document.getElementById("NewContent");
+                            paragraphInput.value = paragraphInput.value.replace(/\r?\n/g, "<br>");
+                        }
+                    </script>
 
 
                     <div th:each="post : ${post}" class="post">
@@ -734,10 +741,11 @@
                         </div>
                         <div style="border-top: 1px solid #000;"></div>
                         <div class="post-content">
-                            <p th:text="${post.postContent}">content</p>
+                            <!--                            <p th:text="${post.postContent}">content</p>-->
+                            <p th:text="${#strings.abbreviate(post.postContent,90)} ">content</p>
                         </div>
                         <div class="post-content">
-                            <!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
+                            <a th:href="@{/details/{id}(id=${post.postId})}">Show More</a>
                         </div>
                         <div class="post-footer">
                             <span class="likes">&#128077; Like</span>
