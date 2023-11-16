@@ -116,6 +116,7 @@ public class BlogManagementController {
         model.addAttribute("post", post);
         model.addAttribute("user", user);
         
+        Collections.reverse(commentList);
         session.setAttribute("user", user);
         session.setAttribute("postSession", post);
         model.addAttribute("comment", commentList);

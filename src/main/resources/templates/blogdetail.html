@@ -148,7 +148,7 @@
                 text-align: center; /* Để căn giữa nội dung trong phần 2 */
                 border-radius: 10px;
                 overflow: hidden;
-                height: 495px;
+                height: 300px;
                 flex-basis: 100%;
                 background-image: url('https://daihoc.fpt.edu.vn/wp-content/uploads/2016/12/form-background.png');
                 background-size: cover;
@@ -603,13 +603,15 @@
             .blogdetail{
                 color: white;
                 font-size:150px;
-                margin-top:150px;
+                margin-top:60px;
             }
             .info{
                 font-size: 1.3rem;
                 font-family: Georgia, serif;
                 font-style: italic;
                 font-weight: bold;
+                margin-left:10px;
+                margin-top: 15px;
             }
             .para{
                 font-size: 1.4rem;
@@ -621,6 +623,9 @@
             }
             .add-comment {
                 margin-top: 50px;
+                display: flex;
+                text-align: center;
+                margin-bottom:40px;
             }
 
             .add-comment h2 {
@@ -639,11 +644,19 @@
             }
 
             .add-comment textarea {
-                width: 100%;
+                width: 79%;
+                height:18px;
                 padding: 10px;
                 font-size: 16px;
                 resize: none;
                 border: 1px solid #ccc;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right:4px;
+            }
+            .add-comment .rounded-image{
+                margin-top:3px;
+                margin-right:10px;
             }
 
             .add-comment button {
@@ -653,7 +666,9 @@
                 color: #fff;
                 border: none;
                 cursor: pointer;
-                margin-top:5px;
+                display: inline-block;
+                vertical-align: middle;
+                border-radius: 4px;
             }
 
             .add-comment button:hover {
@@ -671,6 +686,17 @@
 
             .buttont:hover {
                 background-color: #45a049;
+            }
+            .rounded-image {
+                border-radius: 50%;
+                border: 2px solid #000;
+                width:50px;
+                height: 50px;
+            }
+            .coveraccount{
+                display: flex;
+                align-items: center;
+                margin-top:20px;
             }
         </style>
     </head>
@@ -694,15 +720,15 @@
                             <h2 th:text="${user.userName}">author</h2>
                         </div>
                         <button style="border-radius: 50%; width: 60px;
-                                height:60px;display: inline-flex; align-items: 
+                                height:60px;display: inline-flex; align-items:
                                 center;justify-content: center;  border: none;padding-top:4px;
                                 background-color: #4CAF50;cursor: pointer;
                                 overflow: hidden;">
                             <a th:href="@{/viewauthor}">
-                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
+                                <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                             </a>
                         </button>
-                        
+
                     </div>
                 </div>
 
@@ -786,35 +812,40 @@
 
                 <!-- Phần 4 -->
                 <div class="section4">
+                    <div class="coveraccount">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="rounded-image" alt="Image"/>
+                        <p class="info">Author: <span class="info" th:text="${post.author}"> John Doe</span></p>
+                    </div>
+
                     <div class="headers">
                         <h1 style="font-size: 2.5rem" th:text="${post.title}">Blog Title</h1>
                     </div>
-                    <p class="info">Author: <span class="info" th:text="${post.author}"> John Doe</span></p>
+
                     <!--                    <p class="info">Date: </p>-->
 
                     <p class="para" th:utext="${post.postContent}">Blog content goes here...</p>
 
                     <div class="add-comment">
-                        <h2>Add Your Comment:</h2>
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="rounded-image" alt="Image"/>
                         <form id="addCommentForm" method="POST" action="/comments">
-                            <textarea id="comment" name="comment" rows="4" cols="50" class="textarea1"></textarea>
+                            <textarea id="comment" name="comment" rows="4" cols="50" class="textarea1" placeholder="Add Your Comment..."></textarea>
                             <button type="submit">Submit</button>
                         </form>
                     </div>
 
-                    <div th:each="post : ${post}" class="post">
+                    <div th:each="comment : ${comment}" class="post">
                         <div class="flexx">
                             <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                             <div class="post-headerr">
-                                <h2 >author</h2>
+                                <h2 th:text="${comment.author}">author</h2>
                             </div>
                         </div>
                         <div style="border-top: 1px solid #000; margin-top: 5px;"></div>
                         <div class="post-content">
-                            <p>content</p>
+                            <p th:text="${comment.context}">content</p>
                         </div>
                         <div class="post-content">
-                            <!--                            <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
+                            <!--                                                        <a th:href="@{/details/{id}(id=${entity.id})}">Show More</a>-->
                         </div>
                     </div>   
                 </div>
