@@ -801,7 +801,7 @@
                     <div style="border-top: 1px solid #000;"></div>
                     </br>
                     <div class="post-content">
-                        <p th:text="${#strings.abbreviate(post.postContent,90)} ">content
+                        <p th:utext="${#strings.abbreviate(post.postContent,90)} ">content
                     </div>
                     </br>
                     <div class="post-content">
@@ -811,8 +811,8 @@
                     </br>
                     </br>
                     <div class="post-footer">
-                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>
+<!--                        <span class="likes">&#128077; Like</span>
+                        <span class="comments">&#128172; Comment</span>-->
                     </div>    
                 </div>     
 

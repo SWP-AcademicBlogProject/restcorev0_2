@@ -766,14 +766,14 @@
                         <div style="border-top: 1px solid #000;"></div>
                         <div class="post-content">
                             <!--                            <p th:text="${post.postContent}">content</p>-->
-                            <p th:text="${#strings.abbreviate(post.postContent,90)} ">content</p>
+                            <p th:utext="${#strings.abbreviate(post.postContent,90)} ">content</p>
                         </div>
                         <div class="post-content">
                             <a th:href="@{/details/{id}(id=${post.postId})}">Show More</a>
                         </div>
                         <div class="post-footer">
-                            <span class="likes">&#128077; Like</span>
-                            <span class="comments">&#128172; Comment</span>
+<!--                            <span class="likes">&#128077; Like</span>
+                            <span class="comments">&#128172; Comment</span>-->
                         </div>    
                     </div>           
 

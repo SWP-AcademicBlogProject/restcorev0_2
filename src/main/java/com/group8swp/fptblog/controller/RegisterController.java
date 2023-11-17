@@ -30,6 +30,15 @@ public class RegisterController {
     @Autowired
     private UserRepository repository;
 
+    private boolean isPasswordValid(String password) {
+        if (password.length() < 8) {
+            return false;
+        }
+
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
+        return password.matches(regex);
+    }
+
     @RequestMapping(value = "/create")
     public String registerController(
             HttpSession session, Model model,
@@ -40,23 +49,29 @@ public class RegisterController {
             @RequestParam(value = "confirm") String confirm
     ) {
         try {
+            boolean isValid = isPasswordValid(password);
+
             List<UserDTO> founduser = repository.findByUserID(userid);
             if (username.contains(" ") || userid.contains(" ")) {
                 model.addAttribute("usernameUseridError", "userID or UserName must not have a space character !");
                 return "register";
             }
-            
-        //    String pass= password.replace(System.lineSeparator(), "</br>");
 
-            String regexUsername = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+            //    String pass= password.replace(System.lineSeparator(), "</br>");
+            String regexuserID = "^[A-Z]{2}\\d{6}$";
+            if (!userid.matches(regexuserID)) {
+                model.addAttribute("userIDError", "userID must be your Student Code at FPT university!");
+                return "register";
+            }
+
+            String regexUsername = "^[a-zA-Z]+[a-z]{2}[0-9]{6}@fpt\\.edu\\.vn$";
             if (!username.matches(regexUsername)) {
                 model.addAttribute("usernameErrorFormat", "username must be your Student FPTMail @fpt.edu.vn at FPT university!");
                 return "register";
             }
 
-            String regexuserID = "^[A-Z]{2}\\d{6}$";
-            if (!userid.matches(regexuserID)) {
-                model.addAttribute("userIDError", "userID must be your Student Code at FPT university!");
+            if (!username.contains(userid.toLowerCase())) {
+                model.addAttribute("relationshipErrror", "Your Student FPTMail @fpt.edu.vn must have relationship with your Student Code FPT University provide to you!");
                 return "register";
             }
 
@@ -71,6 +86,14 @@ public class RegisterController {
                 model.addAttribute("usernameError", "Existed user name !");
                 return "register";
             }
+
+            if (!isValid) {
+                model.addAttribute("passwordFormatError", "Password must have at least 1 uppercase letter, 1 lowercase letter, 1 digit, 1 special character, and be at least 8 characters long.");
+                return "register";
+            }
+            
+            //correct password format: MyPassword123!
+
             if (!password.equals(confirm)) {
                 model.addAttribute("confirmError", "password and confirm password does not match !");
                 return "register";

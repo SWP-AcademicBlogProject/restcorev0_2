@@ -6,6 +6,7 @@ package com.group8swp.fptblog.controller;
 
 import com.group8swp.fptblog.model.UserDTO;
 import com.group8swp.fptblog.repositories.UserRepository;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,15 @@ public class UpdateUserController {
     @Autowired
     private UserRepository repository;
 
+    private boolean isPasswordValid(String password) {
+        if (password.length() < 8) {
+            return false;
+        }
+
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,}$";
+        return password.matches(regex);
+    }
+
 //<---------------------------update profile function----------------------------->    
     @RequestMapping(value = "/viewprofilee", method = RequestMethod.POST)
     public String updateuser(HttpSession session,
@@ -38,6 +48,23 @@ public class UpdateUserController {
             @RequestParam(value = "description") String description,
             @RequestParam(value = "confirmpassword") String confirm,
             Model model) {
+        boolean isValid = isPasswordValid(password);
+        LocalDate parsedDate = LocalDate.parse(birthdate);
+        LocalDate currentDate = LocalDate.now();
+
+        if (!isValid) {
+            model.addAttribute("passwordFormatError", "Password must have at least 1 uppercase letter, 1 lowercase letter, 1 digit, 1 special character, and be at least 8 characters long.");
+            return "redirect:/viewprofile";
+        }
+
+        if (parsedDate.isAfter(currentDate)) {
+            return "redirect:/viewprofile";
+        }
+
+        if (description.length() > 255) {
+            return "redirect:/viewprofile";
+        }
+
         if (password.matches(confirm)) {
 
             System.out.println(username);
