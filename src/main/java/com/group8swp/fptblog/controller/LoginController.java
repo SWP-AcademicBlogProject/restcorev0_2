@@ -27,6 +27,11 @@ public class LoginController {
     @Autowired
     private UserRepository repository;
 
+     @RequestMapping(value = "/homelogin")
+    public String loginhome() {
+        return "index";
+    }
+    
     @RequestMapping(value = "/login")
     public String login(HttpSession session,
             @RequestParam(value = "username") String username,

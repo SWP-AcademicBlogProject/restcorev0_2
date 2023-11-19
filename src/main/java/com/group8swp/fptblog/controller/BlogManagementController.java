@@ -53,6 +53,13 @@ public class BlogManagementController {
             return "redirect:/viewforum";
         }
 
+        if (newTitle.length() > 255) {
+            return "redirect:/viewforum";
+        }
+        if (newContent.length() > 5000) {
+            return "redirect:/viewforum";
+        }
+
         UserDTO user = (UserDTO) session.getAttribute("user");
 
         PostDTO newPost = new PostDTO();
@@ -89,6 +96,13 @@ public class BlogManagementController {
             return "redirect:/viewauthor";
         }
 
+        if (newTitle.length() > 255) {
+            return "redirect:/viewauthor";
+        }
+        if (newContent.length() > 5000) {
+            return "redirect:/viewauthor";
+        }
+
         UserDTO user = (UserDTO) session.getAttribute("user");
 
         PostDTO newPost = new PostDTO();
@@ -110,20 +124,19 @@ public class BlogManagementController {
         UserDTO user = (UserDTO) session.getAttribute("user");
         // get all comemnt which is assiged with postID
         List<CommentDTO> commentList = _commentRep.findAllByStatus(postId);
-        
+
         //show all comment list
         model.addAttribute("comment", commentList);
         model.addAttribute("post", post);
         model.addAttribute("user", user);
-        
+
         Collections.reverse(commentList);
         session.setAttribute("user", user);
         session.setAttribute("postSession", post);
         model.addAttribute("comment", commentList);
         model.addAttribute("post", post);
-        
+
         //model commentList will show in next page
-        
         return "blogdetail";
     }
 
@@ -169,4 +182,36 @@ public class BlogManagementController {
         return "search";
     }
 
+    //---------------------------------------------------update blog-------------------------------------------------------
+    @RequestMapping("/updateBlog")
+    public String updatePost(@RequestParam(value = "postId") int postId, HttpSession session, Model model) {
+        PostDTO post = postRep.findByPostId(postId);
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        model.addAttribute("post", post);
+        model.addAttribute("user", user);
+        session.setAttribute("user", user);
+        session.setAttribute("postSession", post);
+        return "updateblog";
+    }
+
+    @RequestMapping("/updateUserBlog")
+    public String updateUserPost(@RequestParam(value = "postId") int postId,
+            @RequestParam(value = "NewTitle") String newTitle,
+            @RequestParam(value = "NewContent") String newContent,
+            HttpSession session, Model model) {
+        PostDTO post = postRep.findByPostId(postId);
+        post.setTitle(newTitle);
+        post.setPostContent(newContent);
+        postRep.save(post);
+
+        return "redirect:/viewforum";
+    }
+
+    //---------------------------------------------------delete blog-------------------------------------------------------
+    @RequestMapping("/deleteBlog")
+    public String deletePost(@RequestParam(value = "postId") int postId, Model model) {
+        PostDTO deletedBlog = postRep.findByPostId(postId);
+        postRep.delete(deletedBlog);
+        return "redirect:/viewforum";
+    }
 }

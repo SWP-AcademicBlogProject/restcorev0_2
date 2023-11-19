@@ -209,8 +209,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <input type="password" class="search" placeholder="" id="password" name="password"  th:value="${user.password}">
                     </div>
                     <div>
-                        <span>ConfirmPass:</span> 
-                        <input type="password" class="search" placeholder="" id="confirmpassword" name="confirmpassword">
+                        <span>Confirm:</span> 
+                        <input type="password" class="search" placeholder="" id="confirmpassword" name="confirmpassword" th:value="${user.password}">
                         <p class="red" th:text="${PasswordConfirmError}"></p>
                     </div>
                     <div>

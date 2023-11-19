@@ -677,12 +677,22 @@
             .buttont:hover {
                 background-color: #45a049;
             }
-
+            .buttontt {
+                background-color: #4CAF50;
+                color: white;
+                margin-left:10px;
+                padding: 10px 30px;
+                margin-right: 40px;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+                height:43px;
+            }
         </style>
     </head>
     <body>
         <div th:if="${session.user == null}">
-            <a href="loginnnn.html">Please login to view this page</a>
+            <a href="homelogin">Please login to view this page</a>
         </div>
 
         <div th:if="${session.user != null}">
@@ -709,6 +719,11 @@
                             </a>
                         </button>
                     </div>
+                    <form action="/approval" method="GET" th:if="${user.roleId == 'Lecturer'}">
+                        <div>
+                            <button class="buttontt" type="submit">Approval</button>
+                        </div>
+                    </form>
                 </div>
 
                 <div class="headermb">               

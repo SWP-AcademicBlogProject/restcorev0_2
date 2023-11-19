@@ -646,6 +646,53 @@
             .buttont:hover {
                 background-color: #45a049;
             }
+
+            .buttonOwn {
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px;
+                margin-right:20px;
+                font-weight: bold;
+                text-align: center;
+                text-decoration: none;
+                border:none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Update button */
+            .button-updateBlog {
+                background-color: green; /* Light green */
+                color: white;
+            }
+
+            /* Delete button */
+            .button-deleteBlog {
+                background-color: #ff0033;
+                color: white;
+            }
+
+            /* Animation */
+            .button-animation {
+                animation: buttonScale 0.3s ease;
+            }
+
+            /* Hover effect */
+            .buttonOwn:hover {
+                transform: scale(1.1);
+            }
+            .buttontt {
+                background-color: #4CAF50;
+                color: white;
+                margin-left:10px;
+                padding: 10px 30px;
+                margin-right: 40px;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+                height:43px;
+            }
         </style>
 
     </head>
@@ -673,6 +720,11 @@
                         </a>
                     </button>
                 </div>
+                <form action="/approval" method="GET" th:if="${user.roleId == 'Lecturer'}">
+                    <div>
+                        <button class="buttontt" type="submit">Approval</button>
+                    </div>
+                </form>
             </div>
 
             <div class="headermb">               
@@ -811,10 +863,33 @@
                     </br>
                     </br>
                     <div class="post-footer">
-<!--                        <span class="likes">&#128077; Like</span>
-                        <span class="comments">&#128172; Comment</span>-->
+                        <div class="flexx">
+                            <form th:if="${user.userName == post.author}" action="updateBlog" method="post">
+                                <input type="hidden" name="postId" th:value="${post.postId}">
+                                <button type="submit" class="buttonOwn button-updateBlog button-animation">Update</button>
+                            </form>
+                            <!-- Button for delete -->
+                            <form th:if="${user.userName == post.author}" action="deleteBlog" method="post" id="deleteForm">
+                                <input type="hidden" name="postId" th:value="${post.postId}">
+                                <button type="submit" class="buttonOwn button-deleteBlog button-animation" onclick="confirmDelete(event)">Delete</button>
+                            </form>
+                        </div>
                     </div>    
-                </div>     
+                </div>  
+                <script>
+                    function confirmDelete(event) {
+                        event.preventDefault(); // Prevent form submission
+
+                        // Display a confirmation dialog
+                        var confirmResult = confirm("Do you want to delete?");
+
+                        if (confirmResult) {
+                            document.getElementById("deleteForm").submit(); // Submit the form
+                        } else {
+                            // User clicked "Cancel" - do nothing
+                        }
+                    }
+                </script>
 
                 <!--                <div class="post">
                                     <div class="post-header">

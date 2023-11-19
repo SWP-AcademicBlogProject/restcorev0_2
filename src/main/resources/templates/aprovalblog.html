@@ -57,6 +57,8 @@
             img {
                 width: 150px;
                 border-radius: 50%;
+                margin-top:5px;
+                margin-right:1px;
             }
 
             .header {
@@ -75,17 +77,6 @@
                 /*                text-align: right;*/
                 margin-left: 500px;
                 display: flex;
-                align-items: center;
-            }
-            .rightt {
-                flex: 1;
-                /*                text-align: right;*/
-                margin-left: 0px;
-                display: flex;
-                width:80%;
-                padding:20px;
-                padding-top:10px;
-                padding-bottom: 10px;
                 align-items: center;
             }
             .right h2 {
@@ -614,23 +605,10 @@
                 height:43px;
             }
 
-            .buttontt {
-                background-color: #4CAF50;
-                color: white;
-                margin-left:10px;
-                padding: 10px 30px;
-                margin-right: 40px;
-                border: none;
-                cursor: pointer;
-                border-radius: 4px;
-                height:43px;
-            }
-
             .buttont:hover {
                 background-color: #45a049;
             }
 
-            /* Button styles */
             .buttonOwn {
                 display: inline-block;
                 padding: 10px 20px;
@@ -666,6 +644,48 @@
             .buttonOwn:hover {
                 transform: scale(1.1);
             }
+            .buttontt {
+                background-color: #4CAF50;
+                color: white;
+                margin-left:10px;
+                padding: 10px 30px;
+                margin-right: 40px;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+                height:43px;
+            }
+
+            /* Table styles */
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            /* Button styles */
+            button {
+                padding: 6px 12px;
+                border: none;
+                margin-left:5px;
+                background-color: #4CAF50;
+                color: white;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background-color: #45a049;
+            }
+
         </style>
     </head>
     <body>
@@ -697,11 +717,6 @@
                             </a>
                         </button>
                     </div>
-                    <form action="/approval" method="GET" th:if="${user.roleId == 'Lecturer'}">
-                        <div>
-                            <button class="buttontt" type="submit">Approval</button>
-                        </div>
-                    </form>
                 </div>
 
                 <div class="headermb">               
@@ -723,6 +738,7 @@
                             <ul>
                                 <!--                                <li onclick="changeBackgroundColor(this)">&#127968; Home</li>
                                                                 <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
+                                <li onclick="changeBackgroundColor(this)">&#127968; <a href="viewforum">Home</a></li>
                                 <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                                 <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                                 <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
@@ -745,25 +761,6 @@
             <div class="content-container">
                 <div class="content">
                     <!-- Phần 1 -->
-                    <div class="section">                 
-                        <p><span class="bold-text">FPT Community is a community of 10,000 amazing developers</span></p>
-                        <p>We're a place where coders share, stay up-to-date and grow their careers.</p>
-                        <div class="wrap">
-                            <img src="https://www.tuhocielts.vn/wp-content/uploads/2021/01/nothing-is-impossible.jpg" alt="Nothing is Impossible" class="section-img1">
-                        </div>
-                    </div>
-
-                    <!-- Phần 2 -->
-                    <div class="section" id="page-content">
-                        <div id="slideshow-container">
-                            <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hcm.png" alt="Đại học FPT">
-                            <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/dn.jpg" alt="Đại học FPT">
-                            <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/qn.jpg" alt="Đại học FPT">
-                            <img src="https://hcmuni.fpt.edu.vn/Data/Sites/1/media/hinh-gioi-thieu-dai-hoc-fpt/hn.jpg" alt="Đại học FPT">
-                        </div>
-                        <div class="arrow arrow-left" onclick="changeSlide(-1)">&#10094;</div>
-                        <div class="arrow arrow-right" onclick="changeSlide(1)">&#10095;</div>
-                    </div>
 
                 </div>
             </div>
@@ -775,6 +772,7 @@
                     <ul>
                         <!--                        <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
                         <!--                        <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
+                        <li onclick="changeBackgroundColor(this)">&#127968; <a href="viewforum">Home</a></li>
                         <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
                         <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
                         <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
@@ -789,153 +787,51 @@
 
                 <!-- Phần 4 -->
                 <div class="section4">
-                    <form action="AddNewBlog" method="POST" onsubmit="replaceLineBreaks()">
-                        <div class="post">
-                            <div class="post-header">
-                                <input type="text" class="notclean" placeholder="Title" id="NewTitle" name="NewTitle">
-                            </div>
-                            <div class="post-content">
-                                <!--                                <input type="text" class="" placeholder="Add..." id="NewContent" name="NewContent">-->
-                                <textarea id="NewContent" name="NewContent" rows="4" cols="50" placeholder="Content (limit up to 5000 characters)"></textarea>
-                            </div>
-                            <div class="post-footer">
-                                <button type="submit" value="AddBlog" class="add">&#128395; Post</button>
-                                <p class="red" th:text="${AddBlogError}"></p>
-                            </div>
+                    <h2 style="font-size: 2.2rem">Student Blog Approval by Lecturer: <span th:text="${user.userName}">author</span></h2>
+                    <h3>Major: PRJ301</h3>
 
-
-                            <!--                    <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                <div class="comment">&#128172;</div>  Biểu tượng comment -->
-                        </div>
-                    </form>
-
-                    <script>
-                        function replaceLineBreaks() {
-                            var paragraphInput = document.getElementById("NewContent");
-                            paragraphInput.value = paragraphInput.value.replace(/\r?\n/g, "<br>");
-                        }
-                    </script>
-
-
-                    <div th:each="post : ${post}" class="post">
-                        <div class="flexx">
-                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
-                            <div class="post-headerr">
-                                <h2 th:text="${post.author}">author</h2>
-                            </div>
-                        </div>
-                        <div class="post-headerrr">
-                            <h2 th:text="${post.title}">title</h2>
-                        </div>
-                        <div style="border-top: 1px solid #000;"></div>
-                        <div class="post-content">
-                            <!--                            <p th:text="${post.postContent}">content</p>-->
-                            <p th:utext="${#strings.abbreviate(post.postContent,90)} ">content</p>
-                        </div>
-                        <div class="post-content">
-                            <a th:href="@{/details/{id}(id=${post.postId})}">Show More</a>
-                        </div>
-                        <div class="post-footer">
-                            <div class="flexx">
-                                <form th:if="${user.userName == post.author}" action="updateBlog" method="post">
-                                    <input type="hidden" name="postId" th:value="${post.postId}">
-                                    <button type="submit" class="buttonOwn button-updateBlog button-animation">Update</button>
-                                </form>
-                                <!-- Button for delete -->
-                                <form th:if="${user.userName == post.author}" action="deleteBlog" method="post" id="deleteForm">
-                                    <input type="hidden" name="postId" th:value="${post.postId}">
-                                    <button type="submit" class="buttonOwn button-deleteBlog button-animation" onclick="confirmDelete(event)">Delete</button>
-                                </form>
-                            </div>
-                        </div>    
-                    </div>    
-                    <script>
-                        function confirmDelete(event) {
-                            event.preventDefault(); // Prevent form submission
-
-                            // Display a confirmation dialog
-                            var confirmResult = confirm("Do you want to delete?");
-
-                            if (confirmResult) {
-                                document.getElementById("deleteForm").submit(); // Submit the form
-                            } else {
-                                // User clicked "Cancel" - do nothing
-                            }
-                        }
-                    </script>
+                    <table> 
+                        <thead> 
+                            <tr> 
+                                <th>Author</th> 
+                                <th>Title</th> 
+                                <th>Content</th> 
+                                <th>Detail</th>
+                                <th>
+                                    Approved - Rejected
+                                </th>
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            <tr th:each="post : ${post}" th:if="${post.author.contains('@fpt.edu.vn')}"> 
+                                <td th:text="${post.author}">author</td> 
+                                <td th:text="${post.title}">title</td> 
+                                <td th:utext="${#strings.abbreviate(post.postContent,90)} ">content</td> 
+                                <td>
+                                    <a th:href="@{/details/{id}(id=${post.postId})}">Show More</a>
+                                </td>
+                                <td> 
+                                    <div class="flexx">
+                                        <form th:action="approved" method="post"> 
+                                            <input type="hidden" name="id" th:value="${post.postId}"/> 
+                                            <button type="submit">Approved</button> 
+                                        </form> 
+                                        <form action="denied" method="post"> 
+                                            <input type="hidden" name="id" th:value="${post.postId}"/> 
+                                            <button type="submit">Denied</button> 
+                                        </form> 
+                                    </div>
+                                </td> 
+                            </tr> 
+                        </tbody> 
+                    </table>
 
 
 
 
 
-                    <!--                    <div class="post">
-                                            <div class="post-header">
-                                                <h2>Post Title</h2>
-                                            </div>
-                                            <div class="post-content">
-                                                <p>Are you passionate about Software Engineering?</p>
-                                            </div>
-                                            <div class="post-footer">
-                                                <span class="likes">&#128077; Like</span>
-                                                <span class="comments">&#128172; Comment</span>
-                                            </div>
-                    
-                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
-                                        </div>
-                    
-                                        <div class="post">
-                                            <div class="post-header">
-                                                <h2>Post Title</h2>
-                                            </div>
-                                            <div class="post-content">
-                                                <p>Are you passionate about Software Engineering?</p>
-                                            </div>
-                                            <div class="post-footer">
-                                                <span class="likes">&#128077; Like</span>
-                                                <span class="comments">&#128172; Comment</span>
-                                            </div>
-                    
-                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
-                                        </div>
-                    
-                                        <div class="post">
-                                            <div class="post-header">
-                                                <h2>Post Title</h2>
-                                            </div>
-                                            <div class="post-content">
-                                                <p>Are you passionate about Software Engineering?</p>
-                                            </div>
-                                            <div class="post-footer">
-                                                <span class="likes">&#128077; Like</span>
-                                                <span class="comments">&#128172; Comment</span>
-                                            </div>
-                    
-                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
-                                        </div>
-                    
-                                        <div class="post">
-                                            <div class="post-header">
-                                                <h2>Post Title</h2>
-                                            </div>
-                                            <div class="post-content">
-                                                <p>Are you passionate about Software Engineering?</p>
-                                            </div>
-                                            <div class="post-footer">
-                                                <span class="likes">&#128077; Like</span>
-                                                <span class="comments">&#128172; Comment</span>
-                                            </div>
-                    
-                                                                <p><span class="bold-text">Are you passionate about Software Engineering?</span></p>
-                                                                <div class="reaction">&#128077;</div>  Biểu tượng reaction (đây là thumbs up) 
-                                                                <div class="comment">&#128172;</div>  Biểu tượng comment 
-                                        </div>-->
+
+
 
                 </div>
             </div>
