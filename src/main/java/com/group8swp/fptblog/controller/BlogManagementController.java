@@ -246,11 +246,20 @@ public class BlogManagementController {
             @RequestParam(value = "NewTitle") String newTitle,
             @RequestParam(value = "NewContent") String newContent,
             HttpSession session, Model model) {
-        PostDTO post = postRep.findByPostId(postId);
-        post.setTitle(newTitle);
-        post.setPostContent(newContent);
-        post.setStatus(0);
-        postRep.save(post);
+        UserDTO user = (UserDTO) session.getAttribute("user");
+        if (user.getRoleId().equalsIgnoreCase("Lecturer")) {
+            PostDTO post = postRep.findByPostId(postId);
+            post.setTitle(newTitle);
+            post.setPostContent(newContent);
+            post.setStatus(1);
+            postRep.save(post);
+        } else {
+            PostDTO post = postRep.findByPostId(postId);
+            post.setTitle(newTitle);
+            post.setPostContent(newContent);
+            post.setStatus(0);
+            postRep.save(post);
+        }
 
         return "redirect:/viewforum";
     }
