@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -38,5 +39,21 @@ public class LecturerController {
         model.addAttribute("post", post);
         model.addAttribute("user", user);
         return "aprovalblog";
+    }
+
+    @RequestMapping("/approved")
+    public String ApprovedBlog(@RequestParam(value = "postId") int postId) {
+        PostDTO post = postRep.findByPostId(postId);
+        post.setStatus(1);
+        postRep.save(post);
+        return "redirect:/approval";
+    }
+//th:if="${post.status == 1}"
+    @RequestMapping("/denied")
+    public String updateUserPost(@RequestParam(value = "postId") int postId) {
+        PostDTO post = postRep.findByPostId(postId);
+        post.setStatus(-1);
+        postRep.save(post);
+        return "redirect:/approval";
     }
 }

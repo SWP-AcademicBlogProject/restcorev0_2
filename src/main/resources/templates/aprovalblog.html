@@ -788,7 +788,7 @@
                 <!-- Phần 4 -->
                 <div class="section4">
                     <h2 style="font-size: 2.2rem">Student Blog Approval by Lecturer: <span th:text="${user.userName}">author</span></h2>
-                    <h3>Major: PRJ301</h3>
+                    <h3>Major:</h3>
 
                     <table> 
                         <thead> 
@@ -802,8 +802,8 @@
                                 </th>
                             </tr> 
                         </thead> 
-                        <tbody> 
-                            <tr th:each="post : ${post}" th:if="${post.author.contains('@fpt.edu.vn')}"> 
+                        <tbody>
+                            <tr th:each="post : ${post}" th:if="${post.author.contains('@fpt.edu.vn') && post.status == 0}"> 
                                 <td th:text="${post.author}">author</td> 
                                 <td th:text="${post.title}">title</td> 
                                 <td th:utext="${#strings.abbreviate(post.postContent,90)} ">content</td> 
@@ -812,13 +812,13 @@
                                 </td>
                                 <td> 
                                     <div class="flexx">
-                                        <form th:action="approved" method="post"> 
-                                            <input type="hidden" name="id" th:value="${post.postId}"/> 
-                                            <button type="submit">Approved</button> 
+                                        <form action="approved" method="post" id="approvedForm"> 
+                                            <input type="hidden" name="postId" th:value="${post.postId}"/> 
+                                            <button type="submit" onclick="approvedForm(event)">Approved</button> 
                                         </form> 
-                                        <form action="denied" method="post"> 
-                                            <input type="hidden" name="id" th:value="${post.postId}"/> 
-                                            <button type="submit">Denied</button> 
+                                        <form action="denied" method="post" id="deniedForm"> 
+                                            <input type="hidden" name="postId" th:value="${post.postId}"/> 
+                                            <button type="submit" onclick="deniedForm(event)">Denied</button> 
                                         </form> 
                                     </div>
                                 </td> 
@@ -826,8 +826,31 @@
                         </tbody> 
                     </table>
 
+                    <script>
+                        function approvedForm(event) {
+                            event.preventDefault();
+                            var confirmResult = confirm("Do you want to approve this blog?");
+                            if (confirmResult) {
+                                document.getElementById("approvedForm").submit();
+                            } else {
 
+                            }
 
+                        }
+                    </script>
+
+                    <script>
+                        function deniedForm(event) {
+                            event.preventDefault();
+                            var confirmResult = confirm("Do you want to denied this blog?");
+                            if (confirmResult) {
+                                document.getElementById("deniedForm").submit();
+                            } else {
+
+                            }
+
+                        }
+                    </script>
 
 
 

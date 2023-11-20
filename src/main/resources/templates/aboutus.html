@@ -688,6 +688,133 @@
                 border-radius: 4px;
                 height:43px;
             }
+
+            #notificationButton {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: transparent;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                overflow: hidden;
+                z-index: 999;
+            }
+
+            #notificationButton img {
+                width: 100%;
+                height: 100%;
+            }
+
+            #notificationButton::before {
+                content: "";
+                display: block;
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                border-radius: 50%;
+                background-color: red;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            #notificationButton.hasNotification::before {
+                opacity: 1;
+            }
+
+            #notificationBar {
+                position: fixed;
+                top: 80px;
+                right: -400px;
+                width: 500px;
+                height: 500px;
+                background-color: #f1f1f1;
+                padding: 20px;
+                box-sizing: border-box;
+                box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.4);
+                transition: right 0.5s ease-in-out;
+                z-index: 998;
+                overflow-y: auto;
+                display: none;
+                border-radius: 10px;
+
+            }
+
+            #notificationBar > div {
+                flex-grow: 1;
+            }
+
+            #notificationBar a {
+                text-decoration: none;
+                color: #007bff;
+                font-weight: bold;
+            }
+
+            #notificationButton.hasNotification + #notificationBar {
+                right: 80px;
+                display: block;
+            }
+
+            #notificationButton.hasNotification + #notificationBar div,
+            #notificationButton.hasNotification + #notificationBar a {
+                display: block;
+            }
+
+            #notificationBar .Notice {
+                background-color: white;
+                border: 1px solid #ccc;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom:10px;
+                margin-left:-41px;
+                width:100%;
+
+            }
+            
+             .buttonOwn {
+                display: inline-block;
+                padding: 10px 20px;
+                font-size: 16px;
+                margin-right:20px;
+                font-weight: bold;
+                text-align: center;
+                text-decoration: none;
+                border:none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            /* Update button */
+            .button-updateBlog {
+                background-color: green; /* Light green */
+                color: white;
+            }
+
+            /* Delete button */
+            .button-deleteBlog {
+                background-color: #ff0033;
+                color: white;
+            }
+
+            /* Animation */
+            .button-animation {
+                animation: buttonScale 0.3s ease;
+            }
+
+            /* Hover effect */
+            .buttonOwn:hover {
+                transform: scale(1.1);
+            }
         </style>
     </head>
     <body>
@@ -696,6 +823,55 @@
         </div>
 
         <div th:if="${session.user != null}">
+            <script>
+                function toggleNotificationBar() {
+                    var notificationBar = document.getElementById('notificationBar');
+                    var notificationButton = document.getElementById('notificationButton');
+                    var form = document.getElementById('notificationForm');
+                    var div = form.querySelector('div');
+                    var a = form.querySelector('a');
+
+                    if (div.textContent.trim() !== '' && a.hasAttribute('href')) {
+                        notificationBar.style.display = notificationBar.style.display === 'none' ? 'block' : 'none';
+                        notificationButton.classList.toggle('hasNotification');
+                    }
+                }
+
+                document.addEventListener("DOMContentLoaded", function () {
+                    var notificationButton = document.getElementById('notificationButton');
+                    var notificationBar = document.getElementById('notificationBar');
+                    var form = document.getElementById('notificationForm');
+                    var div = form.querySelector('div');
+                    var a = form.querySelector('a');
+
+                    // Check if the notification bar has any value on page load
+                    if (div.textContent.trim() !== '' && a.hasAttribute('href')) {
+                        notificationButton.classList.add('hasNotification');
+                        notificationBar.style.right = '80px';
+                    }
+                });
+            </script>
+            <button id="notificationButton" onclick="toggleNotificationBar()" th:if="${user.roleId == 'Student'}">
+                <img src="https://png.pngtree.com/png-vector/20191004/ourmid/pngtree-bell-icon-png-image_1791341.jpg" alt="Notification Bell">
+            </button>
+            <div id="notificationForm">
+                <div id="notificationBar">
+                    <ul>
+                        <li th:each="getnotification : ${getnotification}" class="Notice" th:if="${getnotification.status == 0 || getnotification.status == -1}">
+                            <div th:if="${getnotification.status == 0}" style="color: #ffcc00">pending..</div>
+                            <div th:if="${getnotification.status == -1}" style="color: #ff0033">denied</div>
+                            <div th:text="${#strings.abbreviate(getnotification.title,15)} ">
+                            </div>
+                            <a th:href="@{/details/{id}(id=${getnotification.postId})}">View details</a>
+                            <form th:if="${getnotification.status == -1}" action="updateBlog" method="post">
+                                <input type="hidden" name="postId" th:value="${getnotification.postId}">
+                                <button type="submit" class="buttonOwn button-updateBlog button-animation">Repost</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="container">
 
                 <div class="header">

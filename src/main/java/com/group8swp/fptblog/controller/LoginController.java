@@ -27,11 +27,11 @@ public class LoginController {
     @Autowired
     private UserRepository repository;
 
-     @RequestMapping(value = "/homelogin")
+    @RequestMapping(value = "/homelogin")
     public String loginhome() {
         return "index";
     }
-    
+
     @RequestMapping(value = "/login")
     public String login(HttpSession session,
             @RequestParam(value = "username") String username,
@@ -48,11 +48,16 @@ public class LoginController {
             result = failed;
             return result;
         }
+        String admin = "admin";
+        if (admin.equalsIgnoreCase(founduser.get(0).getRoleId())) {
+            result = failed;
+            return result;
+        }
         if (password.matches(founduser.get(0).getPassword())) {
 
             System.out.println("user : " + founduser.get(0).getPassword() + " login successfully ");
-            model.addAttribute("user" , founduser.get(0));
-            session.setAttribute("user" , founduser.get(0));
+            model.addAttribute("user", founduser.get(0));
+            session.setAttribute("user", founduser.get(0));
             result = success;
         } else {
             System.out.println("login failed");
@@ -72,8 +77,6 @@ public class LoginController {
 //        return "loginfailed";
 //    }
 
-    
-    
 //<------------------------------------------------------------------------------------------------------>    
     //[front-end] template get data blog (view blog function)into html    
 //    @GetMapping("/items")
@@ -113,7 +116,6 @@ public class LoginController {
 //            return item2;
 //        }
 //    }
-
 //    [front-end] tag th:each th:text in html run for template get data blog
 //    <div>
 //    <h1>Combined Items:</h1>

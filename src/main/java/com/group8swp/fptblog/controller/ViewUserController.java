@@ -26,7 +26,7 @@ public class ViewUserController {
 
     @Autowired
     private UserRepository repository;
-    
+
     @Autowired
     private PostRepository postRep;
 
@@ -35,12 +35,14 @@ public class ViewUserController {
         HttpSession session = request.getSession();
         UserDTO user = (UserDTO) session.getAttribute("user");
         model.addAttribute("user", user);
-        
-        
-        List<PostDTO> post =postRep.findByAuthor(user.getUserName());
+
+        List<PostDTO> post = postRep.findByAuthor(user.getUserName());
         Collections.reverse(post);
-        model.addAttribute("post",post);
-        
+        model.addAttribute("post", post);
+
+        List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+        Collections.reverse(getnotification);
+        model.addAttribute("getnotification", getnotification);
         
         return "profileaccount";
     }

@@ -61,16 +61,26 @@ public class BlogManagementController {
         }
 
         UserDTO user = (UserDTO) session.getAttribute("user");
+        if (user.getRoleId().equalsIgnoreCase("Lecturer")) {
+            PostDTO newPost = new PostDTO();
+            newPost.setAuthor(user.getUserName());
+            newPost.setTitle(newTitle);
+            newPost.setPostContent(newContent);
+            newPost.setStatus(1);
 
-        PostDTO newPost = new PostDTO();
-        newPost.setAuthor(user.getUserName());
-        newPost.setTitle(newTitle);
-        newPost.setPostContent(newContent);
+            postRep.save(newPost);
+        } else {
+
+            PostDTO newPost = new PostDTO();
+            newPost.setAuthor(user.getUserName());
+            newPost.setTitle(newTitle);
+            newPost.setPostContent(newContent);
+            newPost.setStatus(0);
 
 //        user.getPostModel().add(newPost);
 //        userRep.save(user);
-        postRep.save(newPost);
-
+            postRep.save(newPost);
+        }
         return "redirect:/viewforum";
     }
 
@@ -82,6 +92,10 @@ public class BlogManagementController {
         Collections.reverse(post);
         model.addAttribute("post", post);
         model.addAttribute("user", user);
+
+        List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+        Collections.reverse(getnotification);
+        model.addAttribute("getnotification", getnotification);
         return "viewforum";
     }
 
@@ -104,15 +118,26 @@ public class BlogManagementController {
         }
 
         UserDTO user = (UserDTO) session.getAttribute("user");
+        if (user.getRoleId().equalsIgnoreCase("Lecturer")) {
+            PostDTO newPost = new PostDTO();
+            newPost.setAuthor(user.getUserName());
+            newPost.setTitle(newTitle);
+            newPost.setPostContent(newContent);
+            newPost.setStatus(1);
 
-        PostDTO newPost = new PostDTO();
-        newPost.setAuthor(user.getUserName());
-        newPost.setTitle(newTitle);
-        newPost.setPostContent(newContent);
+            postRep.save(newPost);
+        } else {
+
+            PostDTO newPost = new PostDTO();
+            newPost.setAuthor(user.getUserName());
+            newPost.setTitle(newTitle);
+            newPost.setPostContent(newContent);
+            newPost.setStatus(0);
 
 //        user.getPostModel().add(newPost);
 //        userRep.save(user);
-        postRep.save(newPost);
+            postRep.save(newPost);
+        }
 
         return "redirect:/viewauthor";
     }
@@ -136,6 +161,10 @@ public class BlogManagementController {
         model.addAttribute("comment", commentList);
         model.addAttribute("post", post);
 
+        List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+        Collections.reverse(getnotification);
+        model.addAttribute("getnotification", getnotification);
+
         //model commentList will show in next page
         return "blogdetail";
     }
@@ -145,6 +174,11 @@ public class BlogManagementController {
     public String about(HttpSession session, Model model) {
         UserDTO user = (UserDTO) session.getAttribute("user");
         model.addAttribute("user", user);
+
+        List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+        Collections.reverse(getnotification);
+        model.addAttribute("getnotification", getnotification);
+
         return "aboutus";
     }
 
@@ -153,6 +187,11 @@ public class BlogManagementController {
     public String contact(HttpSession session, Model model) {
         UserDTO user = (UserDTO) session.getAttribute("user");
         model.addAttribute("user", user);
+
+        List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+        Collections.reverse(getnotification);
+        model.addAttribute("getnotification", getnotification);
+
         return "contactus";
     }
 
@@ -179,6 +218,10 @@ public class BlogManagementController {
         Collections.reverse(filteredPosts);
         model.addAttribute("post", filteredPosts);
         model.addAttribute("user", user);
+
+        List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+        Collections.reverse(getnotification);
+        model.addAttribute("getnotification", getnotification);
         return "search";
     }
 
@@ -191,6 +234,10 @@ public class BlogManagementController {
         model.addAttribute("user", user);
         session.setAttribute("user", user);
         session.setAttribute("postSession", post);
+
+        List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+        Collections.reverse(getnotification);
+        model.addAttribute("getnotification", getnotification);
         return "updateblog";
     }
 
@@ -202,6 +249,7 @@ public class BlogManagementController {
         PostDTO post = postRep.findByPostId(postId);
         post.setTitle(newTitle);
         post.setPostContent(newContent);
+        post.setStatus(0);
         postRep.save(post);
 
         return "redirect:/viewforum";
