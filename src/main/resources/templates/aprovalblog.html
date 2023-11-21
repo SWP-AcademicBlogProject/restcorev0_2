@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>FPT Academic Blog Homepage</title>
+        <title>Approval Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -686,6 +686,60 @@
                 background-color: #45a049;
             }
 
+            .dropdown {
+                position: relative;
+            }
+
+            .dropdown-btn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width:90%;
+                margin-top:10px;
+                border-radius: 10px;
+            }
+
+            .dropdown-btn:hover {
+                background-color: #388E3C; /* Darker green on hover */
+            }
+
+            .dropdown-content {
+                position: absolute;
+                top: 110%;
+                left:0;
+                z-index: 1;
+                display: none;
+                min-width: 270px;
+                padding: 10px;
+                background-color: #f2f2f2;
+                animation: slide-up 0.5s ease-in-out;
+            }
+
+            .dropdown-content a {
+                display: block;
+                padding: 0px 0;
+                font-size: 16px;
+                text-decoration: none;
+                color: black;
+            }
+
+            .dropdown.show .dropdown-content {
+                display: block;
+            }
+
+            @keyframes slide-up {
+                0% {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         </style>
     </head>
     <body>
@@ -739,9 +793,6 @@
                                 <!--                                <li onclick="changeBackgroundColor(this)">&#127968; Home</li>
                                                                 <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
                                 <li onclick="changeBackgroundColor(this)">&#127968; <a href="viewforum">Home</a></li>
-                                <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
-                                <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
-                                <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
                                 <li onclick="changeBackgroundColor(this)">&#128219; <a href="about">About</a></li>
                                 <li onclick="changeBackgroundColor(this)">&#128222; <a href="contact">Contact</a></li>
                                 <!--                                <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>
@@ -773,9 +824,6 @@
                         <!--                        <li onclick="changeBackgroundColor(this)">&#127968; Home</li>-->
                         <!--                        <li onclick="changeBackgroundColor(this)">&#127916; Videos</li>-->
                         <li onclick="changeBackgroundColor(this)">&#127968; <a href="viewforum">Home</a></li>
-                        <li onclick="changeBackgroundColor(this)">&#128206; Tags</li>
-                        <li onclick="changeBackgroundColor(this)">&#128172; Subjects</li>
-                        <li onclick="changeBackgroundColor(this)">&#128140; Categories</li>
                         <li onclick="changeBackgroundColor(this)">&#128219; <a href="about">About</a></li>
                         <li onclick="changeBackgroundColor(this)">&#128222; <a href="contact">Contact</a></li>
                         <!--                        <li onclick="changeBackgroundColor(this)">&#129300; Software comparisons</li>-->
@@ -783,18 +831,33 @@
                         <li onclick="changeBackgroundColor(this)">&#128100; <a href="viewauthor">View Profile</a></li>
                         <li onclick="changeBackgroundColor(this)">&#128682; <a href="logout">Logout</a></li>
                     </ul>
+
+                    <div class="dropdown">
+                        <button class="dropdown-btn" onclick="toggleDropdown()">Categories</button>
+                        <div id="dropdownContent" class="dropdown-content">
+                            <ul th:each="category : ${category}"> 
+                                <li onclick="changeBackgroundColor(this)"><a th:href="@{/detailcategory/{id}(id=${category.categoryId})}" th:text="${#strings.abbreviate(category.categoryName,28)}">Chicken</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <script>
+                        function toggleDropdown() {
+                            var dropdown = document.querySelector(".dropdown");
+                            dropdown.classList.toggle("show");
+                        }
+                    </script>
                 </div>
 
                 <!-- Phần 4 -->
                 <div class="section4">
                     <h2 style="font-size: 2.2rem">Student Blog Approval by Lecturer: <span th:text="${user.userName}">author</span></h2>
-                    <h3>Major:</h3>
 
                     <table> 
                         <thead> 
                             <tr> 
                                 <th>Author</th> 
-                                <th>Title</th> 
+                                <th>Title</th>
+                                <th>Category</th>
                                 <th>Content</th> 
                                 <th>Detail</th>
                                 <th>
@@ -804,9 +867,13 @@
                         </thead> 
                         <tbody>
                             <tr th:each="post : ${post}" th:if="${post.author.contains('@fpt.edu.vn') && post.status == 0}"> 
-                                <td th:text="${post.author}">author</td> 
-                                <td th:text="${post.title}">title</td> 
-                                <td th:utext="${#strings.abbreviate(post.postContent,90)} ">content</td> 
+                                <td th:text="${post.author}">minhthse171011@fpt.edu.vn</td> 
+                                <td th:text="${post.title}">testing add category function</td> 
+                                <td th:each="category : ${category}" th:if="${category.categoryId eq post.categoryId}" style="width: 100px;">
+                                    <span style="background-color: #3498db; color: white;  font-weight: bold;padding:6px;
+                                                        border-radius: 4px; font-size: 13px;margin-left: 5px"  th:text="${#strings.abbreviate(category.categoryName,11)} ">Campus Life</span>
+                                </td>
+                                <td th:utext="${#strings.abbreviate(post.postContent,90)} ">testing add category function</td> 
                                 <td>
                                     <a th:href="@{/details/{id}(id=${post.postId})}">Show More</a>
                                 </td>

@@ -4,15 +4,18 @@
  */
 package com.group8swp.fptblog.controller;
 
+import com.group8swp.fptblog.model.CategoryDTO;
 import com.group8swp.fptblog.model.CommentDTO;
 import com.group8swp.fptblog.model.PostDTO;
 import com.group8swp.fptblog.model.UserDTO;
+import com.group8swp.fptblog.repositories.CategoryRepository;
 import com.group8swp.fptblog.repositories.CommentRepository;
 import com.group8swp.fptblog.repositories.PostRepository;
 import com.group8swp.fptblog.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +39,8 @@ public class BlogManagementController {
     private UserRepository userRep;
     @Autowired
     private CommentRepository _commentRep;
+    @Autowired
+    private CategoryRepository categoryRep;
 
     // nguoi dung nhap tieu de
     // nguoi dung nhap noi dung blog
@@ -46,7 +51,8 @@ public class BlogManagementController {
     @RequestMapping(value = "/AddNewBlog")
     public String addBlog(HttpSession session, Model model,
             @RequestParam(value = "NewTitle") String newTitle,
-            @RequestParam(value = "NewContent") String newContent) {
+            @RequestParam(value = "NewContent") String newContent,
+            @RequestParam(value = "category") String category) {
 
         if (newTitle.isBlank() || newContent.isBlank()) {
             model.addAttribute("AddBlogError", "content must not be null to upload as a post !");
@@ -60,6 +66,8 @@ public class BlogManagementController {
             return "redirect:/viewforum";
         }
 
+        List<CategoryDTO> checkCategory = categoryRep.findByCategoryName(category);
+
         UserDTO user = (UserDTO) session.getAttribute("user");
         if (user.getRoleId().equalsIgnoreCase("Lecturer")) {
             PostDTO newPost = new PostDTO();
@@ -67,6 +75,7 @@ public class BlogManagementController {
             newPost.setTitle(newTitle);
             newPost.setPostContent(newContent);
             newPost.setStatus(1);
+            newPost.setCategoryId(checkCategory.get(0).getCategoryId());
 
             postRep.save(newPost);
         } else {
@@ -76,6 +85,7 @@ public class BlogManagementController {
             newPost.setTitle(newTitle);
             newPost.setPostContent(newContent);
             newPost.setStatus(0);
+            newPost.setCategoryId(checkCategory.get(0).getCategoryId());
 
 //        user.getPostModel().add(newPost);
 //        userRep.save(user);
@@ -93,6 +103,10 @@ public class BlogManagementController {
         model.addAttribute("post", post);
         model.addAttribute("user", user);
 
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
+
         List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
         Collections.reverse(getnotification);
         model.addAttribute("getnotification", getnotification);
@@ -103,7 +117,8 @@ public class BlogManagementController {
     @RequestMapping(value = "/AddNewBlogAccount")
     public String addBlogAccount(HttpSession session, Model model,
             @RequestParam(value = "NewTitle") String newTitle,
-            @RequestParam(value = "NewContent") String newContent) {
+            @RequestParam(value = "NewContent") String newContent,
+            @RequestParam(value = "category") String category) {
 
         if (newTitle.isBlank() || newContent.isBlank()) {
             model.addAttribute("AddBlogError", "content must not be null to upload as a post !");
@@ -117,6 +132,8 @@ public class BlogManagementController {
             return "redirect:/viewauthor";
         }
 
+        List<CategoryDTO> checkCategory = categoryRep.findByCategoryName(category);
+
         UserDTO user = (UserDTO) session.getAttribute("user");
         if (user.getRoleId().equalsIgnoreCase("Lecturer")) {
             PostDTO newPost = new PostDTO();
@@ -124,6 +141,7 @@ public class BlogManagementController {
             newPost.setTitle(newTitle);
             newPost.setPostContent(newContent);
             newPost.setStatus(1);
+            newPost.setCategoryId(checkCategory.get(0).getCategoryId());
 
             postRep.save(newPost);
         } else {
@@ -133,6 +151,7 @@ public class BlogManagementController {
             newPost.setTitle(newTitle);
             newPost.setPostContent(newContent);
             newPost.setStatus(0);
+            newPost.setCategoryId(checkCategory.get(0).getCategoryId());
 
 //        user.getPostModel().add(newPost);
 //        userRep.save(user);
@@ -165,6 +184,10 @@ public class BlogManagementController {
         Collections.reverse(getnotification);
         model.addAttribute("getnotification", getnotification);
 
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
+
         //model commentList will show in next page
         return "blogdetail";
     }
@@ -179,6 +202,9 @@ public class BlogManagementController {
         Collections.reverse(getnotification);
         model.addAttribute("getnotification", getnotification);
 
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
         return "aboutus";
     }
 
@@ -191,6 +217,10 @@ public class BlogManagementController {
         List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
         Collections.reverse(getnotification);
         model.addAttribute("getnotification", getnotification);
+
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
 
         return "contactus";
     }
@@ -223,6 +253,11 @@ public class BlogManagementController {
         if (filteredPosts.size() == 0) {
             List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
             Collections.reverse(getnotification);
+
+            List<CategoryDTO> category = categoryRep.findAll();
+            Collections.reverse(category);
+            model.addAttribute("category", category);
+
             model.addAttribute("getnotification", getnotification);
             model.addAttribute("noPost", "We didn't find any results");
             model.addAttribute("user", user);
@@ -235,6 +270,11 @@ public class BlogManagementController {
         model.addAttribute("post", filteredPosts);
         model.addAttribute("user", user);
         model.addAttribute("keywords", keywords);
+
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
+
         List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
         Collections.reverse(getnotification);
         model.addAttribute("getnotification", getnotification);
@@ -250,6 +290,10 @@ public class BlogManagementController {
         model.addAttribute("user", user);
         session.setAttribute("user", user);
         session.setAttribute("postSession", post);
+
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
 
         List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
         Collections.reverse(getnotification);
@@ -287,4 +331,42 @@ public class BlogManagementController {
         postRep.delete(deletedBlog);
         return "redirect:/viewforum";
     }
+
+    //---------------------------------------------------filter category blog-------------------------------------------------------
+    @RequestMapping("/detailcategory/{id}")
+    public String filterCategoryBlog(@PathVariable("id") int CategoryId, HttpSession session, Model model) {
+        List<PostDTO> post = postRep.findBycategoryId(CategoryId);
+
+//        List<PostDTO> filterpost = new ArrayList<>();
+//        for (PostDTO flting : post) {
+//            if (CategoryId == post.get(CategoryId).getCategoryId()) {
+//                filterpost.add(flting);
+//            }
+//        }
+
+        UserDTO user = (UserDTO) session.getAttribute("user");
+
+        //show all comment list
+        model.addAttribute("post", post);
+        model.addAttribute("user", user);
+
+        session.setAttribute("user", user);
+        session.setAttribute("postSession", post);
+        model.addAttribute("post", post);
+
+        List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+        Collections.reverse(getnotification);
+        model.addAttribute("getnotification", getnotification);
+
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
+        
+        CategoryDTO categoryTitle = categoryRep.findByCategoryId(CategoryId);
+        model.addAttribute("categoryTitle", categoryTitle);
+
+        //model commentList will show in next page
+        return "filterCategoryBlog";
+    }
+
 }

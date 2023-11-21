@@ -14,4 +14,5 @@ import java.util.List;
  */
 public interface CategoryRepository extends JpaRepository<CategoryDTO, Integer>{
      List<CategoryDTO> findByCategoryName(String categoryName);
+     CategoryDTO findByCategoryId(int id);
 }

@@ -4,8 +4,10 @@
  */
 package com.group8swp.fptblog.controller;
 
+import com.group8swp.fptblog.model.CategoryDTO;
 import com.group8swp.fptblog.model.PostDTO;
 import com.group8swp.fptblog.model.UserDTO;
+import com.group8swp.fptblog.repositories.CategoryRepository;
 import com.group8swp.fptblog.repositories.PostRepository;
 import com.group8swp.fptblog.repositories.UserRepository;
 import java.util.Collections;
@@ -30,6 +32,9 @@ public class ViewUserController {
     @Autowired
     private PostRepository postRep;
 
+    @Autowired
+    private CategoryRepository categoryRep;
+
     @RequestMapping(value = "/viewauthor")
     public String viewProfile(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -40,10 +45,14 @@ public class ViewUserController {
         Collections.reverse(post);
         model.addAttribute("post", post);
 
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
+
         List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
         Collections.reverse(getnotification);
         model.addAttribute("getnotification", getnotification);
-        
+
         return "profileaccount";
     }
 }

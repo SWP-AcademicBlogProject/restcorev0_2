@@ -4,8 +4,10 @@
  */
 package com.group8swp.fptblog.controller;
 
+import com.group8swp.fptblog.model.CategoryDTO;
 import com.group8swp.fptblog.model.PostDTO;
 import com.group8swp.fptblog.model.UserDTO;
+import com.group8swp.fptblog.repositories.CategoryRepository;
 import com.group8swp.fptblog.repositories.PostRepository;
 import com.group8swp.fptblog.repositories.UserRepository;
 import java.util.Collections;
@@ -31,6 +33,9 @@ public class LecturerController {
     @Autowired
     private PostRepository postRep;
 
+    @Autowired
+    private CategoryRepository categoryRep;
+
     @RequestMapping(value = "/approval")
     public String Approval(HttpSession session, Model model) {
         UserDTO user = (UserDTO) session.getAttribute("user");
@@ -38,6 +43,11 @@ public class LecturerController {
         Collections.reverse(post);
         model.addAttribute("post", post);
         model.addAttribute("user", user);
+
+        List<CategoryDTO> category = categoryRep.findAll();
+        Collections.reverse(category);
+        model.addAttribute("category", category);
+
         return "aprovalblog";
     }
 
@@ -49,6 +59,7 @@ public class LecturerController {
         return "redirect:/approval";
     }
 //th:if="${post.status == 1}"
+
     @RequestMapping("/denied")
     public String updateUserPost(@RequestParam(value = "postId") int postId) {
         PostDTO post = postRep.findByPostId(postId);
