@@ -53,7 +53,7 @@ public class LoginController {
             result = failed;
             return result;
         }
-        if (password.matches(founduser.get(0).getPassword())) {
+        if (password.equals(founduser.get(0).getPassword())) {
 
             System.out.println("user : " + founduser.get(0).getPassword() + " login successfully ");
             model.addAttribute("user", founduser.get(0));
