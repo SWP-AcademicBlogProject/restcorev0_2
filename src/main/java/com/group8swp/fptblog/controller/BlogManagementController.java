@@ -198,6 +198,11 @@ public class BlogManagementController {
     //---------------------------------------------------search blog by keywords------------------------------------------------------------------
     @RequestMapping("/search")
     public String search(@RequestParam("keywords") String keywords, HttpSession session, Model model) {
+
+        if (keywords.isBlank()) {
+            return "redirect:/viewforum";
+        }
+
         // Perform the search operation based on the provided keywords
         UserDTO user = (UserDTO) session.getAttribute("user");
         List<PostDTO> posts = postRep.findAll();
@@ -215,10 +220,21 @@ public class BlogManagementController {
             }
         }
 
+        if (filteredPosts.size() == 0) {
+            List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
+            Collections.reverse(getnotification);
+            model.addAttribute("getnotification", getnotification);
+            model.addAttribute("noPost", "We didn't find any results");
+            model.addAttribute("user", user);
+            model.addAttribute("keywords", keywords);
+            model.addAttribute("noPostContent", "Make sure that everything is spelt correctly or try different keywords.");
+            return "search";
+        }
+
         Collections.reverse(filteredPosts);
         model.addAttribute("post", filteredPosts);
         model.addAttribute("user", user);
-
+        model.addAttribute("keywords", keywords);
         List<PostDTO> getnotification = postRep.findByAuthor(user.getUserName());
         Collections.reverse(getnotification);
         model.addAttribute("getnotification", getnotification);

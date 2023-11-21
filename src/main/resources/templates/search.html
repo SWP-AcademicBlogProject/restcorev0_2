@@ -806,7 +806,7 @@
                 <div class="header">
                     <form action="/search" method="GET">
                         <div class="left">
-                            <input type="text" class="search" name="keywords" placeholder="Search...">
+                            <input type="text" class="search" name="keywords" th:value="${keywords}"  placeholder="Search...">
                             <button class="buttont" type="submit">Search</button>
                         </div>
                     </form>
@@ -900,6 +900,9 @@
                 <!-- Phần 4 -->
                 <div class="section4">
                     <h2 style="font-size: 2.2rem">Search results for your keywords...</h2>
+                    <h2 th:text="${noPost}" style="color:red; margin-top: 50px;text-align: center"></h2>
+                    <h3 th:text="${noPostContent}" style="text-align: center"></h3>
+                    
                     <div th:each="post : ${post}" class="post" th:if="${post.status == 1}">
                         <div class="flexx">
                             <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
