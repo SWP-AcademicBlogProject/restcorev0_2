@@ -64,6 +64,15 @@ public class RegisterController {
                 return "register";
             }
 
+            String prefix = userid.substring(0, 2); // Extract "SE"
+            String numericValue = userid.substring(2); // Extract "999999"
+            int valueExpected = Integer.parseInt(numericValue);
+
+            if (valueExpected >= 200000 || valueExpected < 120000) {
+                model.addAttribute("userIDError", "invalid UserID!");
+                return "register";
+            }
+
             String regexUsername = "^[a-zA-Z]+[a-z]{2}[0-9]{6}@fpt\\.edu\\.vn$";
             if (!username.matches(regexUsername)) {
                 model.addAttribute("usernameErrorFormat", "username must be your Student FPTMail @fpt.edu.vn at FPT university!");
@@ -91,9 +100,8 @@ public class RegisterController {
                 model.addAttribute("passwordFormatError", "Password must have at least 1 uppercase letter, 1 lowercase letter, 1 digit, 1 special character, and be at least 8 characters long.");
                 return "register";
             }
-            
-            //correct password format: MyPassword123!
 
+            //correct password format: MyPassword123!
             if (!password.equals(confirm)) {
                 model.addAttribute("confirmError", "password and confirm password does not match !");
                 return "register";
@@ -107,9 +115,12 @@ public class RegisterController {
         UserDTO newAccount = new UserDTO(userid, username, password, roleID, null, 0,
                 0, 1, null, password, null);
 
-        logger.info("create new account" + repository.save(newAccount));
-        model.addAttribute("user", newAccount);
-        session.setAttribute("user", newAccount);
+        logger.info(
+                "create new account" + repository.save(newAccount));
+        model.addAttribute(
+                "user", newAccount);
+        session.setAttribute(
+                "user", newAccount);
 
         return "index";
     }
