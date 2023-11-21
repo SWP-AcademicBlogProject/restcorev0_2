@@ -1005,7 +1005,7 @@
                 <div class="section4">
                     <div class="coveraccount">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="rounded-image" alt="Image"/>
-                        <p class="info">Author: <span class="info" th:text="${post.author}"> John Doe</span></p>
+                        <p class="info"> <span class="info" th:text="${post.author}"> John Doe</span></p>
                     </div>
 
                     <div class="headers">
@@ -1016,7 +1016,7 @@
 
                     <p class="para" th:utext="${post.postContent}">Blog content goes here...</p>
 
-                    <div class="add-comment">
+                    <div class="add-comment" th:if="${post.status != 0 && post.status != -1}">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="rounded-image" alt="Image"/>
                         <form id="addCommentForm" method="POST" action="/comments">
                             <textarea id="comment" name="comment" rows="4" cols="50" class="textarea1" placeholder="Add Your Comment..."></textarea>
@@ -1024,7 +1024,7 @@
                         </form>
                     </div>
 
-                    <div th:each="comment : ${comment}" class="post">
+                    <div th:each="comment : ${comment}" class="post" th:if="${post.status != 0 && post.status != -1}">
                         <div class="flexx">
                             <img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" class="image" alt="Image"/>
                             <div class="post-headerr">
