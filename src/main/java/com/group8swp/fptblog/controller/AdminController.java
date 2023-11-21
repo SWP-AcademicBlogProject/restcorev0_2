@@ -49,7 +49,8 @@ public class AdminController {
             return result;
         }
         if (password.matches(founduser.get(0).getPassword())
-                && admin.equalsIgnoreCase(founduser.get(0).getUserName())) {
+                && username.equals(founduser.get(0).getUserName()) 
+                && founduser.get(0).getRoleId().equalsIgnoreCase(admin)) {
 
             System.out.println("admin : " + founduser.get(0).getUserName() + "password:" + founduser.get(0).getPassword() + " login successfully ");
             session.setAttribute("user", founduser.get(0));
