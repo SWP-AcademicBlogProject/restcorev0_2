@@ -211,6 +211,7 @@
                 padding-right: 80px;
                 margin-top: -160px; /* Khoảng cách 20px từ container */
                 margin-bottom:20px;
+                min-height: 600px;
             }
 
             .section3
@@ -697,7 +698,7 @@
                 position: fixed;
                 top: 80px;
                 right: -400px;
-                width: 500px;
+                width: 600px;
                 height: 500px;
                 background-color: #f1f1f1;
                 padding: 20px;
@@ -766,15 +767,46 @@
             }
 
             .dropdown-content {
-                position: absolute;
+                /*                position: absolute;*/
                 top: 110%;
                 left:0;
                 z-index: 1;
+                height: 220px;
+                overflow-y: auto;
+                overflow-x: hidden;
                 display: none;
                 min-width: 270px;
                 padding: 10px;
                 background-color: #f2f2f2;
                 animation: slide-up 0.5s ease-in-out;
+            }
+
+            /* Custom scrollbar styles */
+            .dropdown-content::-webkit-scrollbar {
+                width: 10px;
+            }
+
+            .dropdown-content::-webkit-scrollbar-track {
+                background-color: #e0e0e0;
+                border:2px solid white;
+                border-radius: 8px;
+            }
+
+            .dropdown-content::-webkit-scrollbar-thumb {
+                background-color: #888;
+                border-radius: 8px;
+            }
+
+            .dropdown-content::-webkit-scrollbar-thumb:hover {
+                background-color: #555;
+            }
+
+            .dropdown-content::-webkit-scrollbar-thumb:active {
+                background-color: #333;
+            }
+
+            .dropdown-content::-webkit-scrollbar-corner {
+                background-color: #f5f5f5;
             }
 
             .dropdown-content a {
@@ -844,12 +876,16 @@
                         <li th:each="getnotification : ${getnotification}" class="Notice" th:if="${getnotification.status == 0 || getnotification.status == -1}">
                             <div th:if="${getnotification.status == 0}" style="color: #ffcc00">pending..</div>
                             <div th:if="${getnotification.status == -1}" style="color: #ff0033">denied</div>
-                            <div th:text="${#strings.abbreviate(getnotification.title,15)} ">
+                            <div th:text="${#strings.abbreviate(getnotification.title,11)} ">
                             </div>
                             <a th:href="@{/details/{id}(id=${getnotification.postId})}">View details</a>
-                            <form th:if="${getnotification.status == -1}" action="updateBlog" method="post">
+                            <form th:if="${getnotification.status == -1}" action="updateBlog" method="post" style="display: inline;width:88px">
                                 <input type="hidden" name="postId" th:value="${getnotification.postId}">
                                 <button type="submit" class="buttonOwn button-updateBlog button-animation">Repost</button>
+                            </form>
+                            <form th:if="${getnotification.status == -1}" action="deleteBlog" method="post" id="deleteForm" style="display: inline;width:88px">
+                                <input type="hidden" name="postId" th:value="${getnotification.postId}">
+                                <button type="submit" class="buttonOwn button-deleteBlog button-animation" onclick="confirmDelete(event)">Delete</button>
                             </form>
                         </li>
                     </ul>
