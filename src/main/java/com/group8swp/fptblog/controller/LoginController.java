@@ -37,9 +37,13 @@ public class LoginController {
             @RequestParam(value = "username") String username,
             @RequestParam(value = "password") String password,
             Model model) {
+        
+        //-------------------------------
 
-        String failed = "loginfailed";
+        String failed = "loginfailed"; // duong dan vao duoc khi login khong thanh cong
         String success = "redirect:/viewforum";
+        
+        //--------------------------------
 
         String result = null;
 
@@ -55,10 +59,18 @@ public class LoginController {
         }
         if (password.equals(founduser.get(0).getPassword())) {
 
+            if (founduser.get(0).getStatus()==1) {
             System.out.println("user : " + founduser.get(0).getPassword() + " login successfully ");
             model.addAttribute("user", founduser.get(0));
             session.setAttribute("user", founduser.get(0));
             result = success;
+            }
+            
+            if (founduser.get(0).getStatus()==0) {
+                result = failed;
+                session.invalidate();
+                model.addAttribute("banned", "NOTE: this account has been deactiaved! please contact admin if you need");
+            }
         } else {
             System.out.println("login failed");
             result = failed;

@@ -956,7 +956,7 @@
                             </form>
                             <form th:if="${getnotification.status == -1}" action="deleteBlog" method="post" id="deleteForm" style="display: inline;width:88px">
                                 <input type="hidden" name="postId" th:value="${getnotification.postId}">
-                                <button type="submit" class="buttonOwn button-deleteBlog button-animation" onclick="confirmDelete(event)">Delete</button>
+                                <button type="submit" class="buttonOwn button-deleteBlog button-animation">Delete</button>
                             </form>
                         </li>
                     </ul>
@@ -1066,7 +1066,7 @@
                     <div class="dropdown">
                         <button class="dropdown-btn" onclick="toggleDropdown()">Categories</button>
                         <div id="dropdownContent" class="dropdown-content">
-                            <ul th:each="category : ${category}"> 
+                            <ul th:each="category : ${category}" th:if="${category.status == 1}"> 
                                 <li onclick="changeBackgroundColor(this)"><a th:href="@{/detailcategory/{id}(id=${category.categoryId})}" th:text="${#strings.abbreviate(category.categoryName,28)}">Chicken</a></li>
                             </ul>
                         </div>

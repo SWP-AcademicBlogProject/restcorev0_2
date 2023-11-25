@@ -867,7 +867,7 @@
                     <div class="dropdown">
                         <button class="dropdown-btn" onclick="toggleDropdown()">Categories</button>
                         <div id="dropdownContent" class="dropdown-content">
-                            <ul th:each="category : ${category}"> 
+                            <ul th:each="category : ${category}" th:if="${category.status == 1}"> 
                                 <li onclick="changeBackgroundColor(this)"><a th:href="@{/detailcategory/{id}(id=${category.categoryId})}" th:text="${#strings.abbreviate(category.categoryName,28)}">Chicken</a></li>
                             </ul>
                         </div>
@@ -913,47 +913,17 @@
                                     <div class="flexx">
                                         <form action="approved" method="post" id="approvedForm"> 
                                             <input type="hidden" name="postId" th:value="${post.postId}"/> 
-                                            <button type="submit" onclick="approvedForm(event)">Approve</button> 
+                                            <button type="submit">Approve</button> 
                                         </form> 
                                         <form action="denied" method="post" id="deniedForm"> 
                                             <input type="hidden" name="postId" th:value="${post.postId}"/> 
-                                            <button type="submit" onclick="deniedForm(event)" style="background-color: red">Reject</button> 
+                                            <button type="submit" style="background-color: red">Reject</button> 
                                         </form> 
                                     </div>
                                 </td> 
                             </tr> 
                         </tbody> 
                     </table>
-
-                    <script>
-                        function approvedForm(event) {
-                            event.preventDefault();
-                            var confirmResult = confirm("Do you want to approve this blog?");
-                            if (confirmResult) {
-                                document.getElementById("approvedForm").submit();
-                            } else {
-
-                            }
-
-                        }
-                    </script>
-
-                    <script>
-                        function deniedForm(event) {
-                            event.preventDefault();
-                            var confirmResult = confirm("Do you want to denied this blog?");
-                            if (confirmResult) {
-                                document.getElementById("deniedForm").submit();
-                            } else {
-
-                            }
-
-                        }
-                    </script>
-
-
-
-
 
                 </div>
             </div>

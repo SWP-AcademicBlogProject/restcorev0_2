@@ -639,7 +639,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <h1 class="wrong">Oops! Something went wrong.</h1>
                 <p>We're sorry, but an error has occurred.</p>
                 <p>Please try again later or contact support.</p>
-                <button class="button2"><a href="homelogin" >Go Home</a></button>
+                <button class="button2"><a href="index.html" >Go Home</a></button>
             </div>
         </div>
         <div th:if="${session.user != null}">
@@ -672,7 +672,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <span class="icon">
                                     <ion-icon name="help-outline"></ion-icon>
                                 </span>
-                                <span class="title">System Management</span>
+                                <span class="title">Update Category</span>
                             </a>
                         </li>
 
@@ -730,17 +730,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <!-- ======================= Title ======================== -->
                     <div class="chartsBx">
                         <div>
-                            <h1 class="chart">SYSTEM MANAGEMENT</h1>
+                            <h1 class="chart">UPDATE CATEGORY</h1>
                         </div>
                     </div>
                     <!-- ================ Order Details List ================= -->
-                    <script>
-                        $(document).ready(function () {
-                            $("#showContentButton").click(function () {
-                                $("#hiddenContent").toggle();
-                            });
-                        });
-                    </script>
                     <!--                    <div class="details">
                                             <div class="recentOrders">
                                                 <div class="cardHeader">
@@ -814,91 +807,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="details">
                         <div class="recentOrders">
                             <div class="cardHeader">
-                                <h2>List of categories</h2>
-                                <!--                                <a class="btn">Create Category</a>-->
-                                <button id="showContentButton" class="btn">Create Category</button>
+                                <h2>update category</h2>
+                                <a class="btn" href="landingsystem">return to System Management</a>
                             </div>
-                            <div id="hiddenContent">
-                                <form action="createCategory" method="POST">
+                            <div>
+                                <form action="updateCategoryDetail" method="POST" id="updateForm">
                                     <div class="post">
                                         <div class="post-header">
-                                            <input type="text" class="notclean" placeholder="write Category Name" id="categoryName" name="categoryName">
+                                            <input type="text" class="notclean" placeholder="write Category Name" id="categoryName" name="categoryName" th:value="${updateCategory.categoryName}">
                                         </div>
                                         <div class="post-header">
-                                            <input type="text" class="notclean" placeholder="write Category Description" id="categoryDescription" name="categoryDescription">
+                                            <input type="text" class="notclean" placeholder="write Category Description" id="categoryDescription" name="categoryDescription" th:value="${updateCategory.categoryDescription}">
                                         </div>
+                                        <input type="hidden" name="categoryId" th:value="${updateCategory.categoryId}">
                                         <!--                                            ex: phuonglhk@fe.edu.vn -->
                                         <div class="post-footer">
-                                            <button type="submit" value="createCategory" class="add">Create Category</button>
+                                            <button type="submit" value="updateCategoryDetail" class="add" onclick="confirmUpdate(event)">Update Category</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-
-                            <div style="border-top: 1px solid #000; margin-top: 10px"></div>
-
-                            <!--th:text="${#strings.abbreviate(cateList.categoryName,28)}"-->
-                            <!--th:text="${#strings.abbreviate(cateList.categoryDescription,28)}"-->
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <td>Name of Category</td>
-                                        <td>Description</td>
-                                        <td>Modify</td>
-                                        <td>Delete</td>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr th:each="cateList : ${cateList}" th:if="${cateList.status == 1}">
-                                        <td th:text="${#strings.abbreviate(cateList.categoryName,28)}">
-                                        </td>
-                                        <td th:text="${#strings.abbreviate(cateList.categoryDescription,28)}">
-                                        </td>
-                                        <td>
-                                            <form action="landingupdate" method="post">
-                                                <input type="hidden" name="categoryId" th:value="${cateList.categoryId}">
-                                                <button class="status delivered">Modify</button>
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form action="deleteCategory" method="post" id="deleteForm">
-                                                <input type="hidden" name="categoryId" th:value="${cateList.categoryId}">
-                                                <button class="status return">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <!--                                    th:text="${#strings.abbreviate(category.categoryName,28)}"-->
-                                </tbody>
-                            </table>
-<!--                            <script>
-                                function confirmUpdate(event) {
-                                    event.preventDefault(); // Prevent form submission
-
-                                    // Display a confirmation dialog
-                                    var confirmResult = confirm("Do you want to update?");
-
-                                    if (confirmResult) {
-                                        document.getElementById("deleteForm").submit(); // Submit the form
-                                    } else {
-                                        // User clicked "Cancel" - do nothing
-                                    }
-                                }
-                            </script>
-                            <script>
-                                function confirmDelete(event) {
-                                    event.preventDefault(); // Prevent form submission
-
-                                    // Display a confirmation dialog
-                                    var confirmResult = confirm("Do you want to delete?");
-
-                                    if (confirmResult) {
-                                        document.getElementById("deleteForm").submit(); // Submit the form
-                                    } else {
-                                        // User clicked "Cancel" - do nothing
-                                    }
-                                }
-                            </script>-->
                         </div>
                     </div>
 

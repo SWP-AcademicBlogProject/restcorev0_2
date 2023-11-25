@@ -224,7 +224,7 @@
                 width: 100%;
                 padding: 20px;
                 display: grid;
-                grid-template-columns: repeat(4, 1fr);
+                grid-template-columns: repeat(3, 1fr);
                 grid-gap: 30px;
             }
 
@@ -292,7 +292,7 @@
                 width: 100%;
                 padding: 20px;
                 display: grid;
-                grid-template-columns: 2fr 1fr;
+                grid-template-columns: 3fr 2fr;
                 grid-gap: 30px;
                 /* margin-top: 10px; */
             }
@@ -311,6 +311,7 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: flex-start;
+                max-height: 400px;
             }
             .cardHeader h2 {
                 font-weight: 600;
@@ -546,7 +547,85 @@
                 text-decoration: none;
             }
 
+            #hiddenContent {
+                display: none;
+            }
+            .post {
+                /*                position: fixed;
+                                top: 60px;
+                                right: 20px;*/
+                margin-bottom: 20px;
+                background-color: #f0f2f5;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .post-header {
+                margin-bottom: 10px;
+            }
+
+            .post-header h2 {
+                font-size: 18px;
+                color: #333;
+                margin-top: -5px;
+            }
+
+            .post-content p {
+                line-height: 1.5;
+            }
+
+            .post-footer {
+                font-size: 14px;
+                color: #777;
+                margin-top: 60px;
+            }
+
+            .post-footer span {
+                margin-right: 10px;
+            }
+            .add {
+                background-color: rgb(69, 191, 191);
+                padding: 10px 20px;
+                border: none;
+                width:100%;
+                border-radius: 8px;
+                color: white;
+                font-size: 15px;
+                cursor: pointer;
+                transition: text-decoration 0.3s, transform 0.3s;
+            }
+
+            .add:hover {
+                text-decoration: underline;
+                transform: scale(1.1);
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                box-sizing: border-box;
+                border: 2px solid #ccc;
+                border-radius: 4px;
+            }
+
+            input[type="submit"] {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
         </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
 
     <body>
@@ -557,12 +636,19 @@
                 <h1 class="wrong">Oops! Something went wrong.</h1>
                 <p>We're sorry, but an error has occurred.</p>
                 <p>Please try again later or contact support.</p>
-                <button class="button2"><a href="index.html" >Go Home</a></button>
+                <button class="button2"><a href="homelogin" >Go Home</a></button>
             </div>
         </div>
         <div th:if="${session.user != null}">
             <!-- Content visible only for authenticated users -->
             <!-- =============== Navigation ================ -->
+            <script>
+                $(document).ready(function () {
+                    $("#showContentButton").click(function () {
+                        $("#hiddenContent").toggle();
+                    });
+                });
+            </script>
             <div class="container">
                 <div class="navigation">
                     <ul>
@@ -648,8 +734,8 @@
                     <div class="cardBox">
                         <div class="card">
                             <div>
-                                <div class="numbers">1,504</div>
-                                <div class="cardName">Daily Post Blog</div>
+                                <div class="numbers" th:text="${countPost}">1,504</div>
+                                <div class="cardName" >Total Post Blog</div>
                             </div>
 
                             <div class="iconBx">
@@ -659,8 +745,8 @@
 
                         <div class="card">
                             <div>
-                                <div class="numbers">400</div>
-                                <div class="cardName">Member Online</div>
+                                <div class="numbers" th:text="${countUser}">400</div>
+                                <div class="cardName">Members</div>
                             </div>
 
                             <div class="iconBx">
@@ -670,7 +756,7 @@
 
                         <div class="card">
                             <div>
-                                <div class="numbers">284</div>
+                                <div class="numbers" th:text="${countComment}">284</div>
                                 <div class="cardName">Comments</div>
                             </div>
 
@@ -679,178 +765,112 @@
                             </div>
                         </div>
 
-                        <div class="card">
-                            <div>
-                                <div class="numbers">20</div>
-                                <div class="cardName">Member Offline</div>
-                            </div>
-
-                            <div class="iconBx">
-                                <ion-icon name="people-circle-outline"></ion-icon>
-                            </div>
-                        </div>
+                        <!--                        <div class="card">
+                                                    <div>
+                                                        <div class="numbers">20</div>
+                                                        <div class="cardName">Member Offline</div>
+                                                    </div>
+                        
+                                                    <div class="iconBx">
+                                                        <ion-icon name="people-circle-outline"></ion-icon>
+                                                    </div>
+                                                </div>-->
                     </div>
 
                     <!-- ================ Add Charts JS ================= -->
-                    <div class="chartsBx">
+<!--                    <div class="chartsBx">
                         <div class="chart"> <canvas id="chart-1"></canvas> </div>
                         <div class="chart"> <canvas id="chart-2"></canvas> </div>
-                    </div>
+                    </div>-->
 
                     <!-- ================ Order Details List ================= -->
                     <div class="details">
                         <div class="recentOrders">
                             <div class="cardHeader">
                                 <h2>Recent List Of Blogs</h2>
-                                <a href="#" class="btn">View All</a>
+                                <button id="showContentButton" class="btn" style="margin-right: 20px;">Add User</button>
                             </div>
 
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <td>UserName</td>
-                                        <td>Title</td>
-                                        <td>Subject</td>
-                                        <td>Status</td>
-                                    </tr>
-                                </thead>
+                            <div id="hiddenContent">
+                                <form action="addUserAdmin" method="POST">
+                                    <div class="post">
+                                        <div class="post-header">
+                                            <input type="text" class="notclean" placeholder="set Lecturer Id: LECTURER_[MajorCode], example: LECTURER_SA" id="Id" name="Id">
+                                        </div>
+                                        <div class="post-header">
+                                            <input type="text" class="notclean" placeholder="set Lecturer FPT Mail at FPT Unviersity, example: phuonglhk@fe.edu.vn" id="email" name="email">
+                                        </div>
+                                        <!--                                            ex: phuonglhk@fe.edu.vn -->
+                                        <div class="post-header">
+                                            <input type="password" class="notclean" placeholder="set Lecturer password" id="password" name="password">
+                                        </div>
+                                        <div class="post-header">
+                                            <input type="password" class="notclean" placeholder="set Lecturer confirm" id="confirm" name="confirm">
+                                        </div>
+                                        <div class="post-footer">
+                                            <button type="submit" value="addUserAdmin" class="add">&#128395; Add User</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
 
-                                <tbody>
-                                    <tr>
-                                        <td>minhthse171011@fpt.edu.vn</td>
-                                        <td>No Cap</td>
-                                        <td>Other Categories</td>
-                                        <td><span class="status delivered">Published</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>hehese172341@fpt.edu.vn</td>
-                                        <td>Source PRJ301</td>
-                                        <td>PRJ301</td>
-                                        <td><span class="status pending">Pending</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>khaiphse172012@fpt.edu.vn</td>
-                                        <td>Question SWP301</td>
-                                        <td>SWP301</td>
-                                        <td><span class="status return">Return</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>khanhthse157801@fpt.edu.vn</td>
-                                        <td>OJT</td>
-                                        <td>OJT</td>
-                                        <td><span class="status pending">Pending</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>khanhthse157801@fpt.edu.vn</td>
-                                        <td>How to Pass SWP</td>
-                                        <td>SWP301</td>
-                                        <td><span class="status delivered">Published</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>khoitrse163019@fpt.edu.vn</td>
-                                        <td>Flute</td>
-                                        <td>Flute</td>
-                                        <td><span class="status pending">Pending</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>hehwewse172031@fpt.edu.vn</td>
-                                        <td>Go Go</td>
-                                        <td>Other Categories</td>
-                                        <td><span class="status return">Return</span></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>truonghaiminh2112@gmail.com</td>
-                                        <td>Information about FPTBlog</td>
-                                        <td>Notification</td>
-                                        <td><span class="status inProgress">In Progress</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div style="overflow-y: auto;overflow-x: auto; height:300px">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>UserName</td>
+                                            <td>Title</td>
+                                            <td>Category</td>
+                                            <td>Status</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="post : ${post}">
+                                            <td th:text="${post.author}">minhthse171011@fpt.edu.vn</td>
+                                            <td th:text="${#strings.abbreviate(post.title,20)} ">No Cap</td>
+                                            <td th:each="category : ${category}" th:if="${category.categoryId eq post.categoryId}">
+                                                <span style="background-color: #3498db; color: white;  font-weight: bold;padding: 6px 12px;
+                                                      border-radius: 4px; margin-right: 8px;"  th:text="${#strings.abbreviate(category.categoryName,17)} ">Category</span>
+                                            </td>
+                                            <td>
+                                                <span class="status delivered" th:if="${post.status == 1}">Published</span>
+                                                <span class="status pending" th:if="${post.status == 0}">Pending</span>
+                                                <span class="status return" th:if="${post.status == -1}">Denied</span>
+                                                <span class="status inProgress" th:if="${post.status == -2}">Deleted</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
                         <!-- ================= New Customers ================ -->
-                        <div class="recentCustomers">
+                        <div class="recentCustomers" style="overflow-y: auto;overflow-x: auto; height:300px">
                             <div class="cardHeader">
                                 <h2>Recent Members</h2>
                             </div>
 
                             <table>
-                                <tr>
+                                <tr th:each="userList : ${userList}" th:if="${userList.roleId != 'admin'}">
                                     <td width="60px">
                                         <div class="imgBx"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt=""></div>
                                     </td>
                                     <td>
-                                        <h4>MinhTruong <br> <span>Minhthse171011@fpt.edu.vn</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt=""></div>
+                                        <h4 th:text="${userList.userID}">MinhTruong</h4>
+                                        <br>
+                                        <span th:text="${userList.userName}">Minhthse171011@fpt.edu.vn</span>
                                     </td>
                                     <td>
-                                        <h4>HengWetason <br> <span>hehwewse172031@fpt.edu.vn</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt=""></div>
+                                        <form th:if="${userList.status == 1}" action="ban" method="post">
+                                            <input type="hidden" name="userId" th:value="${userList.userID}">
+                                            <button type="submit" class="status return">Ban</button>
+                                        </form>
                                     </td>
                                     <td>
-                                        <h4>Minh(Lecturer) <br> <span>truonghaiminh2112@gmail.com</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>Khoi<br> <span>khoitrse163019@fpt.edu.vn</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>KhanhThinh <br> <span>khanhthse157801@fpt.edu.vn</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>KhaiNguyen <br> <span>Khaingse172012@fpt.edu.vn</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>DucPhuc <br> <span>Ducphse173012@fpt.edu.vn</span></h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td width="60px">
-                                        <div class="imgBx"><img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg" alt=""></div>
-                                    </td>
-                                    <td>
-                                        <h4>AnNguyen <br> <span>Anngse161023@fpt.edu.vn</span></h4>
+                                        <form th:if="${userList.status == 0}" action="unban" method="post">
+                                            <input type="hidden" name="userId" th:value="${userList.userID}">
+                                            <button type="submit" class="status delivered">Unban</button>
+                                        </form>
                                     </td>
                                 </tr>
                             </table>

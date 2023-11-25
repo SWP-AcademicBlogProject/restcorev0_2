@@ -328,7 +328,8 @@ public class BlogManagementController {
     @RequestMapping("/deleteBlog")
     public String deletePost(@RequestParam(value = "postId") int postId, Model model) {
         PostDTO deletedBlog = postRep.findByPostId(postId);
-        postRep.delete(deletedBlog);
+        deletedBlog.setStatus(-2);
+        postRep.save(deletedBlog);
         return "redirect:/viewforum";
     }
 
