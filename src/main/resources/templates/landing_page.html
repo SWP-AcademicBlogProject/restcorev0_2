@@ -795,7 +795,7 @@
                                 <form action="addUserAdmin" method="POST">
                                     <div class="post">
                                         <div class="post-header">
-                                            <input type="text" class="notclean" placeholder="set Lecturer Id: LECTURER_[MajorCode], example: LECTURER_SA" id="Id" name="Id">
+                                            <input type="text" class="notclean" placeholder="set Lecturer Id: LECTURER_[MajorCode], example: LECTURER_SA [SE,SA,SS,GD]" id="Id" name="Id">
                                         </div>
                                         <div class="post-header">
                                             <input type="text" class="notclean" placeholder="set Lecturer FPT Mail at FPT Unviersity, example: phuonglhk@fe.edu.vn" id="email" name="email">
@@ -830,7 +830,7 @@
                                             <td th:text="${#strings.abbreviate(post.title,20)} ">No Cap</td>
                                             <td th:each="category : ${category}" th:if="${category.categoryId eq post.categoryId}">
                                                 <span style="background-color: #3498db; color: white;  font-weight: bold;padding: 6px 12px;
-                                                      border-radius: 4px; margin-right: 8px;"  th:text="${#strings.abbreviate(category.categoryName,17)} ">Category</span>
+                                                      border-radius: 4px; margin-right: 8px;"  th:text="${#strings.abbreviate(category.categoryName,14)} ">Category</span>
                                             </td>
                                             <td>
                                                 <span class="status delivered" th:if="${post.status == 1}">Published</span>

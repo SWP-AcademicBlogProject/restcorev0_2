@@ -35,7 +35,7 @@ public class CommentController {
         PostDTO post = (PostDTO) session.getAttribute("postSession");
         
         
-        if (comment==null) return "redirect:/blogdetail"; //enter fail page
+        if (comment.isBlank()) return "redirect:/details/"+post.getPostId(); //enter fail page
         
         
         CommentDTO newcomment = new CommentDTO();

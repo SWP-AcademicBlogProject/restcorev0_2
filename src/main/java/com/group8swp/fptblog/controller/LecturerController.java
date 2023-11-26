@@ -54,6 +54,10 @@ public class LecturerController {
     @RequestMapping("/approved")
     public String ApprovedBlog(@RequestParam(value = "postId") int postId) {
         PostDTO post = postRep.findByPostId(postId);
+        if (post.getStatus() != 0) {
+            return "redirect:/approval";
+        }
+
         post.setStatus(1);
         postRep.save(post);
         return "redirect:/approval";
@@ -63,6 +67,10 @@ public class LecturerController {
     @RequestMapping("/denied")
     public String updateUserPost(@RequestParam(value = "postId") int postId) {
         PostDTO post = postRep.findByPostId(postId);
+        if (post.getStatus() != 0) {
+            return "redirect:/approval";
+        }
+
         post.setStatus(-1);
         postRep.save(post);
         return "redirect:/approval";
