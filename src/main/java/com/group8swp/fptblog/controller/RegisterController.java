@@ -90,6 +90,15 @@ public class RegisterController {
                 return "register";
 
             }
+
+            if (username.length() > 255) {
+                return "register";
+            }
+
+            if (password.length() > 255) {
+                return "register";
+            }
+
             List<UserDTO> foundusername = repository.findByUserName(username);
             if (foundusername.size() != 0) {
                 model.addAttribute("usernameError", "Existed user name !");

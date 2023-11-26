@@ -213,6 +213,14 @@ public class AdminController {
             return "redirect:/landingpage";
         }
 
+        if (email.length() > 255) {
+            return "redirect:/landingpage";
+        }
+
+        if (password.length() > 255) {
+            return "redirect:/landingpage";
+        }
+
         List<UserDTO> foundusername = userRepository.findByUserName(email);
         if (foundusername.size() != 0) {
             return "redirect:/landingpage";
